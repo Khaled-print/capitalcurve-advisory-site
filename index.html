@@ -3110,44 +3110,63 @@
         boardObserver.observe(boardTabs);
       }
 
-      // --- Email body auto-scroll: bottom → top on viewport entry ---
+      // --- Email body auto-scroll: slow continuous oscillate down/up ---
       function initEmailAutoScroll(el) {
+        var SPEED = 0.3;            // pixels per frame (~18px/sec at 60fps)
+        var direction = 1;          // 1 = scrolling down, -1 = scrolling up
+        var stopped = false;
         var animId = null;
-        var paused = false;
-        var startTime = null;
-        var startScroll, targetScroll;
-        var duration = 4000;
-        var manualStop = false;
+        var hoverTimer = null;
+        var hovering = false;
+        var hoverReady = false;     // true after 2s hover
 
-        // Start at bottom, scroll up to top
-        el.scrollTop = el.scrollHeight;
-        startScroll = el.scrollTop;
-        targetScroll = 0;
+        // Start at top, scroll down first
+        el.scrollTop = 0;
 
-        function easeInOutCubic(t) {
-          return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        function tick() {
+          if (stopped) return;
+          if (!hovering) {
+            var maxScroll = el.scrollHeight - el.clientHeight;
+            el.scrollTop += SPEED * direction;
+            // Reverse at boundaries
+            if (el.scrollTop >= maxScroll) { direction = -1; }
+            if (el.scrollTop <= 0) { direction = 1; }
+          }
+          animId = requestAnimationFrame(tick);
         }
 
-        function step(timestamp) {
-          if (manualStop) return;
-          if (!startTime) startTime = timestamp;
-          if (paused) { startTime = null; startScroll = el.scrollTop; animId = requestAnimationFrame(step); return; }
-          var elapsed = timestamp - startTime;
-          var progress = Math.min(elapsed / duration, 1);
-          el.scrollTop = startScroll + (targetScroll - startScroll) * easeInOutCubic(progress);
-          if (progress < 1) { animId = requestAnimationFrame(step); }
-        }
+        // Start immediately
+        animId = requestAnimationFrame(tick);
 
-        setTimeout(function() {
-          el.scrollTop = el.scrollHeight;
-          startScroll = el.scrollTop;
-          animId = requestAnimationFrame(step);
-        }, 200);
+        // Hover: pause scroll while hovering; after 2s, user can take control
+        el.addEventListener('mouseenter', function() {
+          hovering = true;
+          hoverReady = false;
+          hoverTimer = setTimeout(function() { hoverReady = true; }, 2000);
+        });
+        el.addEventListener('mouseleave', function() {
+          hovering = false;
+          hoverReady = false;
+          if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+          // Resume if not manually stopped
+          if (stopped) {
+            stopped = false;
+            direction = 1;
+            animId = requestAnimationFrame(tick);
+          }
+        });
 
-        el.addEventListener('mouseenter', function() { paused = true; });
-        el.addEventListener('mouseleave', function() { paused = false; });
-        el.addEventListener('wheel', function() { manualStop = true; if (animId) cancelAnimationFrame(animId); }, { passive: true });
-        el.addEventListener('touchstart', function() { manualStop = true; if (animId) cancelAnimationFrame(animId); }, { passive: true });
+        // Wheel/touch: only take control if hovered 2s+
+        el.addEventListener('wheel', function() {
+          if (hoverReady && !stopped) {
+            stopped = true;
+            if (animId) { cancelAnimationFrame(animId); animId = null; }
+          }
+        }, { passive: true });
+        el.addEventListener('touchstart', function() {
+          stopped = true;
+          if (animId) { cancelAnimationFrame(animId); animId = null; }
+        }, { passive: true });
       }
 
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
