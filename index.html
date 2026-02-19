@@ -1476,27 +1476,36 @@
     /* Consistent frame height for side-by-side strips */
     .mockup-strip--right .email-body,
     .mockup-strip--left .email-body {
-      max-height: 380px;
-      overflow: hidden;
+      max-height: 420px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 92%, transparent 100%);
     }
+
+    /* Custom scrollbar */
+    .email-body::-webkit-scrollbar { width: 4px; }
+    .email-body::-webkit-scrollbar-track { background: transparent; }
+    .email-body::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+    .email-body { scrollbar-width: thin; scrollbar-color: #CBD5E1 transparent; }
+
+    /* Email content utility classes */
+    .email-section-title {
+      font-size: 11px; font-weight: 700; color: #1E293B;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin: 18px 0 8px; padding-bottom: 4px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .email-divider { border: none; border-top: 1px solid #E2E8F0; margin: 16px 0; }
+    .flag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; }
+    .flag-dot--red { background: #EF4444; }
+    .flag-dot--amber { background: #F59E0B; }
+    .flag-dot--green { background: #22C55E; }
+    .mini-metric-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 10px; border-bottom: 1px solid #F1F5F9; }
 
     .mockup-strip--right .screen-frame,
     .mockup-strip--left .screen-frame {
       position: relative;
-    }
-
-    .mockup-strip--right .screen-frame::after,
-    .mockup-strip--left .screen-frame::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
-      border-radius: 0 0 12px 12px;
-      pointer-events: none;
-      z-index: 2;
     }
 
     /* SVG line chart */
@@ -1595,6 +1604,10 @@
       }
       .mockup-strip__content .section-heading {
         font-size: 22px;
+      }
+      .mockup-strip--right .email-body,
+      .mockup-strip--left .email-body {
+        max-height: 320px;
       }
       .metric-blocks {
         grid-template-columns: repeat(2, 1fr);
@@ -1721,9 +1734,9 @@
     <section class="mockup-strip mockup-strip--right">
       <div class="mockup-strip__inner reveal">
         <div class="mockup-strip__content">
-          <p class="eyebrow">Delivered Every Monday</p>
-          <h3 class="section-heading">Revenue Pipeline<br>Weekly Summary</h3>
-          <p class="body-text">This lands in your inbox every Monday at 7am. CRM data pulled via API, aggregated by pipeline stage, AI-written commentary — no manual work, no delays.</p>
+          <p class="eyebrow">Delivered Every Monday, 7 AM</p>
+          <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
+          <p class="body-text">Every Monday at 7 AM, your leadership team receives a complete pipeline intelligence brief — stage movements, at-risk deals, conversion analytics, and AI-generated commentary.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -1735,7 +1748,7 @@
             <div class="email-chrome">
               <strong>From:</strong> CapitalCurve Automation<br>
               <strong>To:</strong> Leadership Team<br>
-              <strong>Subject:</strong> Revenue Pipeline — Weekly Summary
+              <strong>Subject:</strong> Pipeline &amp; Revenue Intelligence — Week of 17 Feb
             </div>
             <div class="email-body">
               <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Monday 17 Feb 2025, 7:00 AM AEST &middot; Apex Consulting</div>
@@ -1755,6 +1768,49 @@
               <div style="font-weight:600;font-size:10px;margin-top:8px;color:#1E293B;">Total Pipeline: $42.9M across 106 active deals</div>
               <div class="email-commentary">
                 <strong>AI Commentary:</strong> Pipeline grew 5.2% WoW driven by strong inflow at Qualified Lead stage. Proposal conversion dipped slightly — 3 deals pushed to next week pending client sign-off. Verbal Commits remain stable with $4.3M expected to close within 14 days. Recommend follow-up on the 12 Negotiation-stage deals representing $6.1M in potential revenue.
+              </div>
+
+              <div class="email-section-title">Top Movers This Week</div>
+              <table class="mockup-table">
+                <thead>
+                  <tr><th>Deal</th><th>Stage Change</th><th>Value</th><th>Owner</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Meridian Digital</td><td>Discovery → Proposal</td><td>$1.2M</td><td>S. Patel</td></tr>
+                  <tr><td>Arcadia Group</td><td>Proposal → Negotiation</td><td>$860K</td><td>L. Chen</td></tr>
+                  <tr><td>Vantage Health</td><td>Negotiation → Verbal</td><td>$2.1M</td><td>J. Torres</td></tr>
+                  <tr><td>Bloom Financial</td><td>Qualified → Discovery</td><td>$640K</td><td>R. Kim</td></tr>
+                </tbody>
+              </table>
+
+              <div class="email-section-title">Deals at Risk</div>
+              <div class="flag-item"><span class="flag-dot flag-dot--red"></span><span><strong>Nexus Infrastructure</strong> — No activity 14+ days, $1.8M at Proposal stage. Last contact: 3 Feb.</span></div>
+              <div class="flag-item"><span class="flag-dot flag-dot--red"></span><span><strong>Catalyst Partners</strong> — Champion left the organisation, $920K at Negotiation. Requires new stakeholder mapping.</span></div>
+              <div class="flag-item"><span class="flag-dot flag-dot--amber"></span><span><strong>Orion Analytics</strong> — Competitor shortlisted, $1.4M at Proposal stage. Pricing review recommended.</span></div>
+
+              <div class="email-section-title">Conversion Rates</div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0;">
+                <div style="background:#F8FAFC;border-radius:6px;padding:8px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#1E293B;">32%</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Lead → Qualified</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:8px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#1E293B;">48%</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Qualified → Proposal</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:8px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#1E293B;">71%</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Proposal → Negotiation</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:8px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#1E293B;">63%</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Negotiation → Won</div>
+                </div>
+              </div>
+
+              <hr class="email-divider">
+              <div style="font-size:10px;line-height:1.6;color:#64748B;">
+                <strong style="color:#1E293B;">AI Insight:</strong> The Proposal-to-Negotiation conversion rate of 71% is the highest in 8 weeks, suggesting improved deal qualification at earlier stages. However, three deals totalling $4.1M are flagged at risk — proactive intervention this week could protect 9.5% of total pipeline value. Recommend prioritising the Nexus Infrastructure follow-up given its 14-day inactivity window.
               </div>
             </div>
           </div>
@@ -1779,8 +1835,8 @@
       <div class="mockup-strip__inner reveal">
         <div class="mockup-strip__content">
           <p class="eyebrow">Your Friday Briefing</p>
-          <h3 class="section-heading">Weekly Finance<br>Health Check</h3>
-          <p class="body-text">Six KPIs. Traffic-light coded. Delivered every Friday before COB with variance tracking and AI-generated action items — so nothing slips through the cracks.</p>
+          <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
+          <p class="body-text">A single-page financial scorecard with traffic-light KPIs, trend analysis, cash flow snapshot, and upcoming commitments — delivered every Friday before close.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -1792,7 +1848,7 @@
             <div class="email-chrome">
               <strong>From:</strong> CapitalCurve Automation<br>
               <strong>To:</strong> CFO, Head of Finance<br>
-              <strong>Subject:</strong> Weekly Finance Health Check — Apex Consulting
+              <strong>Subject:</strong> CFO Weekly Scorecard — Apex Consulting
             </div>
             <div class="email-body">
               <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Friday 14 Feb 2025, 5:00 PM AEST</div>
@@ -1814,6 +1870,47 @@
                 &rarr; AR Ageing has breached threshold — $340K outstanding &gt;60 days, up from $285K last week. Recommend immediate follow-up on top 3 accounts.<br>
                 &rarr; EBITDA tracking slightly below target due to unplanned contractor spend. Expected to normalise by month-end.<br>
                 &rarr; Revenue ahead of plan — strong close rate on pipeline deals this week.
+              </div>
+
+              <div class="email-section-title">4-Week KPI Trend</div>
+              <table class="mockup-table">
+                <thead>
+                  <tr><th>Metric</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>This Wk</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Revenue</td><td>$1.4M</td><td>$1.7M</td><td>$1.9M</td><td class="val-green">$2.1M &#9650;</td></tr>
+                  <tr><td>Gross Margin</td><td>59.8%</td><td>61.2%</td><td>61.9%</td><td class="val-green">62.4% &#9650;</td></tr>
+                  <tr><td>EBITDA</td><td>$310K</td><td>$365K</td><td>$402K</td><td class="val-amber">$418K &#9650;</td></tr>
+                  <tr><td>Cash Position</td><td>$3.0M</td><td>$2.9M</td><td>$3.1M</td><td class="val-green">$3.2M &#9650;</td></tr>
+                </tbody>
+              </table>
+
+              <div class="email-section-title">Cash Flow Snapshot</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0;">
+                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                  <div style="font-size:15px;font-weight:700;color:#22C55E;">$485K</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Operating Cash Flow</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                  <div style="font-size:15px;font-weight:700;color:#22C55E;">$312K</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Free Cash Flow</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                  <div style="font-size:15px;font-weight:700;color:#1E293B;">47</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Days Cash on Hand</div>
+                </div>
+              </div>
+
+              <div class="email-section-title">Upcoming Commitments (Next 14 Days)</div>
+              <div class="mini-metric-row"><span>24 Feb — Quarterly BAS lodgement</span><span style="font-weight:600;color:#EF4444;">$182K</span></div>
+              <div class="mini-metric-row"><span>26 Feb — Contractor payroll cycle</span><span style="font-weight:600;color:#EF4444;">$95K</span></div>
+              <div class="mini-metric-row"><span>28 Feb — Office lease renewal (Q2)</span><span style="font-weight:600;color:#EF4444;">$85K</span></div>
+              <div class="mini-metric-row"><span>3 Mar — Software licence renewals (annual)</span><span style="font-weight:600;color:#EF4444;">$42K</span></div>
+              <div class="mini-metric-row"><span>7 Mar — Insurance premium (D&amp;O + PI)</span><span style="font-weight:600;color:#EF4444;">$28K</span></div>
+
+              <hr class="email-divider">
+              <div style="font-size:10px;line-height:1.6;color:#64748B;">
+                <strong style="color:#1E293B;">AI Insight:</strong> Revenue has posted four consecutive weeks of growth, tracking 5% above plan. However, the AR ageing spike to $340K warrants immediate attention — two accounts (Meridian Group and Coastal Engineering) represent 68% of the overdue balance. With $432K in commitments due over the next 14 days, maintaining the current 47-day cash buffer requires collections action this week.
               </div>
             </div>
           </div>
@@ -1842,8 +1939,8 @@
       <div class="mockup-strip__inner reveal">
         <div class="mockup-strip__content">
           <p class="eyebrow">Your Mid-Week Pulse</p>
-          <h3 class="section-heading">Ops Flash</h3>
-          <p class="body-text">Key metrics, flagged items, and AI commentary in a two-minute read. Sent mid-week so leadership sees issues before they become crises.</p>
+          <h3 class="section-heading">Delivery &amp; Operations<br>Intelligence</h3>
+          <p class="body-text">Mid-week operational pulse covering project health, resource allocation, delivery risks, and client satisfaction — with AI-flagged items that need attention.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -1855,7 +1952,7 @@
             <div class="email-chrome">
               <strong>From:</strong> CapitalCurve Automation<br>
               <strong>To:</strong> COO, Ops Team<br>
-              <strong>Subject:</strong> Ops Flash — Week Ending 14 Feb
+              <strong>Subject:</strong> Delivery &amp; Operations Intelligence — Week Ending 14 Feb
             </div>
             <div class="email-body">
               <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Wednesday 12 Feb 2025, 8:00 AM AEST &middot; Apex Consulting</div>
@@ -1883,6 +1980,46 @@
               <div class="flag-item"><span class="status-dot status-dot--amber"></span> Invoicing backlog: 4 projects with unbilled work &gt;$50K each</div>
               <div class="email-commentary">
                 <strong>AI Commentary:</strong> Utilisation has softened 1.2pp from last week as two projects entered transition phase. Invoicing lag remains above target — recommend batch processing this week to recover $210K in unbilled revenue. Contractor conversion decisions are time-sensitive given notice period requirements.
+              </div>
+
+              <div class="email-section-title">Project Status Summary</div>
+              <table class="mockup-table">
+                <thead>
+                  <tr><th>Project</th><th>Phase</th><th>Health</th><th>Margin</th><th>Next Milestone</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Titan Rollout</td><td>Delivery</td><td><span class="status-dot status-dot--red"></span></td><td>34%</td><td>UAT Sign-off (overdue)</td></tr>
+                  <tr><td>Meridian CRM</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>52%</td><td>Sprint 4 Demo — 19 Feb</td></tr>
+                  <tr><td>Coastal ERP</td><td>Discovery</td><td><span class="status-dot status-dot--green"></span></td><td>48%</td><td>Requirements Sign-off — 21 Feb</td></tr>
+                  <tr><td>Vantage Analytics</td><td>Transition</td><td><span class="status-dot status-dot--amber"></span></td><td>41%</td><td>Handover Complete — 28 Feb</td></tr>
+                  <tr><td>Bloom Ops</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>56%</td><td>Integration Testing — 24 Feb</td></tr>
+                </tbody>
+              </table>
+
+              <div class="email-section-title">Resource Allocation</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0;">
+                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#F59E0B;">4</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Bench FTE</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#1E293B;">22%</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Contractor %</div>
+                </div>
+                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                  <div style="font-size:16px;font-weight:700;color:#1E293B;">6.2</div>
+                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Avg Span of Control</div>
+                </div>
+              </div>
+
+              <div class="email-section-title">Client Satisfaction</div>
+              <div class="flag-item"><span class="status-dot status-dot--green"></span> NPS Score: <strong>62</strong> (up from 58 last month) — above industry benchmark of 55</div>
+              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Recent survey: 2 clients flagged communication delays on Titan and Vantage projects</div>
+              <div class="flag-item"><span class="status-dot status-dot--red"></span> Active escalations: <strong>1</strong> — Titan Rollout (client exec meeting scheduled 18 Feb)</div>
+
+              <hr class="email-divider">
+              <div style="font-size:10px;line-height:1.6;color:#64748B;">
+                <strong style="color:#1E293B;">AI Insight:</strong> The Titan Rollout remains the primary risk item — the overdue UAT milestone and active client escalation require senior attention this week. On the positive side, four of five active projects are tracking green, and NPS has improved for the second consecutive month. The four bench FTEs represent an opportunity to accelerate the Meridian CRM build, which currently has the highest margin at 52%.
               </div>
             </div>
           </div>
@@ -2560,6 +2697,50 @@
           });
         }, { threshold: 0.2 });
         boardObserver.observe(boardTabs);
+      }
+
+      // --- Email body auto-scroll on viewport entry ---
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var emailBodies = document.querySelectorAll('.email-body');
+        var emailScrollObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            emailScrollObserver.unobserve(el);
+
+            var animId = null;
+            var paused = false;
+            var startTime = null;
+            var startScroll = 0;
+            var targetScroll = el.scrollHeight * 0.7;
+            var duration = 4000;
+            var manualStop = false;
+
+            function easeInOutCubic(t) {
+              return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            function step(timestamp) {
+              if (manualStop) return;
+              if (!startTime) startTime = timestamp;
+              if (paused) { startTime = null; startScroll = el.scrollTop; animId = requestAnimationFrame(step); return; }
+              var elapsed = timestamp - startTime;
+              var progress = Math.min(elapsed / duration, 1);
+              el.scrollTop = startScroll + (targetScroll - startScroll) * easeInOutCubic(progress);
+              if (progress < 1) { animId = requestAnimationFrame(step); }
+            }
+
+            setTimeout(function() {
+              animId = requestAnimationFrame(step);
+            }, 800);
+
+            el.addEventListener('mouseenter', function() { paused = true; });
+            el.addEventListener('mouseleave', function() { paused = false; });
+            el.addEventListener('wheel', function() { manualStop = true; if (animId) cancelAnimationFrame(animId); }, { passive: true });
+            el.addEventListener('touchstart', function() { manualStop = true; if (animId) cancelAnimationFrame(animId); }, { passive: true });
+          });
+        }, { threshold: 0.3 });
+        emailBodies.forEach(function(el) { emailScrollObserver.observe(el); });
       }
 
       // --- SVG line chart draw-on animation ---
