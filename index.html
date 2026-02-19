@@ -466,8 +466,15 @@
       font-weight: 400;
       line-height: 1.6;
       color: var(--text-primary);
-      padding-left: 1.2em;
-      text-indent: -1.2em;
+      padding-left: 20px;
+      position: relative;
+    }
+    .result-line::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      width: 16px;
+      text-align: left;
     }
 
     /* ===== PRICING ===== */
@@ -2590,13 +2597,13 @@
         <div class="proof-card reveal reveal-delay-1">
           <p class="eyebrow">FP&amp;A Reporting Restructure</p>
           <p class="card-descriptor">Global technology company · NYSE-listed</p>
-          <p class="body-text">The client retired a major division and reallocated product lines across four new business units. Every formula, every external reference, every roll-up needed rebuilding. One broken link would cascade errors across the entire reporting chain.</p>
-          <p class="body-text">We rebuilt the full P&amp;L and franchise sales reporting from the ground up - new BU hierarchy, automated data extraction, dynamic models feeding downstream reporting, board-ready dashboards for leadership.</p>
+          <p class="body-text">The client underwent a major restructure - product lines were remapped across new business units, and the entire reporting chain needed to follow. Every formula, every cross-reference, every roll-up had to be rebuilt. One broken link would cascade errors across the full P&amp;L.</p>
+          <p class="body-text">We mapped the new organisational structure end-to-end, rebuilt the reporting hierarchy from scratch, automated data extraction across systems, and delivered dynamic models feeding downstream reporting with board-ready dashboards for leadership.</p>
           <div class="result-lines">
-            <p class="result-line">→ $100,000+ in labour cost savings over five years</p>
-            <p class="result-line">→ 10 hours of manual work eliminated every week</p>
-            <p class="result-line">→ Full reporting chain rebuilt without a single day of downtime</p>
-            <p class="result-line">→ Finance team shifted from maintaining fragile spreadsheets to reviewing clean, automated outputs</p>
+            <p class="result-line">$100,000+ in labour cost savings over five years</p>
+            <p class="result-line">10 hours of manual work eliminated every week</p>
+            <p class="result-line">Full reporting chain rebuilt without a single day of downtime</p>
+            <p class="result-line">Finance team shifted from maintaining fragile spreadsheets to reviewing clean, automated outputs</p>
           </div>
         </div>
         <!-- Card 2 -->
@@ -2606,9 +2613,9 @@
           <p class="body-text">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets - nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
           <p class="body-text">We built automated HubSpot extraction via API, Python data aggregation scripts, an LLM narrative layer on validated figures, automated pipeline emails, 13-week cashflow forecast, invoicing automation, and employee-level profitability analysis.</p>
           <div class="result-lines">
-            <p class="result-line">→ 1 full week saved per monthly close cycle</p>
-            <p class="result-line">→ 2 days of recurring weekly manual work eliminated</p>
-            <p class="result-line">→ Pipeline, delivery, and actuals connected in one view for the first time</p>
+            <p class="result-line">1 full week saved per monthly close cycle</p>
+            <p class="result-line">2 days of recurring weekly manual work eliminated</p>
+            <p class="result-line">Pipeline, delivery, and actuals connected in one view for the first time</p>
           </div>
         </div>
         <!-- Card 3 -->
@@ -2618,11 +2625,11 @@
           <p class="body-text">Five entities, three ERPs, and a finance team producing the consolidated board pack in Excel every month. The process took four days, involved manual inter-company eliminations, and broke every time someone changed a tab name. Leadership had no rolling forecast - just last month's actuals and gut feel.</p>
           <p class="body-text">We built a centralised data model pulling from all three systems, automated the consolidation and elimination logic, and layered a 13-week rolling cashflow forecast on top. The board pack now generates in under an hour.</p>
           <div class="result-lines">
-            <p class="result-line">→ Board pack turnaround reduced from 4 days to under 1 hour</p>
-            <p class="result-line">→ 13-week rolling cashflow forecast delivered for the first time</p>
-            <p class="result-line">→ Three separate ERPs consolidated into a single reporting view</p>
-            <p class="result-line">→ Month-end close shortened by 2 full days</p>
-            <p class="result-line">→ Finance team now spends month-end on analysis, not assembly</p>
+            <p class="result-line">Board pack turnaround reduced from 4 days to under 1 hour</p>
+            <p class="result-line">13-week rolling cashflow forecast delivered for the first time</p>
+            <p class="result-line">Three separate ERPs consolidated into a single reporting view</p>
+            <p class="result-line">Month-end close shortened by 2 full days</p>
+            <p class="result-line">Finance team now spends month-end on analysis, not assembly</p>
           </div>
         </div>
       </div>
