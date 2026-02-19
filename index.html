@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CapitalCurve Advisory — FP&A Automation & CRM-to-Finance Intelligence</title>
+  <title>CapitalCurve Advisory - FP&A Automation & CRM-to-Finance Intelligence</title>
   <meta name="description" content="Bespoke finance automation for Australian mid-market companies. We automate the data work underneath so your team reviews a finished report instead of building one.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1478,7 +1478,6 @@
     .mockup-strip--left .email-body {
       max-height: 420px;
       overflow-y: auto;
-      scroll-behavior: smooth;
       mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 92%, transparent 100%);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 92%, transparent 100%);
     }
@@ -1524,6 +1523,10 @@
     .cfo-tab-btn { flex:1; padding:10px 16px; font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.45); background:#1E293B; border:none; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.25s,background 0.25s; }
     .cfo-tab-btn:hover { color:rgba(255,255,255,0.7); }
     .cfo-tab-btn.active { color:#fff; border-bottom-color:#3B82F6; background:#243044; }
+    .cfo-tab-btn--pulse:not(.active) { position:relative; }
+    .cfo-tab-peek { font-size:7px; font-weight:400; letter-spacing:0.02em; text-transform:none; color:rgba(255,255,255,0.35); margin-left:4px; animation:peekPulse 2.5s ease-in-out infinite; }
+    .cfo-tab-btn.active .cfo-tab-peek { display:none; }
+    @keyframes peekPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
     .cfo-tab-panel { display:none; }
     .cfo-tab-panel.active { display:block; animation:panelFadeIn 0.4s ease; }
 
@@ -1803,7 +1806,7 @@
         <div class="mockup-strip__content">
           <p class="eyebrow">Delivered Every Monday, 7 AM</p>
           <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
-          <p class="body-text">Every Monday at 7 AM, your leadership team receives a complete pipeline intelligence brief — stage movements, at-risk deals, conversion analytics, and AI-generated commentary.</p>
+          <p class="body-text">Every Monday at 7 AM, your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -1815,7 +1818,7 @@
             <div class="email-chrome">
               <strong>From:</strong> CapitalCurve Automation<br>
               <strong>To:</strong> Leadership Team<br>
-              <strong>Subject:</strong> Pipeline &amp; Revenue Intelligence — Week of 17 Feb
+              <strong>Subject:</strong> Pipeline &amp; Revenue Intelligence - Week of 17 Feb
             </div>
             <div class="email-body">
               <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Monday 17 Feb 2025, 7:00 AM AEST &middot; Apex Consulting</div>
@@ -1856,7 +1859,7 @@
 
               <div class="ai-commentary-card">
                 <strong><span class="ai-badge">AI</span> Pipeline Analysis</strong>
-                Pipeline expanded 5.2% week-on-week to $42.9M, driven primarily by $1.1M in new Qualified Leads entering the funnel. The weighted pipeline sits at $18.2M — a healthy 3.2x coverage ratio against this quarter's $5.7M target. Proposal-stage value dipped $400K as three deals pushed timelines pending client sign-off, but this appears timing-related rather than structural. The 12 deals at Negotiation stage ($6.1M) represent the most actionable near-term revenue — recommend focused attention here, particularly on deals approaching quarter-end.
+                Pipeline expanded 5.2% week-on-week to $42.9M, driven primarily by $1.1M in new Qualified Leads entering the funnel. The weighted pipeline sits at $18.2M - a healthy 3.2x coverage ratio against this quarter's $5.7M target. Proposal-stage value dipped $400K as three deals pushed timelines pending client sign-off, but this appears timing-related rather than structural. The 12 deals at Negotiation stage ($6.1M) represent the most actionable near-term revenue - recommend focused attention here, particularly on deals approaching quarter-end.
               </div>
 
               <div class="email-section-title">Top Movers This Week</div>
@@ -1873,9 +1876,9 @@
               </table>
 
               <div class="email-section-title">Deals at Risk</div>
-              <div class="flag-item"><span class="flag-dot flag-dot--red"></span><span><strong>Nexus Infrastructure</strong> — No activity 14+ days, $1.8M at Proposal stage. Last contact: 3 Feb.</span></div>
-              <div class="flag-item"><span class="flag-dot flag-dot--red"></span><span><strong>Catalyst Partners</strong> — Champion left the organisation, $920K at Negotiation. Requires new stakeholder mapping.</span></div>
-              <div class="flag-item"><span class="flag-dot flag-dot--amber"></span><span><strong>Orion Analytics</strong> — Competitor shortlisted, $1.4M at Proposal stage. Pricing review recommended.</span></div>
+              <div class="flag-item"><span class="flag-dot flag-dot--red"></span><span><strong>Nexus Infrastructure</strong> - No activity 14+ days, $1.8M at Proposal stage. Last contact: 3 Feb.</span></div>
+              <div class="flag-item"><span class="flag-dot flag-dot--red"></span><span><strong>Catalyst Partners</strong> - Champion left the organisation, $920K at Negotiation. Requires new stakeholder mapping.</span></div>
+              <div class="flag-item"><span class="flag-dot flag-dot--amber"></span><span><strong>Orion Analytics</strong> - Competitor shortlisted, $1.4M at Proposal stage. Pricing review recommended.</span></div>
 
               <div class="email-section-title">Revenue Forecast vs Actual</div>
               <table class="mockup-table">
@@ -1948,7 +1951,7 @@
 
               <div class="ai-commentary-card">
                 <strong><span class="ai-badge">AI</span> Strategic Insight</strong>
-                The Proposal-to-Negotiation conversion rate of 71% is the highest in 8 weeks, indicating improved deal qualification at earlier stages. Pipeline coverage at 3.2x remains healthy against the quarterly target. Forecast accuracy has been strong — three of the last four months landed within 5-10% of projection, with December's miss attributable to two deals that slipped into January. The three at-risk deals totalling $4.1M represent 9.5% of total pipeline value; proactive intervention this week, particularly on the Nexus Infrastructure follow-up (14 days dark), could protect a meaningful portion of the Q1 close target.
+                The Proposal-to-Negotiation conversion rate of 71% is the highest in 8 weeks, indicating improved deal qualification at earlier stages. Pipeline coverage at 3.2x remains healthy against the quarterly target. Forecast accuracy has been strong - three of the last four months landed within 5-10% of projection, with December's miss attributable to two deals that slipped into January. The three at-risk deals totalling $4.1M represent 9.5% of total pipeline value; proactive intervention this week, particularly on the Nexus Infrastructure follow-up (14 days dark), could protect a meaningful portion of the Q1 close target.
               </div>
             </div>
           </div>
@@ -1962,7 +1965,7 @@
         <p class="eyebrow">The Problem</p>
         <h2 class="section-heading">You already know what the problem is. You live it every month.</h2>
         <p class="body-text">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
-        <p class="body-text">This isn't an analyst problem. It's a plumbing problem — and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
+        <p class="body-text">This isn't an analyst problem. It's a plumbing problem - and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
         <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
         <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
       </div>
@@ -1985,15 +1988,15 @@
             </div>
             <div id="cfo-tabs">
               <div class="cfo-tabs__nav">
-                <button class="cfo-tab-btn active" data-cfo-tab="monday">Monday Brief</button>
-                <button class="cfo-tab-btn" data-cfo-tab="friday">Friday Scorecard</button>
+                <button class="cfo-tab-btn active" data-cfo-tab="friday">Friday Scorecard</button>
+                <button class="cfo-tab-btn cfo-tab-btn--pulse" data-cfo-tab="monday">Monday Brief <span class="cfo-tab-peek">&#x2190; tap to preview</span></button>
               </div>
               <!-- Monday Panel -->
-              <div class="cfo-tab-panel active" data-cfo-panel="monday">
+              <div class="cfo-tab-panel" data-cfo-panel="monday">
                 <div class="email-chrome">
                   <strong>From:</strong> CapitalCurve Automation<br>
                   <strong>To:</strong> CFO, Head of Finance<br>
-                  <strong>Subject:</strong> Week Ahead Briefing — Monday 17 Feb
+                  <strong>Subject:</strong> Week Ahead Briefing - Monday 17 Feb
                 </div>
                 <div class="email-body">
                   <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Monday 17 Feb 2025, 7:00 AM AEST &middot; Apex Consulting</div>
@@ -2014,11 +2017,11 @@
                   </div>
 
                   <div class="email-section-title">Key Meetings &amp; Deadlines</div>
-                  <div class="flag-item"><span class="status-dot status-dot--red"></span> <strong>Tue 18 Feb</strong> — Titan Rollout exec escalation meeting (client-facing)</div>
-                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> <strong>Wed 19 Feb</strong> — Meridian CRM Sprint 4 demo to stakeholders</div>
-                  <div class="flag-item"><span class="status-dot status-dot--green"></span> <strong>Thu 20 Feb</strong> — Monthly board pack review (draft due Wed EOD)</div>
-                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> <strong>Fri 21 Feb</strong> — Contractor conversion decisions deadline (3 staff)</div>
-                  <div class="flag-item"><span class="status-dot status-dot--green"></span> <strong>Fri 21 Feb</strong> — Coastal ERP requirements sign-off</div>
+                  <div class="flag-item"><span class="status-dot status-dot--red"></span> <strong>Tue 18 Feb</strong> - Titan Rollout exec escalation meeting (client-facing)</div>
+                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> <strong>Wed 19 Feb</strong> - Meridian CRM Sprint 4 demo to stakeholders</div>
+                  <div class="flag-item"><span class="status-dot status-dot--green"></span> <strong>Thu 20 Feb</strong> - Monthly board pack review (draft due Wed EOD)</div>
+                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> <strong>Fri 21 Feb</strong> - Contractor conversion decisions deadline (3 staff)</div>
+                  <div class="flag-item"><span class="status-dot status-dot--green"></span> <strong>Fri 21 Feb</strong> - Coastal ERP requirements sign-off</div>
 
                   <div class="email-section-title">Planned Cash Movements This Week</div>
                   <table class="mockup-table">
@@ -2043,16 +2046,16 @@
 
                   <div class="ai-commentary-card">
                     <strong><span class="ai-badge">AI</span> Week Ahead Priorities</strong>
-                    The Titan escalation meeting on Tuesday is the critical-path item this week — I'd recommend preparing a revised delivery timeline with specific remediation milestones rather than general assurances. The client will want to see dates, not just intent. Worth noting: net cash movement this week is projected at +$68K (inflows minus outflows), so liquidity isn't a concern, but the $182K BAS lodgement next Monday should be factored into end-of-week positioning. The three contractor conversion decisions on Friday are the other time-sensitive item — delaying beyond the 21st triggers a 4-week notice gap that could leave active projects short-staffed.
+                    The Titan escalation meeting on Tuesday is the critical-path item this week - I'd recommend preparing a revised delivery timeline with specific remediation milestones rather than general assurances. The client will want to see dates, not just intent. Worth noting: net cash movement this week is projected at +$68K (inflows minus outflows), so liquidity isn't a concern, but the $182K BAS lodgement next Monday should be factored into end-of-week positioning. The three contractor conversion decisions on Friday are the other time-sensitive item - delaying beyond the 21st triggers a 4-week notice gap that could leave active projects short-staffed.
                   </div>
                 </div>
               </div>
               <!-- Friday Panel -->
-              <div class="cfo-tab-panel" data-cfo-panel="friday">
+              <div class="cfo-tab-panel active" data-cfo-panel="friday">
                 <div class="email-chrome">
                   <strong>From:</strong> CapitalCurve Automation<br>
                   <strong>To:</strong> CFO, Head of Finance<br>
-                  <strong>Subject:</strong> CFO Weekly Scorecard — Friday 14 Feb
+                  <strong>Subject:</strong> CFO Weekly Scorecard - Friday 14 Feb
                 </div>
                 <div class="email-body">
                   <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Friday 14 Feb 2025, 5:00 PM AEST &middot; Apex Consulting</div>
@@ -2092,7 +2095,7 @@
 
                   <div class="ai-commentary-card">
                     <strong><span class="ai-badge">AI</span> Key Actions</strong>
-                    Three items need attention heading into the weekend. First, the AR ageing breach at $340K — Meridian Group ($148K) and Coastal Engineering ($83K) account for 68% of the overdue balance, and both are past the 60-day mark. I'd recommend direct outreach from the account managers on Monday rather than waiting for the standard collections cycle. Second, EBITDA is tracking 7.1% below target, primarily driven by the unplanned contractor uplift on Titan — this should normalise by month-end as the remediation work completes. Third, revenue is the bright spot: four consecutive weeks of growth, now 5% above plan.
+                    Three items need attention heading into the weekend. First, the AR ageing breach at $340K - Meridian Group ($148K) and Coastal Engineering ($83K) account for 68% of the overdue balance, and both are past the 60-day mark. I'd recommend direct outreach from the account managers on Monday rather than waiting for the standard collections cycle. Second, EBITDA is tracking 7.1% below target, primarily driven by the unplanned contractor uplift on Titan - this should normalise by month-end as the remediation work completes. Third, revenue is the bright spot: four consecutive weeks of growth, now 5% above plan.
                   </div>
 
                   <div class="email-section-title">4-Week KPI Trend</div>
@@ -2125,15 +2128,15 @@
                   </div>
 
                   <div class="email-section-title">Upcoming Commitments (Next 14 Days)</div>
-                  <div class="mini-metric-row"><span>24 Feb — Quarterly BAS lodgement</span><span style="font-weight:600;color:#EF4444;">$182K</span></div>
-                  <div class="mini-metric-row"><span>26 Feb — Contractor payroll cycle</span><span style="font-weight:600;color:#EF4444;">$95K</span></div>
-                  <div class="mini-metric-row"><span>28 Feb — Office lease renewal (Q2)</span><span style="font-weight:600;color:#EF4444;">$85K</span></div>
-                  <div class="mini-metric-row"><span>3 Mar — Software licence renewals (annual)</span><span style="font-weight:600;color:#EF4444;">$42K</span></div>
-                  <div class="mini-metric-row"><span>7 Mar — Insurance premium (D&amp;O + PI)</span><span style="font-weight:600;color:#EF4444;">$28K</span></div>
+                  <div class="mini-metric-row"><span>24 Feb - Quarterly BAS lodgement</span><span style="font-weight:600;color:#EF4444;">$182K</span></div>
+                  <div class="mini-metric-row"><span>26 Feb - Contractor payroll cycle</span><span style="font-weight:600;color:#EF4444;">$95K</span></div>
+                  <div class="mini-metric-row"><span>28 Feb - Office lease renewal (Q2)</span><span style="font-weight:600;color:#EF4444;">$85K</span></div>
+                  <div class="mini-metric-row"><span>3 Mar - Software licence renewals (annual)</span><span style="font-weight:600;color:#EF4444;">$42K</span></div>
+                  <div class="mini-metric-row"><span>7 Mar - Insurance premium (D&amp;O + PI)</span><span style="font-weight:600;color:#EF4444;">$28K</span></div>
 
                   <div class="ai-commentary-card">
                     <strong><span class="ai-badge">AI</span> End-of-Week Assessment</strong>
-                    A solid week overall. Revenue momentum is real — the four-week upward trend reflects genuine deal velocity rather than timing. Cash position at $3.2M with 47 days cover provides a comfortable buffer, though the $432K in commitments over the next fortnight means collections discipline is essential. The AR ageing issue is the one item that could compound if left unaddressed — at current trajectory, we'd be looking at $400K+ overdue by end of February, which starts to pressure working capital. Bottom line: the business is performing well operationally, but the collections process needs a sharper edge this month.
+                    A solid week overall. Revenue momentum is real - the four-week upward trend reflects genuine deal velocity rather than timing. Cash position at $3.2M with 47 days cover provides a comfortable buffer, though the $432K in commitments over the next fortnight means collections discipline is essential. The AR ageing issue is the one item that could compound if left unaddressed - at current trajectory, we'd be looking at $400K+ overdue by end of February, which starts to pressure working capital. Bottom line: the business is performing well operationally, but the collections process needs a sharper edge this month.
                   </div>
                 </div>
               </div>
@@ -2148,12 +2151,12 @@
       <div class="section-inner reveal">
         <p class="eyebrow">What We Do</p>
         <h2 class="section-heading">We rebuild the finance engine underneath the reports.</h2>
-        <p class="body-text">Most consultants update formulas. We go deeper — into the data architecture, the business logic, and the downstream dependencies — so the output holds up as the business changes.</p>
-        <p class="body-text">A typical engagement: we map how your team currently gets from raw data to finished report. We identify every manual step, every brittle formula, every system that doesn't talk to another. Then we rebuild it — automated data extraction, a master model that refreshes on its own, and outputs that distribute on a schedule.</p>
+        <p class="body-text">Most consultants update formulas. We go deeper - into the data architecture, the business logic, and the downstream dependencies - so the output holds up as the business changes.</p>
+        <p class="body-text">A typical engagement: we map how your team currently gets from raw data to finished report. We identify every manual step, every brittle formula, every system that doesn't talk to another. Then we rebuild it - automated data extraction, a master model that refreshes on its own, and outputs that distribute on a schedule.</p>
         <p class="body-text">Your team stops building. They start reviewing.</p>
         <div class="section-divider"></div>
-        <p class="ai-heading">On AI — how it works, and why you can trust it.</p>
-        <p class="body-text">We don't let AI calculate anything. Python scripts handle every extraction, transformation, and calculation — the same methodology your team uses manually, automated in deterministic code. The AI layer sits on top: it reads the validated numbers and writes the commentary. The narrative, the anomaly flags, the board-ready insights.</p>
+        <p class="ai-heading">On AI - how it works, and why you can trust it.</p>
+        <p class="body-text">We don't let AI calculate anything. Python scripts handle every extraction, transformation, and calculation - the same methodology your team uses manually, automated in deterministic code. The AI layer sits on top: it reads the validated numbers and writes the commentary. The narrative, the anomaly flags, the board-ready insights.</p>
         <p class="body-text">Scripts ensure the numbers are right. AI ensures leadership understands what they mean.</p>
         <p class="body-text">This is enterprise-grade integration. Not a chatbot approximating your revenue.</p>
       </div>
@@ -2165,7 +2168,7 @@
         <div class="mockup-strip__content">
           <p class="eyebrow">Your Mid-Week Pulse</p>
           <h3 class="section-heading">Delivery &amp; Operations<br>Intelligence</h3>
-          <p class="body-text">Mid-week operational pulse covering project health, resource allocation, delivery risks, and client satisfaction — with AI-flagged items that need attention.</p>
+          <p class="body-text">Mid-week operational pulse covering project health, resource allocation, delivery risks, and client satisfaction - with AI-flagged items that need attention.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -2177,7 +2180,7 @@
             <div class="email-chrome">
               <strong>From:</strong> CapitalCurve Automation<br>
               <strong>To:</strong> COO, Ops Team<br>
-              <strong>Subject:</strong> Delivery &amp; Operations Intelligence — Week Ending 14 Feb
+              <strong>Subject:</strong> Delivery &amp; Operations Intelligence - Week Ending 14 Feb
             </div>
             <div class="email-body">
               <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Wednesday 12 Feb 2025, 8:00 AM AEST &middot; Apex Consulting</div>
@@ -2200,15 +2203,15 @@
                 </div>
               </div>
               <div style="font-weight:600;font-size:10px;margin:12px 0 6px;color:#1E293B;">Flagged Items</div>
-              <div class="flag-item"><span class="status-dot status-dot--red"></span> Project Titan — delivery milestone overdue by 5 days, client escalation pending</div>
-              <div class="flag-item"><span class="status-dot status-dot--amber"></span> 3 contractors approaching 6-month tenure limit — conversion decisions needed by 21 Feb</div>
+              <div class="flag-item"><span class="status-dot status-dot--red"></span> Project Titan - delivery milestone overdue by 5 days, client escalation pending</div>
+              <div class="flag-item"><span class="status-dot status-dot--amber"></span> 3 contractors approaching 6-month tenure limit - conversion decisions needed by 21 Feb</div>
               <div class="flag-item"><span class="status-dot status-dot--amber"></span> Invoicing backlog: 4 projects with unbilled work &gt;$50K each</div>
               <div class="flag-item"><span class="status-dot status-dot--red"></span> Resource conflict: 2 senior devs double-booked across Meridian CRM and Bloom Ops next sprint</div>
-              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Scope creep risk: Coastal ERP discovery phase expanding — 3 additional modules requested by client</div>
+              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Scope creep risk: Coastal ERP discovery phase expanding -3 additional modules requested by client</div>
 
               <div class="ai-commentary-card">
                 <strong><span class="ai-badge">AI</span> Operational Analysis</strong>
-                Utilisation softened 1.2pp from last week as the Vantage Analytics and Titan Rollout projects entered transition and remediation phases respectively. The invoicing backlog now sits at $210K across four projects — recommend batch processing this week to bring days-to-invoice back under the 5-day target. The contractor conversion deadline on 21 Feb is time-sensitive given the 4-week notice period requirement; delaying these decisions risks losing institutional knowledge on active engagements. The resource double-booking on Meridian/Bloom needs resolution before sprint planning on Monday.
+                Utilisation softened 1.2pp from last week as the Vantage Analytics and Titan Rollout projects entered transition and remediation phases respectively. The invoicing backlog now sits at $210K across four projects - recommend batch processing this week to bring days-to-invoice back under the 5-day target. The contractor conversion deadline on 21 Feb is time-sensitive given the 4-week notice period requirement; delaying these decisions risks losing institutional knowledge on active engagements. The resource double-booking on Meridian/Bloom needs resolution before sprint planning on Monday.
               </div>
 
               <div class="email-section-title">Project Status Summary</div>
@@ -2218,10 +2221,10 @@
                 </thead>
                 <tbody>
                   <tr><td>Titan Rollout</td><td>Delivery</td><td><span class="status-dot status-dot--red"></span></td><td>34%</td><td>UAT Sign-off (overdue)</td></tr>
-                  <tr><td>Meridian CRM</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>52%</td><td>Sprint 4 Demo — 19 Feb</td></tr>
-                  <tr><td>Coastal ERP</td><td>Discovery</td><td><span class="status-dot status-dot--green"></span></td><td>48%</td><td>Requirements Sign-off — 21 Feb</td></tr>
-                  <tr><td>Vantage Analytics</td><td>Transition</td><td><span class="status-dot status-dot--amber"></span></td><td>41%</td><td>Handover Complete — 28 Feb</td></tr>
-                  <tr><td>Bloom Ops</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>56%</td><td>Integration Testing — 24 Feb</td></tr>
+                  <tr><td>Meridian CRM</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>52%</td><td>Sprint 4 Demo -19 Feb</td></tr>
+                  <tr><td>Coastal ERP</td><td>Discovery</td><td><span class="status-dot status-dot--green"></span></td><td>48%</td><td>Requirements Sign-off -21 Feb</td></tr>
+                  <tr><td>Vantage Analytics</td><td>Transition</td><td><span class="status-dot status-dot--amber"></span></td><td>41%</td><td>Handover Complete -28 Feb</td></tr>
+                  <tr><td>Bloom Ops</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>56%</td><td>Integration Testing -24 Feb</td></tr>
                 </tbody>
               </table>
 
@@ -2297,11 +2300,11 @@
               </table>
 
               <div class="email-section-title">Client Satisfaction</div>
-              <div class="flag-item"><span class="status-dot status-dot--green"></span> NPS Score: <strong>62</strong> (up from 58 last month) — above industry benchmark of 55</div>
+              <div class="flag-item"><span class="status-dot status-dot--green"></span> NPS Score: <strong>62</strong> (up from 58 last month) - above industry benchmark of 55</div>
               <div class="flag-item"><span class="status-dot status-dot--amber"></span> Recent survey: 2 clients flagged communication delays on Titan and Vantage projects</div>
-              <div class="flag-item"><span class="status-dot status-dot--red"></span> Active escalations: <strong>1</strong> — Titan Rollout (client exec meeting scheduled 18 Feb)</div>
+              <div class="flag-item"><span class="status-dot status-dot--red"></span> Active escalations: <strong>1</strong> - Titan Rollout (client exec meeting scheduled 18 Feb)</div>
 
-              <div class="email-section-title">Risk Register — Top 5</div>
+              <div class="email-section-title">Risk Register - Top 5</div>
               <table class="mockup-table">
                 <thead>
                   <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Owner</th><th>Status</th></tr>
@@ -2317,8 +2320,8 @@
 
               <div class="ai-commentary-card">
                 <strong><span class="ai-badge">AI</span> Strategic Assessment</strong>
-                <p style="margin:0 0 8px;">The Titan Rollout remains the single largest risk to this quarter's delivery performance. The overdue UAT milestone, combined with the active client escalation, requires senior attention before the 18 Feb exec meeting. I'd recommend preparing a remediation plan with revised timelines — the client will expect specifics, not reassurance.</p>
-                <p style="margin:0 0 8px;">On the capacity front, QA utilisation is projected to drop to 55% by week +3 as current test cycles complete. This coincides with the Bloom Ops integration testing phase beginning 24 Feb — there's an opportunity to redeploy QA resources proactively rather than scramble when the sprint starts. The four bench FTEs could also accelerate the Meridian CRM build, which carries the highest margin at 52%.</p>
+                <p style="margin:0 0 8px;">The Titan Rollout remains the single largest risk to this quarter's delivery performance. The overdue UAT milestone, combined with the active client escalation, requires senior attention before the 18 Feb exec meeting. I'd recommend preparing a remediation plan with revised timelines - the client will expect specifics, not reassurance.</p>
+                <p style="margin:0 0 8px;">On the capacity front, QA utilisation is projected to drop to 55% by week +3 as current test cycles complete. This coincides with the Bloom Ops integration testing phase beginning 24 Feb - there's an opportunity to redeploy QA resources proactively rather than scramble when the sprint starts. The four bench FTEs could also accelerate the Meridian CRM build, which carries the highest margin at 52%.</p>
                 <p style="margin:0;">Worth flagging: Nexgen Staffing's quality score (3.5/5) and on-time delivery rate (72%) are well below the other partners. If the three contractor conversions go ahead, consider shifting Nexgen allocations to TechForce or CloudBridge for remaining engagements.</p>
               </div>
             </div>
@@ -2351,7 +2354,7 @@
         <div class="mockup-strip__content">
           <p class="eyebrow">Refreshed Weekly</p>
           <h3 class="section-heading">13-Week Cash Forecast</h3>
-          <p class="body-text">Your rolling cash position, refreshed automatically from actuals every week. Colour-coded to flag shortfalls before they happen — not after.</p>
+          <p class="body-text">Your rolling cash position, refreshed automatically from actuals every week. Colour-coded to flag shortfalls before they happen - not after.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -2438,19 +2441,19 @@
                         </tr>
                         <tr>
                           <td>Rent &amp; Facilities</td>
-                          <td data-week="1">—</td><td data-week="2" style="color:#EF4444">−85</td><td data-week="3">—</td><td data-week="4">—</td><td data-week="5" style="color:#EF4444">−85</td><td data-week="6">—</td><td data-week="7">—</td><td data-week="8" style="color:#EF4444">−85</td><td data-week="9">—</td><td data-week="10">—</td><td data-week="11" style="color:#EF4444">−85</td><td data-week="12">—</td><td data-week="13">—</td>
+                          <td data-week="1">-</td><td data-week="2" style="color:#EF4444">−85</td><td data-week="3">-</td><td data-week="4">-</td><td data-week="5" style="color:#EF4444">−85</td><td data-week="6">-</td><td data-week="7">-</td><td data-week="8" style="color:#EF4444">−85</td><td data-week="9">-</td><td data-week="10">-</td><td data-week="11" style="color:#EF4444">−85</td><td data-week="12">-</td><td data-week="13">-</td>
                         </tr>
                         <tr>
                           <td>Software &amp; SaaS</td>
-                          <td data-week="1" style="color:#EF4444">−42</td><td data-week="2">—</td><td data-week="3">—</td><td data-week="4">—</td><td data-week="5" style="color:#EF4444">−42</td><td data-week="6">—</td><td data-week="7">—</td><td data-week="8">—</td><td data-week="9" style="color:#EF4444">−42</td><td data-week="10">—</td><td data-week="11">—</td><td data-week="12">—</td><td data-week="13" style="color:#EF4444">−42</td>
+                          <td data-week="1" style="color:#EF4444">−42</td><td data-week="2">-</td><td data-week="3">-</td><td data-week="4">-</td><td data-week="5" style="color:#EF4444">−42</td><td data-week="6">-</td><td data-week="7">-</td><td data-week="8">-</td><td data-week="9" style="color:#EF4444">−42</td><td data-week="10">-</td><td data-week="11">-</td><td data-week="12">-</td><td data-week="13" style="color:#EF4444">−42</td>
                         </tr>
                         <tr>
                           <td>Tax / BAS</td>
-                          <td data-week="1">—</td><td data-week="2" style="color:#EF4444">−130</td><td data-week="3">—</td><td data-week="4">—</td><td data-week="5">—</td><td data-week="6">—</td><td data-week="7" style="color:#EF4444">−135</td><td data-week="8">—</td><td data-week="9">—</td><td data-week="10">—</td><td data-week="11">—</td><td data-week="12">—</td><td data-week="13" style="color:#EF4444">−140</td>
+                          <td data-week="1">-</td><td data-week="2" style="color:#EF4444">−130</td><td data-week="3">-</td><td data-week="4">-</td><td data-week="5">-</td><td data-week="6">-</td><td data-week="7" style="color:#EF4444">−135</td><td data-week="8">-</td><td data-week="9">-</td><td data-week="10">-</td><td data-week="11">-</td><td data-week="12">-</td><td data-week="13" style="color:#EF4444">−140</td>
                         </tr>
                         <tr>
                           <td>Other</td>
-                          <td data-week="1" style="color:#EF4444">−33</td><td data-week="2">—</td><td data-week="3" style="color:#EF4444">−300</td><td data-week="4">—</td><td data-week="5" style="color:#EF4444">−13</td><td data-week="6" style="color:#EF4444">−25</td><td data-week="7">—</td><td data-week="8" style="color:#EF4444">−15</td><td data-week="9" style="color:#EF4444">−8</td><td data-week="10">—</td><td data-week="11" style="color:#EF4444">−10</td><td data-week="12" style="color:#EF4444">−20</td><td data-week="13">—</td>
+                          <td data-week="1" style="color:#EF4444">−33</td><td data-week="2">-</td><td data-week="3" style="color:#EF4444">−300</td><td data-week="4">-</td><td data-week="5" style="color:#EF4444">−13</td><td data-week="6" style="color:#EF4444">−25</td><td data-week="7">-</td><td data-week="8" style="color:#EF4444">−15</td><td data-week="9" style="color:#EF4444">−8</td><td data-week="10">-</td><td data-week="11" style="color:#EF4444">−10</td><td data-week="12" style="color:#EF4444">−20</td><td data-week="13">-</td>
                         </tr>
                         <tr class="subtotal-row">
                           <td>Total Cash Out</td>
@@ -2499,7 +2502,7 @@
               <!-- Scenarios Panel -->
               <div class="excel-tab-panel" data-excel-panel="scenarios">
                 <div style="background:#fff;padding:20px;">
-                  <div style="font-size:11px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px;">Scenario Analysis — 13-Week Outlook</div>
+                  <div style="font-size:11px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px;">Scenario Analysis -13-Week Outlook</div>
                   <div class="scenario-grid">
                     <div class="scenario-col scenario-col--best">
                       <div class="scenario-col__title">Best Case</div>
@@ -2588,7 +2591,7 @@
           <p class="eyebrow">FP&amp;A Reporting Restructure</p>
           <p class="card-descriptor">Global medical devices company · NYSE: SYK</p>
           <p class="body-text">The client retired a major division and reallocated product lines across four new business units. Every formula, every external reference, every roll-up needed rebuilding. One broken link would cascade errors across the entire reporting chain.</p>
-          <p class="body-text">We rebuilt the full P&amp;L and franchise sales reporting from the ground up — new BU hierarchy, automated data extraction, dynamic models feeding downstream reporting, board-ready dashboards for leadership.</p>
+          <p class="body-text">We rebuilt the full P&amp;L and franchise sales reporting from the ground up - new BU hierarchy, automated data extraction, dynamic models feeding downstream reporting, board-ready dashboards for leadership.</p>
           <div class="result-lines">
             <p class="result-line">→ $100,000+ in labour cost savings over five years</p>
             <p class="result-line">→ 10 hours of manual work eliminated every week</p>
@@ -2600,7 +2603,7 @@
         <div class="proof-card reveal reveal-delay-2">
           <p class="eyebrow">CRM-to-Finance Intelligence</p>
           <p class="card-descriptor">PE-backed AI consultancy · 200+ specialists · $45M+ pipeline</p>
-          <p class="body-text">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets — nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
+          <p class="body-text">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets - nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
           <p class="body-text">We built automated HubSpot extraction via API, Python data aggregation scripts, an LLM narrative layer on validated figures, automated pipeline emails, 13-week cashflow forecast, invoicing automation, and employee-level profitability analysis.</p>
           <div class="result-lines">
             <p class="result-line">→ 1 full week saved per monthly close cycle</p>
@@ -2612,7 +2615,7 @@
         <div class="proof-card reveal reveal-delay-3">
           <p class="eyebrow">Board Pack &amp; Cashflow Automation</p>
           <p class="card-descriptor">National staffing group · 300+ contractors · Multi-entity structure</p>
-          <p class="body-text">Five entities, three ERPs, and a finance team producing the consolidated board pack in Excel every month. The process took four days, involved manual inter-company eliminations, and broke every time someone changed a tab name. Leadership had no rolling forecast — just last month's actuals and gut feel.</p>
+          <p class="body-text">Five entities, three ERPs, and a finance team producing the consolidated board pack in Excel every month. The process took four days, involved manual inter-company eliminations, and broke every time someone changed a tab name. Leadership had no rolling forecast - just last month's actuals and gut feel.</p>
           <p class="body-text">We built a centralised data model pulling from all three systems, automated the consolidation and elimination logic, and layered a 13-week rolling cashflow forecast on top. The board pack now generates in under an hour.</p>
           <div class="result-lines">
             <p class="result-line">→ Board pack turnaround reduced from 4 days to under 1 hour</p>
@@ -2631,7 +2634,7 @@
         <div class="mockup-strip__content">
           <p class="eyebrow">Board-Ready Every Month</p>
           <h3 class="section-heading">Board Pack Slides</h3>
-          <p class="body-text">A complete board pack generated from your data in under an hour. Executive summary, revenue, cash, and KPIs — presentation-ready, not presentation-building.</p>
+          <p class="body-text">A complete board pack generated from your data in under an hour. Executive summary, revenue, cash, and KPIs - presentation-ready, not presentation-building.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -2652,7 +2655,7 @@
               <div class="board-tab-panel active" data-panel="exec">
                 <div class="slide-content">
                   <div class="slide-header">
-                    <div class="slide-header__title">Apex Consulting — Executive Summary</div>
+                    <div class="slide-header__title">Apex Consulting - Executive Summary</div>
                     <div class="slide-header__period">February 2025 · Month-to-Date</div>
                   </div>
                   <div class="slide-highlights">
@@ -2674,15 +2677,15 @@
                       <p class="slide-section-title">Key Highlights</p>
                       <ul class="slide-bullets">
                         <li>Revenue tracking 5% above plan driven by strong project close rate</li>
-                        <li>Pipeline at $42.9M — up 5.2% WoW with healthy stage distribution</li>
+                        <li>Pipeline at $42.9M - up 5.2% WoW with healthy stage distribution</li>
                         <li>Cash position stable at $3.2M with positive 13-week outlook</li>
-                        <li>Utilisation at 84.7% — within 0.3pp of target</li>
+                        <li>Utilisation at 84.7% - within 0.3pp of target</li>
                       </ul>
                     </div>
                     <div>
                       <p class="slide-section-title">Key Risks</p>
                       <ul class="slide-bullets">
-                        <li>AR ageing >60 days has breached $340K — collections action required</li>
+                        <li>AR ageing >60 days has breached $340K - collections action required</li>
                         <li>EBITDA 7.1% below target due to unplanned contractor costs</li>
                         <li>Project Titan delivery milestone overdue by 5 days</li>
                       </ul>
@@ -2891,7 +2894,7 @@
       <div class="section-inner reveal">
         <p class="eyebrow">How It Works</p>
         <h2 class="section-heading">Straightforward engagements. Fixed scope, defined deliverables, no surprises.</h2>
-        <p class="body-text pricing-intro">We start with a diagnostic — a structured conversation to map your current workflow, identify where the hours are going, and determine what's worth automating first. From there we scope a fixed-price build and deliver in 8–14 weeks.</p>
+        <p class="body-text pricing-intro">We start with a diagnostic - a structured conversation to map your current workflow, identify where the hours are going, and determine what's worth automating first. From there we scope a fixed-price build and deliver in 8–14 weeks.</p>
 
         <div class="pricing-row">
           <div class="pricing-info">
@@ -2923,7 +2926,7 @@
         </div>
 
         <div class="tools-note-wrap">
-          <p class="tools-note">We work with HubSpot, Salesforce, Dynamics 365, Zoho, Xero, NetSuite, SAP, Excel, SharePoint, and Power BI. CRM-agnostic — if it has an API, we can extract from it.</p>
+          <p class="tools-note">We work with HubSpot, Salesforce, Dynamics 365, Zoho, Xero, NetSuite, SAP, Excel, SharePoint, and Power BI. CRM-agnostic - if it has an API, we can extract from it.</p>
         </div>
       </div>
     </section>
@@ -3119,6 +3122,9 @@
         var hoverTimer = null;
         var hovering = false;
         var hoverReady = false;     // true after 2s hover
+
+        // Disable CSS smooth scrolling so rAF pixel-level control works
+        el.style.scrollBehavior = 'auto';
 
         // Start at top, scroll down first
         el.scrollTop = 0;
