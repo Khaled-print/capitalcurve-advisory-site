@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Main wordmark -->
+  <text x="24" y="85" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="56" font-weight="400" fill="#FFFFFF" letter-spacing="-1">
+    <tspan font-weight="400">Capital</tspan><tspan font-weight="600">Curve</tspan>
+  </text>
+
+  <!-- Advisory subtitle -->
+  <text x="27" y="118" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="300" fill="rgba(255,255,255,0.60)" letter-spacing="6">
+    ADVISORY
+  </text>
+
+  <!-- Subtle accent line -->
+  <line x1="24" y1="130" x2="220" y2="130" stroke="rgba(255,255,255,0.40)" stroke-width="1.5"/>
+</svg>
