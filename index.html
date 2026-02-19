@@ -822,6 +822,661 @@
         padding: 64px 16px;
       }
     }
+
+    /* ===== MOCKUP STRIPS ===== */
+    .mockup-strip {
+      padding: 100px 48px;
+      background: var(--bg-page);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-strip__inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .mockup-strip__content {
+      flex: 0 0 35%;
+    }
+
+    .mockup-strip__frame {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mockup-strip--right .mockup-strip__inner {
+      flex-direction: row;
+    }
+
+    .mockup-strip--left .mockup-strip__inner {
+      flex-direction: row-reverse;
+    }
+
+    .mockup-strip--full .mockup-strip__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .mockup-strip--full .mockup-strip__content {
+      flex: none;
+      max-width: 640px;
+    }
+
+    .mockup-strip__content .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .mockup-strip__content .section-heading {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    /* Screen frame */
+    .screen-frame {
+      background: #1A1A1A;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .screen-frame__bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 16px;
+      background: #111;
+    }
+
+    .screen-frame__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .screen-frame__dot--red { background: #EF4444; }
+    .screen-frame__dot--amber { background: #F59E0B; }
+    .screen-frame__dot--green { background: #22C55E; }
+
+    /* Email chrome */
+    .email-chrome {
+      background: #1E293B;
+      padding: 12px 20px;
+      font-size: 11px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .email-chrome strong {
+      color: #fff;
+    }
+
+    .email-body {
+      background: #fff;
+      padding: 24px 20px;
+      color: #1E293B;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    /* Mockup tables */
+    .mockup-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin: 12px 0;
+    }
+
+    .mockup-table th {
+      background: #F1F5F9;
+      padding: 6px 8px;
+      text-align: left;
+      font-weight: 600;
+      color: #1E293B;
+      border-bottom: 2px solid #E2E8F0;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mockup-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #1E293B;
+    }
+
+    .mockup-table .total-row td {
+      font-weight: 700;
+      background: #F8FAFC;
+      border-top: 2px solid #E2E8F0;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+
+    .status-dot--green { background: #22C55E; }
+    .status-dot--amber { background: #F59E0B; }
+    .status-dot--red { background: #EF4444; }
+
+    .val-green { color: #22C55E; }
+    .val-red { color: #EF4444; }
+    .val-amber { color: #F59E0B; }
+
+    .email-commentary {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 10px;
+      line-height: 1.6;
+      color: #64748B;
+    }
+
+    .email-commentary strong {
+      color: #1E293B;
+    }
+
+    /* Metric blocks */
+    .metric-blocks {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .metric-block {
+      background: #F8FAFC;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .metric-block__value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    .metric-block__label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .flag-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 4px 0;
+      font-size: 10px;
+      color: #1E293B;
+      line-height: 1.5;
+    }
+
+    .flag-item .status-dot {
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Spreadsheet frame */
+    .spreadsheet-frame {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .spreadsheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9px;
+      white-space: nowrap;
+      min-width: 900px;
+    }
+
+    .spreadsheet-table th {
+      background: #1E293B;
+      color: #fff;
+      padding: 6px 10px;
+      text-align: right;
+      font-weight: 600;
+      font-size: 8px;
+    }
+
+    .spreadsheet-table th:first-child {
+      text-align: left;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background: #1E293B;
+    }
+
+    .spreadsheet-table td {
+      padding: 5px 10px;
+      text-align: right;
+      border-bottom: 1px solid #F1F5F9;
+      color: #1E293B;
+      background: #fff;
+    }
+
+    .spreadsheet-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      position: sticky;
+      left: 0;
+      background: #fff;
+      z-index: 1;
+    }
+
+    .spreadsheet-table .group-header td {
+      background: #F1F5F9;
+      font-weight: 700;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .spreadsheet-table .group-header td:first-child {
+      background: #F1F5F9;
+    }
+
+    .spreadsheet-table .subtotal-row td {
+      font-weight: 700;
+      border-top: 1px solid #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .spreadsheet-table .subtotal-row td:first-child {
+      background: #F8FAFC;
+    }
+
+    .spreadsheet-table .net-row td {
+      font-weight: 700;
+      border-top: 2px solid #1E293B;
+      background: #EFF6FF;
+      color: #1E293B;
+    }
+
+    .spreadsheet-table .net-row td:first-child {
+      background: #EFF6FF;
+    }
+
+    .spreadsheet-table .balance-row td {
+      font-weight: 700;
+      background: #F0FDF4;
+      color: #166534;
+    }
+
+    .spreadsheet-table .balance-row td:first-child {
+      background: #F0FDF4;
+    }
+
+    /* Board pack tabs */
+    .board-tabs__nav {
+      display: flex;
+    }
+
+    .board-tab-btn {
+      padding: 12px 24px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      background: #111;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .board-tab-btn:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .board-tab-btn.active {
+      color: #fff;
+      background: #1A1A1A;
+      border-bottom-color: #3B82F6;
+    }
+
+    .board-tab-panel {
+      display: none;
+      background: #1A1A1A;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+
+    .board-tab-panel.active {
+      display: block;
+    }
+
+    /* Slide content */
+    .slide-content {
+      background: #0F172A;
+      color: #fff;
+      padding: 32px;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+
+    .slide-header__title {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .slide-header__period {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .slide-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .slide-highlight-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .slide-highlight-box__value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .slide-highlight-box__label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    .slide-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      flex: 1;
+    }
+
+    .slide-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+    }
+
+    .slide-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .slide-bullets li {
+      font-size: 12px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .slide-bullets li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: #3B82F6;
+    }
+
+    /* Bar chart */
+    .slide-bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 120px;
+      padding-top: 16px;
+    }
+
+    .slide-bar {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .slide-bar__fill {
+      width: 100%;
+      background: #3B82F6;
+      border-radius: 4px 4px 0 0;
+      min-height: 4px;
+    }
+
+    .slide-bar__label {
+      font-size: 8px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .slide-bar__value {
+      font-size: 8px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+    }
+
+    /* Slide mini table */
+    .slide-mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+
+    .slide-mini-table th {
+      text-align: left;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.5);
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .slide-mini-table td {
+      padding: 4px 0;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .slide-mini-table td:last-child {
+      text-align: right;
+    }
+
+    /* Cash callouts */
+    .cash-callouts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .cash-callout {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .cash-callout__label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .cash-callout__value {
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* KPI cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .kpi-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .kpi-card__label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .kpi-card__value {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+
+    .kpi-card__trend {
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-card__rag {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Mockup strip responsive */
+    @media (max-width: 1024px) {
+      .mockup-strip {
+        padding: 80px 40px;
+      }
+      .mockup-strip__inner {
+        gap: 40px;
+      }
+      .mockup-strip__content .section-heading {
+        font-size: 24px;
+      }
+      .slide-content {
+        aspect-ratio: auto;
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mockup-strip {
+        padding: 64px 20px;
+      }
+      .mockup-strip__inner {
+        flex-direction: column !important;
+        gap: 32px;
+      }
+      .mockup-strip__content {
+        flex: none;
+        width: 100%;
+        text-align: center;
+      }
+      .mockup-strip__frame {
+        width: 100%;
+      }
+      .mockup-strip__content .section-heading {
+        font-size: 22px;
+      }
+      .metric-blocks {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .slide-highlights {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .slide-content {
+        padding: 20px;
+        aspect-ratio: auto;
+        min-height: auto;
+      }
+      .slide-header__title {
+        font-size: 14px;
+      }
+      .slide-two-col {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .board-tab-btn {
+        padding: 10px 14px;
+        font-size: 9px;
+      }
+      .slide-bar-chart {
+        height: 80px;
+      }
+      .cash-callouts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mockup-strip {
+        padding: 48px 16px;
+      }
+      .board-tabs__nav {
+        flex-wrap: wrap;
+      }
+      .board-tab-btn {
+        flex: 1;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: 8px;
+      }
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -879,6 +1534,51 @@
       </div>
     </section>
 
+    <!-- ===== MOCKUP 1: REVENUE PIPELINE WEEKLY SUMMARY ===== -->
+    <section class="mockup-strip mockup-strip--right">
+      <div class="mockup-strip__inner reveal">
+        <div class="mockup-strip__content">
+          <p class="eyebrow">Sample Output</p>
+          <h3 class="section-heading">Revenue Pipeline<br>Weekly Summary</h3>
+          <p class="body-text">Automated every Monday at 7am. CRM data pulled via API, aggregated by stage, with AI-written commentary delivered straight to leadership.</p>
+        </div>
+        <div class="mockup-strip__frame">
+          <div class="screen-frame">
+            <div class="screen-frame__bar">
+              <span class="screen-frame__dot screen-frame__dot--red"></span>
+              <span class="screen-frame__dot screen-frame__dot--amber"></span>
+              <span class="screen-frame__dot screen-frame__dot--green"></span>
+            </div>
+            <div class="email-chrome">
+              <strong>From:</strong> CapitalCurve Automation<br>
+              <strong>To:</strong> Leadership Team<br>
+              <strong>Subject:</strong> Revenue Pipeline — Weekly Summary
+            </div>
+            <div class="email-body">
+              <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Monday 17 Feb 2025, 7:00 AM AEST &middot; Apex Consulting</div>
+              <table class="mockup-table">
+                <thead>
+                  <tr><th>Stage</th><th>Deals</th><th>Value</th><th>WoW</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Qualified Lead</td><td>34</td><td>$8.2M</td><td class="val-green">+$1.1M</td></tr>
+                  <tr><td>Discovery</td><td>28</td><td>$12.4M</td><td class="val-green">+$0.6M</td></tr>
+                  <tr><td>Proposal Sent</td><td>19</td><td>$9.8M</td><td class="val-red">&minus;$0.4M</td></tr>
+                  <tr><td>Negotiation</td><td>12</td><td>$6.1M</td><td class="val-green">+$0.8M</td></tr>
+                  <tr><td>Verbal Commit</td><td>8</td><td>$4.3M</td><td class="val-amber">+$0.1M</td></tr>
+                  <tr class="total-row"><td>Closed Won (MTD)</td><td>5</td><td>$2.1M</td><td class="val-green">+$0.5M</td></tr>
+                </tbody>
+              </table>
+              <div style="font-weight:600;font-size:10px;margin-top:8px;color:#1E293B;">Total Pipeline: $42.9M across 106 active deals</div>
+              <div class="email-commentary">
+                <strong>AI Commentary:</strong> Pipeline grew 5.2% WoW driven by strong inflow at Qualified Lead stage. Proposal conversion dipped slightly — 3 deals pushed to next week pending client sign-off. Verbal Commits remain stable with $4.3M expected to close within 14 days. Recommend follow-up on the 12 Negotiation-stage deals representing $6.1M in potential revenue.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== THE PROBLEM ===== -->
     <section class="section section--bg section--brisbane" id="problem">
       <div class="section-inner reveal">
@@ -888,6 +1588,53 @@
         <p class="body-text">This isn't an analyst problem. It's a plumbing problem — and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
         <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
         <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
+      </div>
+    </section>
+
+    <!-- ===== MOCKUP 2: WEEKLY FINANCE HEALTH CHECK ===== -->
+    <section class="mockup-strip mockup-strip--left">
+      <div class="mockup-strip__inner reveal">
+        <div class="mockup-strip__content">
+          <p class="eyebrow">Sample Output</p>
+          <h3 class="section-heading">Weekly Finance<br>Health Check</h3>
+          <p class="body-text">Six KPIs, traffic-light coded, with variance tracking and AI-generated action items. Delivered every Friday before close of business.</p>
+        </div>
+        <div class="mockup-strip__frame">
+          <div class="screen-frame">
+            <div class="screen-frame__bar">
+              <span class="screen-frame__dot screen-frame__dot--red"></span>
+              <span class="screen-frame__dot screen-frame__dot--amber"></span>
+              <span class="screen-frame__dot screen-frame__dot--green"></span>
+            </div>
+            <div class="email-chrome">
+              <strong>From:</strong> CapitalCurve Automation<br>
+              <strong>To:</strong> CFO, Head of Finance<br>
+              <strong>Subject:</strong> Weekly Finance Health Check — Apex Consulting
+            </div>
+            <div class="email-body">
+              <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Friday 14 Feb 2025, 5:00 PM AEST</div>
+              <table class="mockup-table">
+                <thead>
+                  <tr><th>KPI</th><th>Current</th><th>Target</th><th>Variance</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Revenue (MTD)</td><td>$2.1M</td><td>$2.0M</td><td class="val-green">+5.0%</td><td><span class="status-dot status-dot--green"></span></td></tr>
+                  <tr><td>Gross Margin</td><td>62.4%</td><td>60.0%</td><td class="val-green">+2.4pp</td><td><span class="status-dot status-dot--green"></span></td></tr>
+                  <tr><td>EBITDA</td><td>$418K</td><td>$450K</td><td class="val-amber">&minus;7.1%</td><td><span class="status-dot status-dot--amber"></span></td></tr>
+                  <tr><td>Cash Position</td><td>$3.2M</td><td>$3.0M</td><td class="val-green">+6.7%</td><td><span class="status-dot status-dot--green"></span></td></tr>
+                  <tr><td>AR Ageing (&gt;60d)</td><td>$340K</td><td>&lt;$250K</td><td class="val-red">+36.0%</td><td><span class="status-dot status-dot--red"></span></td></tr>
+                  <tr><td>Utilisation</td><td>84.7%</td><td>85.0%</td><td class="val-amber">&minus;0.3pp</td><td><span class="status-dot status-dot--amber"></span></td></tr>
+                </tbody>
+              </table>
+              <div class="email-commentary">
+                <strong>Key Actions:</strong><br>
+                &rarr; AR Ageing has breached threshold — $340K outstanding &gt;60 days, up from $285K last week. Recommend immediate follow-up on top 3 accounts.<br>
+                &rarr; EBITDA tracking slightly below target due to unplanned contractor spend. Expected to normalise by month-end.<br>
+                &rarr; Revenue ahead of plan — strong close rate on pipeline deals this week.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -907,6 +1654,59 @@
       </div>
     </section>
 
+    <!-- ===== MOCKUP 3: OPS FLASH ===== -->
+    <section class="mockup-strip mockup-strip--right">
+      <div class="mockup-strip__inner reveal">
+        <div class="mockup-strip__content">
+          <p class="eyebrow">Sample Output</p>
+          <h3 class="section-heading">Ops Flash</h3>
+          <p class="body-text">A concise operational snapshot — key metrics, flagged items, and AI commentary. Sent mid-week so leadership sees issues before they escalate.</p>
+        </div>
+        <div class="mockup-strip__frame">
+          <div class="screen-frame">
+            <div class="screen-frame__bar">
+              <span class="screen-frame__dot screen-frame__dot--red"></span>
+              <span class="screen-frame__dot screen-frame__dot--amber"></span>
+              <span class="screen-frame__dot screen-frame__dot--green"></span>
+            </div>
+            <div class="email-chrome">
+              <strong>From:</strong> CapitalCurve Automation<br>
+              <strong>To:</strong> COO, Ops Team<br>
+              <strong>Subject:</strong> Ops Flash — Week Ending 14 Feb
+            </div>
+            <div class="email-body">
+              <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Wednesday 12 Feb 2025, 8:00 AM AEST &middot; Apex Consulting</div>
+              <div class="metric-blocks">
+                <div class="metric-block">
+                  <div class="metric-block__value">23</div>
+                  <div class="metric-block__label">Active Projects</div>
+                </div>
+                <div class="metric-block">
+                  <div class="metric-block__value">84.7%</div>
+                  <div class="metric-block__label">Billable Util.</div>
+                </div>
+                <div class="metric-block">
+                  <div class="metric-block__value">6.2</div>
+                  <div class="metric-block__label">Avg Days to Invoice</div>
+                </div>
+                <div class="metric-block">
+                  <div class="metric-block__value">42</div>
+                  <div class="metric-block__label">Contractors</div>
+                </div>
+              </div>
+              <div style="font-weight:600;font-size:10px;margin:12px 0 6px;color:#1E293B;">Flagged Items</div>
+              <div class="flag-item"><span class="status-dot status-dot--red"></span> Project Titan — delivery milestone overdue by 5 days, client escalation pending</div>
+              <div class="flag-item"><span class="status-dot status-dot--amber"></span> 3 contractors approaching 6-month tenure limit — conversion decisions needed by 21 Feb</div>
+              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Invoicing backlog: 4 projects with unbilled work &gt;$50K each</div>
+              <div class="email-commentary">
+                <strong>AI Commentary:</strong> Utilisation has softened 1.2pp from last week as two projects entered transition phase. Invoicing lag remains above target — recommend batch processing this week to recover $210K in unbilled revenue. Contractor conversion decisions are time-sensitive given notice period requirements.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== WHO WE WORK WITH ===== -->
     <section class="section" id="whoweworkwith">
       <div class="section-inner reveal">
@@ -921,6 +1721,106 @@
           <span class="industry-tag">Accounting &amp; Advisory</span>
           <span class="industry-tag">SaaS &amp; Technology</span>
           <span class="industry-tag">IT Services</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MOCKUP 4: 13-WEEK CASH FORECAST ===== -->
+    <section class="mockup-strip mockup-strip--full">
+      <div class="mockup-strip__inner reveal">
+        <div class="mockup-strip__content">
+          <p class="eyebrow">Sample Output</p>
+          <h3 class="section-heading">13-Week Cash Forecast</h3>
+          <p class="body-text">Rolling weekly forecast refreshed automatically from actuals. Colour-coded to flag shortfalls before they happen.</p>
+        </div>
+        <div class="mockup-strip__frame">
+          <div class="screen-frame">
+            <div class="screen-frame__bar">
+              <span class="screen-frame__dot screen-frame__dot--red"></span>
+              <span class="screen-frame__dot screen-frame__dot--amber"></span>
+              <span class="screen-frame__dot screen-frame__dot--green"></span>
+            </div>
+            <div style="background:#fff;padding:4px;">
+              <div class="spreadsheet-frame">
+                <table class="spreadsheet-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Wk 1<br>17 Feb</th>
+                      <th>Wk 2<br>24 Feb</th>
+                      <th>Wk 3<br>3 Mar</th>
+                      <th>Wk 4<br>10 Mar</th>
+                      <th>Wk 5<br>17 Mar</th>
+                      <th>Wk 6<br>24 Mar</th>
+                      <th>Wk 7<br>31 Mar</th>
+                      <th>Wk 8<br>7 Apr</th>
+                      <th>Wk 9<br>14 Apr</th>
+                      <th>Wk 10<br>21 Apr</th>
+                      <th>Wk 11<br>28 Apr</th>
+                      <th>Wk 12<br>5 May</th>
+                      <th>Wk 13<br>12 May</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="balance-row">
+                      <td>Opening Balance</td>
+                      <td>3,200</td><td>3,185</td><td>2,960</td><td>2,810</td><td>3,120</td><td>2,890</td><td>3,340</td><td>3,110</td><td>3,410</td><td>3,190</td><td>3,520</td><td>3,310</td><td>3,620</td>
+                    </tr>
+                    <tr class="group-header"><td colspan="14">Cash In</td></tr>
+                    <tr>
+                      <td>Client Receipts</td>
+                      <td>420</td><td>380</td><td>510</td><td>640</td><td>390</td><td>720</td><td>480</td><td>630</td><td>410</td><td>680</td><td>450</td><td>650</td><td>520</td>
+                    </tr>
+                    <tr>
+                      <td>Other Income</td>
+                      <td>15</td><td>10</td><td>15</td><td>20</td><td>10</td><td>15</td><td>10</td><td>20</td><td>15</td><td>10</td><td>15</td><td>10</td><td>20</td>
+                    </tr>
+                    <tr class="subtotal-row">
+                      <td>Total Cash In</td>
+                      <td>435</td><td>390</td><td>525</td><td>660</td><td>400</td><td>735</td><td>490</td><td>650</td><td>425</td><td>690</td><td>465</td><td>660</td><td>540</td>
+                    </tr>
+                    <tr class="group-header"><td colspan="14">Cash Out</td></tr>
+                    <tr>
+                      <td>Payroll</td>
+                      <td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td><td style="color:#EF4444">−280</td>
+                    </tr>
+                    <tr>
+                      <td>Contractors</td>
+                      <td style="color:#EF4444">−95</td><td style="color:#EF4444">−120</td><td style="color:#EF4444">−95</td><td style="color:#EF4444">−70</td><td style="color:#EF4444">−110</td><td style="color:#EF4444">−80</td><td style="color:#EF4444">−105</td><td style="color:#EF4444">−70</td><td style="color:#EF4444">−95</td><td style="color:#EF4444">−80</td><td style="color:#EF4444">−110</td><td style="color:#EF4444">−70</td><td style="color:#EF4444">−95</td>
+                    </tr>
+                    <tr>
+                      <td>Rent &amp; Facilities</td>
+                      <td>—</td><td style="color:#EF4444">−85</td><td>—</td><td>—</td><td style="color:#EF4444">−85</td><td>—</td><td>—</td><td style="color:#EF4444">−85</td><td>—</td><td>—</td><td style="color:#EF4444">−85</td><td>—</td><td>—</td>
+                    </tr>
+                    <tr>
+                      <td>Software &amp; SaaS</td>
+                      <td style="color:#EF4444">−42</td><td>—</td><td>—</td><td>—</td><td style="color:#EF4444">−42</td><td>—</td><td>—</td><td>—</td><td style="color:#EF4444">−42</td><td>—</td><td>—</td><td>—</td><td style="color:#EF4444">−42</td>
+                    </tr>
+                    <tr>
+                      <td>Tax / BAS</td>
+                      <td>—</td><td style="color:#EF4444">−130</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:#EF4444">−135</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:#EF4444">−140</td>
+                    </tr>
+                    <tr>
+                      <td>Other</td>
+                      <td style="color:#EF4444">−33</td><td>—</td><td style="color:#EF4444">−300</td><td>—</td><td style="color:#EF4444">−13</td><td style="color:#EF4444">−25</td><td>—</td><td style="color:#EF4444">−15</td><td style="color:#EF4444">−8</td><td>—</td><td style="color:#EF4444">−10</td><td style="color:#EF4444">−20</td><td>—</td>
+                    </tr>
+                    <tr class="subtotal-row">
+                      <td>Total Cash Out</td>
+                      <td style="color:#EF4444">−450</td><td style="color:#EF4444">−615</td><td style="color:#EF4444">−675</td><td style="color:#EF4444">−350</td><td style="color:#EF4444">−530</td><td style="color:#EF4444">−385</td><td style="color:#EF4444">−520</td><td style="color:#EF4444">−450</td><td style="color:#EF4444">−425</td><td style="color:#EF4444">−360</td><td style="color:#EF4444">−485</td><td style="color:#EF4444">−370</td><td style="color:#EF4444">−557</td>
+                    </tr>
+                    <tr class="net-row">
+                      <td>Net Cash Flow</td>
+                      <td style="color:#EF4444">−15</td><td style="color:#EF4444">−225</td><td style="color:#EF4444">−150</td><td style="color:#22C55E">+310</td><td style="color:#EF4444">−130</td><td style="color:#22C55E">+350</td><td style="color:#EF4444">−30</td><td style="color:#22C55E">+200</td><td>0</td><td style="color:#22C55E">+330</td><td style="color:#EF4444">−20</td><td style="color:#22C55E">+290</td><td style="color:#EF4444">−17</td>
+                    </tr>
+                    <tr class="balance-row">
+                      <td>Closing Balance</td>
+                      <td>3,185</td><td>2,960</td><td>2,810</td><td>3,120</td><td>2,990</td><td>3,340</td><td>3,310</td><td>3,310</td><td>3,410</td><td>3,520</td><td>3,500</td><td>3,600</td><td>3,583</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -969,6 +1869,266 @@
             <p class="result-line">→ Three separate ERPs consolidated into a single reporting view</p>
             <p class="result-line">→ Month-end close shortened by 2 full days</p>
             <p class="result-line">→ Finance team now spends month-end on analysis, not assembly</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MOCKUP 5: BOARD PACK SLIDES ===== -->
+    <section class="mockup-strip mockup-strip--full">
+      <div class="mockup-strip__inner reveal">
+        <div class="mockup-strip__content">
+          <p class="eyebrow">Sample Output</p>
+          <h3 class="section-heading">Board Pack Slides</h3>
+          <p class="body-text">Four slides generated automatically from your data — executive summary, revenue, cash, and KPIs. Ready for the board, not built by the board.</p>
+        </div>
+        <div class="mockup-strip__frame">
+          <div class="screen-frame">
+            <div class="screen-frame__bar">
+              <span class="screen-frame__dot screen-frame__dot--red"></span>
+              <span class="screen-frame__dot screen-frame__dot--amber"></span>
+              <span class="screen-frame__dot screen-frame__dot--green"></span>
+            </div>
+            <div class="board-tabs" id="board-tabs">
+              <div class="board-tabs__nav">
+                <button class="board-tab-btn active" data-tab="exec">Executive Summary</button>
+                <button class="board-tab-btn" data-tab="revenue">Revenue &amp; Pipeline</button>
+                <button class="board-tab-btn" data-tab="cash">Cash Position</button>
+                <button class="board-tab-btn" data-tab="kpis">KPIs</button>
+              </div>
+              <!-- Slide 1: Executive Summary -->
+              <div class="board-tab-panel active" data-panel="exec">
+                <div class="slide-content">
+                  <div class="slide-header">
+                    <div class="slide-header__title">Apex Consulting — Executive Summary</div>
+                    <div class="slide-header__period">February 2025 · Month-to-Date</div>
+                  </div>
+                  <div class="slide-highlights">
+                    <div class="slide-highlight-box">
+                      <div class="slide-highlight-box__value">$2.1M</div>
+                      <div class="slide-highlight-box__label">Revenue MTD</div>
+                    </div>
+                    <div class="slide-highlight-box">
+                      <div class="slide-highlight-box__value">$418K</div>
+                      <div class="slide-highlight-box__label">EBITDA</div>
+                    </div>
+                    <div class="slide-highlight-box">
+                      <div class="slide-highlight-box__value">$3.2M</div>
+                      <div class="slide-highlight-box__label">Cash Position</div>
+                    </div>
+                  </div>
+                  <div class="slide-two-col">
+                    <div>
+                      <p class="slide-section-title">Key Highlights</p>
+                      <ul class="slide-bullets">
+                        <li>Revenue tracking 5% above plan driven by strong project close rate</li>
+                        <li>Pipeline at $42.9M — up 5.2% WoW with healthy stage distribution</li>
+                        <li>Cash position stable at $3.2M with positive 13-week outlook</li>
+                        <li>Utilisation at 84.7% — within 0.3pp of target</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p class="slide-section-title">Key Risks</p>
+                      <ul class="slide-bullets">
+                        <li>AR ageing >60 days has breached $340K — collections action required</li>
+                        <li>EBITDA 7.1% below target due to unplanned contractor costs</li>
+                        <li>Project Titan delivery milestone overdue by 5 days</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 2: Revenue & Pipeline -->
+              <div class="board-tab-panel" data-panel="revenue">
+                <div class="slide-content">
+                  <div class="slide-header">
+                    <div class="slide-header__title">Revenue &amp; Pipeline</div>
+                    <div class="slide-header__period">6-Month Trend · Sep 2024 – Feb 2025</div>
+                  </div>
+                  <div class="slide-two-col">
+                    <div>
+                      <p class="slide-section-title">Monthly Revenue ($M)</p>
+                      <div class="slide-bar-chart">
+                        <div class="slide-bar">
+                          <div class="slide-bar__value">$1.8M</div>
+                          <div class="slide-bar__fill" style="height:72%"></div>
+                          <div class="slide-bar__label">Sep</div>
+                        </div>
+                        <div class="slide-bar">
+                          <div class="slide-bar__value">$1.9M</div>
+                          <div class="slide-bar__fill" style="height:76%"></div>
+                          <div class="slide-bar__label">Oct</div>
+                        </div>
+                        <div class="slide-bar">
+                          <div class="slide-bar__value">$2.2M</div>
+                          <div class="slide-bar__fill" style="height:88%"></div>
+                          <div class="slide-bar__label">Nov</div>
+                        </div>
+                        <div class="slide-bar">
+                          <div class="slide-bar__value">$1.7M</div>
+                          <div class="slide-bar__fill" style="height:68%"></div>
+                          <div class="slide-bar__label">Dec</div>
+                        </div>
+                        <div class="slide-bar">
+                          <div class="slide-bar__value">$2.4M</div>
+                          <div class="slide-bar__fill" style="height:96%"></div>
+                          <div class="slide-bar__label">Jan</div>
+                        </div>
+                        <div class="slide-bar">
+                          <div class="slide-bar__value">$2.1M</div>
+                          <div class="slide-bar__fill" style="height:84%"></div>
+                          <div class="slide-bar__label">Feb</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="slide-section-title">Pipeline by Stage</p>
+                      <table class="slide-mini-table">
+                        <thead>
+                          <tr><th>Stage</th><th>Value</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>Qualified Lead</td><td>$8.2M</td></tr>
+                          <tr><td>Discovery</td><td>$12.4M</td></tr>
+                          <tr><td>Proposal Sent</td><td>$9.8M</td></tr>
+                          <tr><td>Negotiation</td><td>$6.1M</td></tr>
+                          <tr><td>Verbal Commit</td><td>$4.3M</td></tr>
+                          <tr><td style="font-weight:700">Total Pipeline</td><td style="font-weight:700">$42.9M</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 3: Cash Position -->
+              <div class="board-tab-panel" data-panel="cash">
+                <div class="slide-content">
+                  <div class="slide-header">
+                    <div class="slide-header__title">Cash Position</div>
+                    <div class="slide-header__period">13-Week Outlook · Feb – May 2025</div>
+                  </div>
+                  <div class="cash-callouts">
+                    <div class="cash-callout">
+                      <div class="cash-callout__label">Opening Balance</div>
+                      <div class="cash-callout__value" style="color:#22C55E">$3.2M</div>
+                    </div>
+                    <div class="cash-callout">
+                      <div class="cash-callout__label">Projected Closing (Wk 13)</div>
+                      <div class="cash-callout__value" style="color:#22C55E">$3.8M</div>
+                    </div>
+                  </div>
+                  <div class="slide-bar-chart" style="margin-bottom:20px">
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.2</div>
+                      <div class="slide-bar__fill" style="height:82%"></div>
+                      <div class="slide-bar__label">W1</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.0</div>
+                      <div class="slide-bar__fill" style="height:77%"></div>
+                      <div class="slide-bar__label">W2</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">2.8</div>
+                      <div class="slide-bar__fill" style="height:72%"></div>
+                      <div class="slide-bar__label">W3</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.1</div>
+                      <div class="slide-bar__fill" style="height:79%;background:#22C55E"></div>
+                      <div class="slide-bar__label">W4</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">2.9</div>
+                      <div class="slide-bar__fill" style="height:74%"></div>
+                      <div class="slide-bar__label">W5</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.3</div>
+                      <div class="slide-bar__fill" style="height:85%;background:#22C55E"></div>
+                      <div class="slide-bar__label">W6</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.1</div>
+                      <div class="slide-bar__fill" style="height:79%"></div>
+                      <div class="slide-bar__label">W7</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.4</div>
+                      <div class="slide-bar__fill" style="height:87%;background:#22C55E"></div>
+                      <div class="slide-bar__label">W8</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.2</div>
+                      <div class="slide-bar__fill" style="height:82%"></div>
+                      <div class="slide-bar__label">W9</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.5</div>
+                      <div class="slide-bar__fill" style="height:90%;background:#22C55E"></div>
+                      <div class="slide-bar__label">W10</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.3</div>
+                      <div class="slide-bar__fill" style="height:85%"></div>
+                      <div class="slide-bar__label">W11</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.6</div>
+                      <div class="slide-bar__fill" style="height:92%;background:#22C55E"></div>
+                      <div class="slide-bar__label">W12</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">3.8</div>
+                      <div class="slide-bar__fill" style="height:97%;background:#22C55E"></div>
+                      <div class="slide-bar__label">W13</div>
+                    </div>
+                  </div>
+                  <p style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6">Cash position remains healthy throughout the forecast period. Payroll weeks (W2, W3, W5) show expected dips. Upward trend driven by strong collections and project completions in Q1. No liquidity concerns identified.</p>
+                </div>
+              </div>
+              <!-- Slide 4: KPIs -->
+              <div class="board-tab-panel" data-panel="kpis">
+                <div class="slide-content">
+                  <div class="slide-header">
+                    <div class="slide-header__title">Operational KPIs</div>
+                    <div class="slide-header__period">February 2025 · Month-to-Date</div>
+                  </div>
+                  <div class="kpi-grid">
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">Revenue MTD</div>
+                      <div class="kpi-card__value">$2.1M</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 5.0%</span> vs target</div>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">Gross Margin</div>
+                      <div class="kpi-card__value">62.4%</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 2.4pp</span> vs target</div>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">EBITDA</div>
+                      <div class="kpi-card__value">$418K</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#F59E0B"></span> <span style="color:#F59E0B">&#9660; 7.1%</span> vs target</div>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">Utilisation</div>
+                      <div class="kpi-card__value">84.7%</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#F59E0B"></span> <span style="color:#F59E0B">&#9660; 0.3pp</span> vs target</div>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">AR Ageing >60d</div>
+                      <div class="kpi-card__value">$340K</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#EF4444"></span> <span style="color:#EF4444">&#9650; 36.0%</span> above limit</div>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">Active Projects</div>
+                      <div class="kpi-card__value">23</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 2</span> vs last month</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1109,6 +2269,22 @@
       } else {
         document.querySelectorAll('.reveal').forEach(function(el) {
           el.classList.add('visible');
+        });
+      }
+
+      // --- Board pack tab switcher ---
+      var boardTabs = document.getElementById('board-tabs');
+      if (boardTabs) {
+        var tabBtns = boardTabs.querySelectorAll('.board-tab-btn');
+        var tabPanels = boardTabs.querySelectorAll('.board-tab-panel');
+        tabBtns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var target = btn.getAttribute('data-tab');
+            tabBtns.forEach(function(b) { b.classList.remove('active'); });
+            tabPanels.forEach(function(p) { p.classList.remove('active'); });
+            btn.classList.add('active');
+            boardTabs.querySelector('[data-panel="' + target + '"]').classList.add('active');
+          });
         });
       }
     })();
