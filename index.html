@@ -1524,9 +1524,9 @@
     .cfo-tab-btn:hover { color:rgba(255,255,255,0.7); }
     .cfo-tab-btn.active { color:#fff; border-bottom-color:#3B82F6; background:#243044; }
     .cfo-tab-btn--pulse:not(.active) { position:relative; }
-    .cfo-tab-peek { display:inline-block; font-size:9px; font-weight:500; letter-spacing:0.02em; text-transform:none; color:#3B82F6; margin-left:6px; animation:peekPulse 2s ease-in-out infinite; }
+    .cfo-tab-peek { display:inline-block; font-size:9px; font-weight:600; letter-spacing:0.03em; text-transform:none; color:#fff; background:#3B82F6; padding:2px 8px; border-radius:10px; margin-left:8px; vertical-align:middle; animation:peekPulse 2.5s ease-in-out infinite; }
     .cfo-tab-btn.active .cfo-tab-peek { display:none; }
-    @keyframes peekPulse { 0%,100%{opacity:0.4;transform:translateX(0);} 50%{opacity:1;transform:translateX(-3px);} }
+    @keyframes peekPulse { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
     .cfo-tab-panel { display:none; }
     .cfo-tab-panel.active { display:block; animation:panelFadeIn 0.4s ease; }
 
@@ -1989,7 +1989,7 @@
             <div id="cfo-tabs">
               <div class="cfo-tabs__nav">
                 <button class="cfo-tab-btn active" data-cfo-tab="friday">Friday Scorecard</button>
-                <button class="cfo-tab-btn cfo-tab-btn--pulse" data-cfo-tab="monday">Monday Brief <span class="cfo-tab-peek">&#x2190; tap to preview</span></button>
+                <button class="cfo-tab-btn cfo-tab-btn--pulse" data-cfo-tab="monday">Monday Brief <span class="cfo-tab-peek">tap to preview</span></button>
               </div>
               <!-- Monday Panel -->
               <div class="cfo-tab-panel" data-cfo-panel="monday">
@@ -3123,6 +3123,10 @@
         var hovering = false;
         var hoverReady = false;     // true after 2s hover
         var accumulator = 0;        // fractional pixel accumulator
+
+        // Prevent duplicate animation loops on same element
+        if (el._autoScrollActive) return;
+        el._autoScrollActive = true;
 
         // Disable CSS smooth scrolling so rAF pixel-level control works
         el.style.scrollBehavior = 'auto';
