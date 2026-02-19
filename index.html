@@ -1520,13 +1520,13 @@
 
     /* CFO tabs (Monday/Friday inside email frame) */
     .cfo-tabs__nav { display:flex; background:#1E293B; border-bottom:2px solid #334155; }
-    .cfo-tab-btn { flex:1; padding:10px 16px; font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.45); background:#1E293B; border:none; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.25s,background 0.25s; }
+    .cfo-tab-btn { flex:1; padding:12px 16px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.45); background:#1E293B; border:none; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.25s,background 0.25s; }
     .cfo-tab-btn:hover { color:rgba(255,255,255,0.7); }
     .cfo-tab-btn.active { color:#fff; border-bottom-color:#3B82F6; background:#243044; }
     .cfo-tab-btn--pulse:not(.active) { position:relative; }
-    .cfo-tab-peek { font-size:7px; font-weight:400; letter-spacing:0.02em; text-transform:none; color:rgba(255,255,255,0.35); margin-left:4px; animation:peekPulse 2.5s ease-in-out infinite; }
+    .cfo-tab-peek { display:inline-block; font-size:9px; font-weight:500; letter-spacing:0.02em; text-transform:none; color:#3B82F6; margin-left:6px; animation:peekPulse 2s ease-in-out infinite; }
     .cfo-tab-btn.active .cfo-tab-peek { display:none; }
-    @keyframes peekPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+    @keyframes peekPulse { 0%,100%{opacity:0.4;transform:translateX(0);} 50%{opacity:1;transform:translateX(-3px);} }
     .cfo-tab-panel { display:none; }
     .cfo-tab-panel.active { display:block; animation:panelFadeIn 0.4s ease; }
 
@@ -3115,13 +3115,14 @@
 
       // --- Email body auto-scroll: slow continuous oscillate down/up ---
       function initEmailAutoScroll(el) {
-        var SPEED = 0.3;            // pixels per frame (~18px/sec at 60fps)
+        var SPEED = 0.4;            // fractional pixels per frame
         var direction = 1;          // 1 = scrolling down, -1 = scrolling up
         var stopped = false;
         var animId = null;
         var hoverTimer = null;
         var hovering = false;
         var hoverReady = false;     // true after 2s hover
+        var accumulator = 0;        // fractional pixel accumulator
 
         // Disable CSS smooth scrolling so rAF pixel-level control works
         el.style.scrollBehavior = 'auto';
@@ -3133,7 +3134,13 @@
           if (stopped) return;
           if (!hovering) {
             var maxScroll = el.scrollHeight - el.clientHeight;
-            el.scrollTop += SPEED * direction;
+            accumulator += SPEED;
+            // Only apply whole-pixel scroll steps (browsers quantize scrollTop)
+            if (accumulator >= 1) {
+              var px = Math.floor(accumulator);
+              accumulator -= px;
+              el.scrollTop += px * direction;
+            }
             // Reverse at boundaries
             if (el.scrollTop >= maxScroll) { direction = -1; }
             if (el.scrollTop <= 0) { direction = 1; }
