@@ -7,65 +7,50 @@
   <meta name="description" content="Bespoke finance automation for Australian mid-market companies. We automate the data work underneath so your team reviews a finished report instead of building one.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ===== RESET ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--body-text); background: var(--bg); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
     /* ===== DESIGN TOKENS ===== */
     :root {
-      --bg: #F8F9FB;
-      --primary-text: #1C2B4A;
-      --secondary-text: #6B8CAE;
-      --card-bg: #243656;
-      --dark-bg: #1C2B4A;
-      --dark-overlay: #0D1B2A;
-      --cta-blue: #2563EB;
-      --body-text: #1A1A2E;
-      --footer-bg: #0F1C30;
-      --border: rgba(107, 140, 174, 0.2);
-      --font-heading: 'Playfair Display', serif;
-      --font-body: 'Inter', sans-serif;
+      --bg-outer:       #050505;
+      --bg-page:        #0A0A0A;
+      --bg-card:        #141414;
+      --bg-footer:      #080808;
+      --frame-border:   rgba(255,255,255,0.12);
+      --text-primary:   #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.60);
+      --text-tertiary:  rgba(255,255,255,0.40);
+      --border:         rgba(255,255,255,0.10);
+      --border-button:  rgba(255,255,255,0.60);
+      --font-body:      'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--bg-outer);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 12px;
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
+      min-height: 100vh;
+    }
+
+    /* ===== PAGE FRAME ===== */
+    .page-frame {
+      border: 1px solid var(--frame-border);
+      border-radius: 20px;
+      overflow: clip;
+      background: var(--bg-page);
+      position: relative;
     }
 
     /* ===== TYPOGRAPHY ===== */
-    .h1-white {
-      font-family: var(--font-heading);
-      font-size: 64px;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      color: #fff;
-    }
-    .h2 {
-      font-family: var(--font-heading);
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: 0;
-      color: var(--primary-text);
-    }
-    .h2-white {
-      font-family: var(--font-heading);
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.04em;
-      color: #fff;
-    }
-    .h2b-white {
-      font-family: var(--font-heading);
-      font-size: 44px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.04em;
-      color: #fff;
-      text-align: center;
-    }
     .eyebrow {
       font-family: var(--font-body);
       font-size: 11px;
@@ -73,156 +58,59 @@
       line-height: 1.1;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--secondary-text);
+      color: rgba(255,255,255,0.50);
       margin-bottom: 20px;
     }
-    .dark-eyebrow {
+
+    .section-heading {
       font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--secondary-text);
-      margin-bottom: 20px;
-    }
-    .body-s {
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--body-text);
-    }
-    .body-xl {
-      font-family: var(--font-body);
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.7;
-    }
-    .subheading {
-      font-family: var(--font-body);
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.7;
-      color: #fff;
-    }
-    .ai-heading {
-      font-family: var(--font-heading);
-      font-size: 26px;
+      font-size: 40px;
       font-weight: 700;
-      font-style: italic;
-      line-height: 1.2;
-      letter-spacing: -0.04em;
-      color: #fff;
-    }
-    .small-note {
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: rgba(255, 255, 255, 0.45);
-    }
-    .trust-text {
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.15;
       letter-spacing: 0.02em;
-      color: var(--secondary-text);
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 32px;
+    }
+
+    .section-heading--center {
       text-align: center;
     }
-    .result-line {
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.6;
-      color: var(--cta-blue);
-    }
-    .pricing-label {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--primary-text);
-    }
-    .price {
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--primary-text);
-      text-align: right;
-      min-width: 200px;
-      white-space: nowrap;
-    }
-    .card-descriptor {
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-      color: var(--secondary-text);
-    }
-    .card-title {
-      font-family: var(--font-body);
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-    .tag-text {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--secondary-text);
-    }
-    .cta-text {
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .tools-note {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-      color: var(--secondary-text);
-    }
-    .dark-body {
+
+    .body-text {
       font-family: var(--font-body);
       font-size: 16px;
       font-weight: 400;
       line-height: 1.7;
-      letter-spacing: -0.02em;
-      color: rgba(255, 255, 255, 0.75);
+      color: var(--text-secondary);
     }
-    .dark-small {
+
+    .body-text + .body-text {
+      margin-top: 20px;
+    }
+
+    .ai-heading {
       font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: rgba(255, 255, 255, 0.45);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 24px;
     }
 
     /* ===== LAYOUT ===== */
+    .section {
+      padding: 140px 48px;
+    }
+
     .section-inner {
       max-width: 800px;
       margin: 0 auto;
       width: 100%;
     }
+
     .section-inner--wide {
       max-width: 960px;
       margin: 0 auto;
@@ -232,9 +120,9 @@
     /* ===== NAV ===== */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 12px;
+      left: 13px;
+      right: 13px;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -242,24 +130,31 @@
       padding: 0 48px;
       height: 64px;
       background: transparent;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 20px 20px 0 0;
     }
+
     .nav.scrolled {
-      background: var(--dark-bg);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
     }
+
     .nav-logo {
       display: flex;
       align-items: baseline;
       gap: 8px;
       color: #fff;
     }
+
     .nav-logo-main {
-      font-family: var(--font-heading);
-      font-size: 20px;
+      font-family: var(--font-body);
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.04em;
     }
+
     .nav-logo-sub {
       font-family: var(--font-body);
       font-size: 9px;
@@ -268,34 +163,130 @@
       text-transform: uppercase;
       opacity: 0.7;
     }
-    .cta-button {
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.60);
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--cta-blue);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn--outline {
+      background: transparent;
       color: #fff;
-      padding: 12px 28px;
-      border-radius: 4px;
+      border: 1px solid var(--border-button);
+      padding: 14px 32px;
+      border-radius: 0;
+    }
+
+    .btn--outline:hover {
+      background: #fff;
+      color: #0A0A0A;
+      border-color: #fff;
+    }
+
+    .nav .btn--outline {
+      padding: 10px 24px;
+      font-size: 11px;
+    }
+
+    /* ===== HAMBURGER ===== */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 110;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: #fff;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 105;
+      background: rgba(5,5,5,0.95);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
       font-family: var(--font-body);
       font-size: 14px;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      transition: background 0.2s ease;
-    }
-    .cta-button:hover {
-      background: #1d4ed8;
-    }
-    .nav .cta-button {
-      padding: 10px 24px;
-      font-size: 12px;
+      color: rgba(255,255,255,0.70);
+      transition: color 0.2s ease;
     }
 
-    /* ===== BACKGROUND IMAGE SECTIONS ===== */
-    .bg-image {
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+    .mobile-menu a:hover {
+      color: #fff;
     }
 
     /* ===== HERO ===== */
@@ -303,135 +294,178 @@
       position: relative;
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 48px;
+      align-items: flex-end;
+      padding: 0 48px 100px;
       background-image:
-        linear-gradient(rgba(13, 27, 42, 0.62), rgba(13, 27, 42, 0.62)),
-        url('https://images.unsplash.com/photo-1603699270074-96db9de70d0c?w=1920&q=80');
+        linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 40%, rgba(10,10,10,0.25) 100%),
+        url('https://images.unsplash.com/photo-1692734762049-3cf70ef95cf5?w=1920&q=80');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
     }
+
     .hero-content {
-      max-width: 720px;
-      text-align: center;
+      max-width: 700px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 24px;
     }
+
     .hero .eyebrow {
-      color: var(--secondary-text);
       margin-bottom: 0;
     }
-    .hero .h1-white {
-      margin-bottom: 0;
+
+    .hero-title {
+      font-family: var(--font-body);
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fff;
     }
-    .hero .subheading {
-      max-width: 600px;
-      opacity: 0.85;
-    }
-    .hero .cta-button {
+
+    .hero .btn--outline {
+      align-self: flex-start;
       margin-top: 8px;
+    }
+
+    .hero-note {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.40);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.4;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
     }
 
     /* ===== TRUST BAR ===== */
     .trust-bar {
-      background: var(--bg);
       padding: 48px 48px;
       text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    /* ===== LIGHT SECTION ===== */
-    .section-light {
-      background: var(--bg);
-      padding: 100px 48px;
-    }
-    .section-light .h2 {
-      margin-bottom: 32px;
-    }
-    .section-light .body-s + .body-s {
-      margin-top: 20px;
-    }
-
-    /* ===== DARK SECTION ===== */
-    .section-dark {
-      background: var(--dark-bg);
-      padding: 100px 48px;
-    }
-    .section-dark .h2-white {
-      margin-bottom: 32px;
-    }
-    .section-dark .dark-body + .dark-body {
-      margin-top: 20px;
+    .trust-text {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+      color: var(--text-tertiary);
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    /* ===== WHAT WE DO ===== */
-    .what-we-do-divider {
+    /* ===== BACKGROUND IMAGE SECTIONS ===== */
+    .section--bg {
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .section--brisbane {
+      background-image:
+        linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)),
+        url('https://images.unsplash.com/photo-1620325407394-7c286e3fd075?w=1920&q=80');
+    }
+
+    .section--melbourne {
+      background-image:
+        linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.85)),
+        url('https://images.unsplash.com/photo-1610183880843-52fc754207a8?w=1920&q=80');
+    }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
       width: 80px;
       height: 1px;
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--border);
       margin: 48px 0;
     }
-    .what-we-do .ai-heading {
-      margin-bottom: 24px;
-    }
 
-    /* ===== WHO WE WORK WITH — TAGS ===== */
+    /* ===== TAGS ===== */
     .tags-container {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 32px;
     }
+
     .industry-tag {
-      border: 1px solid #6B8CAE;
+      border: 1px solid var(--border-button);
       background: transparent;
-      border-radius: 3px;
+      border-radius: 0;
       padding: 6px 14px;
       font-family: var(--font-body);
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--secondary-text);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
     }
 
-    /* ===== PROOF / RESULTS ===== */
-    .proof-section {
-      background: var(--dark-bg);
-      padding: 100px 48px;
-    }
+    /* ===== PROOF CARDS ===== */
     .proof-heading-block {
       text-align: center;
       margin-bottom: 56px;
     }
-    .proof-heading-block .dark-eyebrow {
+
+    .proof-heading-block .eyebrow {
       margin-bottom: 16px;
     }
+
     .proof-cards {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      max-width: 960px;
+      max-width: 1120px;
       margin: 0 auto;
     }
+
     .proof-card {
       flex: 1;
-      background: var(--card-bg);
-      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 40px 36px;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
-    .proof-card .dark-eyebrow {
+
+    .proof-card .eyebrow {
       margin-bottom: 0;
     }
+
     .proof-card .card-descriptor {
       margin-top: -8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-tertiary);
     }
-    .proof-card .dark-body {
-      font-size: 15px;
+
+    .proof-card .body-text {
+      font-size: 14px;
+      line-height: 1.65;
     }
+
     .result-lines {
       display: flex;
       flex-direction: column;
@@ -439,10 +473,21 @@
       margin-top: 8px;
     }
 
+    .result-line {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-primary);
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+
     /* ===== PRICING ===== */
     .pricing-intro {
       margin-bottom: 40px;
     }
+
     .pricing-row {
       display: flex;
       align-items: baseline;
@@ -451,33 +496,71 @@
       border-bottom: 1px solid var(--border);
       gap: 24px;
     }
+
     .pricing-row:first-of-type {
       border-top: 1px solid var(--border);
     }
+
     .pricing-info {
       flex: 1;
     }
-    .pricing-info .pricing-label {
+
+    .pricing-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
       margin-bottom: 4px;
     }
-    .pricing-info .card-descriptor {
-      color: var(--secondary-text);
+
+    .pricing-descriptor {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-tertiary);
     }
+
+    .price {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-primary);
+      text-align: right;
+      min-width: 200px;
+      white-space: nowrap;
+    }
+
     .tools-note-wrap {
       margin-top: 32px;
     }
 
+    .tools-note {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-tertiary);
+    }
+
     /* ===== FINAL CTA ===== */
     .final-cta {
+      padding: 140px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
       background-image:
-        linear-gradient(rgba(13, 27, 42, 0.65), rgba(13, 27, 42, 0.65)),
-        url('https://images.unsplash.com/photo-1591224409157-04414c967a6c?w=1920&q=80');
+        linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)),
+        url('https://images.unsplash.com/photo-1692734761833-60a3f055bf31?w=1920&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      padding: 120px 48px;
-      text-align: center;
     }
+
     .final-cta-inner {
       max-width: 640px;
       margin: 0 auto;
@@ -485,50 +568,56 @@
       flex-direction: column;
       align-items: center;
       gap: 24px;
+      position: relative;
     }
-    .final-cta .h2b-white {
+
+    .final-cta .section-heading {
+      font-size: 36px;
       margin-bottom: 0;
     }
-    .final-cta .dark-body {
+
+    .final-cta .body-text {
       text-align: center;
     }
-    .final-cta .cta-button {
+
+    .final-cta .btn--outline {
       margin-top: 8px;
     }
 
-    /* ===== WHAT WE DO (bg image) ===== */
-    .what-we-do {
-      background-image:
-        linear-gradient(rgba(13, 27, 42, 0.65), rgba(13, 27, 42, 0.65)),
-        url('https://images.unsplash.com/photo-1602559227639-3bba8ce496df?w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      padding: 100px 48px;
+    .final-cta-note {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.35);
     }
 
     /* ===== FOOTER ===== */
     .footer {
-      background: var(--footer-bg);
+      background: var(--bg-footer);
       padding: 64px 48px 40px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      border-top: 1px solid var(--border);
     }
+
     .footer-logo {
       display: flex;
       align-items: baseline;
       gap: 8px;
       color: #fff;
     }
+
     .footer-logo-main {
-      font-family: var(--font-heading);
-      font-size: 18px;
+      font-family: var(--font-body);
+      font-size: 16px;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.04em;
     }
+
     .footer-logo-sub {
       font-family: var(--font-body);
       font-size: 8px;
@@ -537,25 +626,28 @@
       text-transform: uppercase;
       opacity: 0.7;
     }
+
     .footer-abn {
       font-family: var(--font-body);
       font-size: 13px;
       font-weight: 400;
       line-height: 1.5;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(255,255,255,0.40);
     }
+
     .footer-services {
       font-family: var(--font-body);
       font-size: 12px;
       font-weight: 400;
       line-height: 1.5;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(255,255,255,0.25);
     }
+
     .footer-copy {
       font-family: var(--font-body);
       font-size: 11px;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.25);
+      color: rgba(255,255,255,0.20);
       margin-top: 12px;
     }
 
@@ -566,20 +658,21 @@
       bottom: 20px;
       left: 24px;
       right: 24px;
-      background: var(--cta-blue);
-      color: #fff;
+      background: #fff;
+      color: #0A0A0A;
       font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 14px;
+      font-weight: 600;
+      font-size: 13px;
       text-align: center;
       padding: 14px;
-      border-radius: 4px;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      border-radius: 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
       z-index: 1000;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
+
     .floating-cta.hidden {
       opacity: 0;
       transform: translateY(20px);
@@ -588,24 +681,37 @@
 
     /* ===== SCROLL ANIMATIONS ===== */
     @media (prefers-reduced-motion: no-preference) {
-      .animate-on-scroll {
+      .reveal {
         opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        transform: translateY(24px);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .animate-on-scroll.visible {
+      .reveal.visible {
         opacity: 1;
         transform: translateY(0);
       }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
     }
 
     /* ===== TABLET (max-width: 1024px) ===== */
     @media (max-width: 1024px) {
-      .section-light,
-      .section-dark,
-      .what-we-do,
-      .proof-section {
-        padding: 80px 40px;
+      body {
+        padding: 8px;
+      }
+      .page-frame {
+        border-radius: 14px;
+      }
+      .nav {
+        top: 8px;
+        left: 9px;
+        right: 9px;
+        padding: 0 32px;
+        border-radius: 14px 14px 0 0;
+      }
+      .section {
+        padding: 100px 40px;
       }
       .trust-bar {
         padding: 40px;
@@ -614,35 +720,55 @@
         padding: 100px 40px;
       }
       .hero {
-        padding: 0 40px;
-      }
-      .nav {
-        padding: 0 32px;
+        padding: 0 40px 80px;
       }
       .footer {
         padding: 56px 40px 36px;
       }
-      .section-inner {
-        max-width: 90%;
-      }
+      .section-inner,
       .section-inner--wide {
         max-width: 90%;
+      }
+      .section-heading {
+        font-size: 34px;
+      }
+      .proof-cards {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
     /* ===== PHONE (max-width: 768px) ===== */
     @media (max-width: 768px) {
-      .section-light,
-      .section-dark,
-      .what-we-do,
-      .proof-section {
-        padding: 60px 20px;
+      body {
+        padding: 6px;
+      }
+      .page-frame {
+        border-radius: 14px;
+      }
+      .nav {
+        top: 6px;
+        left: 7px;
+        right: 7px;
+        padding: 0 20px;
+        border-radius: 14px 14px 0 0;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+      .mobile-menu {
+        display: flex;
+      }
+      .section {
+        padding: 80px 20px;
       }
       .hero {
-        padding: 0 20px;
+        padding: 0 20px 80px;
         background-attachment: scroll;
       }
-      .what-we-do,
+      .section--bg,
       .final-cta {
         background-attachment: scroll;
       }
@@ -652,33 +778,27 @@
       .final-cta {
         padding: 80px 20px;
       }
-      .nav {
-        padding: 0 20px;
-      }
       .footer {
         padding: 48px 20px 32px;
       }
 
       /* Typography scaling */
-      .h1-white {
-        font-size: 38px;
+      .hero-title {
+        font-size: 32px;
       }
-      .h2, .h2-white {
-        font-size: 28px;
+      .section-heading {
+        font-size: 26px;
       }
-      .h2b-white {
-        font-size: 28px;
+      .final-cta .section-heading {
+        font-size: 24px;
       }
       .ai-heading {
         font-size: 22px;
       }
-      .hero .subheading {
-        font-size: 16px;
-      }
 
       /* Proof cards stack */
       .proof-cards {
-        flex-direction: column;
+        grid-template-columns: 1fr;
       }
       .proof-card {
         padding: 32px 24px;
@@ -708,182 +828,244 @@
         max-width: 100%;
       }
     }
+
+    /* ===== SMALL PHONE (max-width: 480px) ===== */
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 28px;
+      }
+      .section-heading {
+        font-size: 22px;
+      }
+      .final-cta .section-heading {
+        font-size: 22px;
+      }
+      .hero {
+        padding: 0 16px 64px;
+      }
+      .section {
+        padding: 64px 16px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- ===== NAV ===== -->
   <nav class="nav" id="nav">
-    <div class="nav-logo">
+    <a href="#hero" class="nav-logo">
       <span class="nav-logo-main">CapitalCurve</span>
       <span class="nav-logo-sub">ADVISORY</span>
+    </a>
+    <div class="nav-links">
+      <a href="#whatwedo" class="nav-link">Services</a>
+      <a href="#proof" class="nav-link">Results</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#cta" class="nav-link">Contact</a>
+      <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="btn btn--outline">Book a call</a>
     </div>
-    <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="cta-button">Book a 15-min call →</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
-    <div class="hero-content animate-on-scroll">
-      <p class="eyebrow">FP&amp;A AUTOMATION · SYDNEY, AUSTRALIA</p>
-      <h1 class="h1-white">Your finance team shouldn't spend their week building the report.</h1>
-      <p class="subheading">Most mid-market finance teams run the same loop every month — export, paste, reformat, rebuild. By the time the board pack lands, it's already stale and someone's already exhausted. We automate the data work underneath. So your team reviews a finished report instead of constructing one from scratch.</p>
-      <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="cta-button">Book a 15-min call →</a>
-      <p class="small-note">15 minutes · Google Meet · No pitch deck</p>
-    </div>
-  </section>
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#whatwedo" class="mobile-menu-link">Services</a>
+    <a href="#proof" class="mobile-menu-link">Results</a>
+    <a href="#pricing" class="mobile-menu-link">Pricing</a>
+    <a href="#cta" class="mobile-menu-link">Contact</a>
+    <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="btn btn--outline">Book a call</a>
+  </div>
 
-  <!-- ===== TRUST BAR ===== -->
-  <section class="trust-bar" id="trust">
-    <div class="animate-on-scroll">
-      <p class="trust-text">Trusted by finance teams at ASX-listed companies, PE-backed consultancies, and scaling professional services firms across Australia.</p>
-    </div>
-  </section>
+  <!-- ===== PAGE FRAME ===== -->
+  <div class="page-frame">
 
-  <!-- ===== THE PROBLEM ===== -->
-  <section class="section-light" id="problem">
-    <div class="section-inner animate-on-scroll">
-      <p class="eyebrow">THE PROBLEM</p>
-      <h2 class="h2">You already know what the problem is. You live it every month.</h2>
-      <p class="body-s">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
-      <p class="body-s">This isn't an analyst problem. It's a plumbing problem — and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
-      <p class="body-s">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
-      <p class="body-s">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
-    </div>
-  </section>
-
-  <!-- ===== WHAT WE DO ===== -->
-  <section class="what-we-do section-dark" id="whatwedo">
-    <div class="section-inner animate-on-scroll">
-      <p class="dark-eyebrow">WHAT WE DO</p>
-      <h2 class="h2-white">We rebuild the finance engine underneath the reports.</h2>
-      <p class="dark-body">Most consultants update formulas. We go deeper — into the data architecture, the business logic, and the downstream dependencies — so the output holds up as the business changes.</p>
-      <p class="dark-body">A typical engagement: we map how your team currently gets from raw data to finished report. We identify every manual step, every brittle formula, every system that doesn't talk to another. Then we rebuild it — automated data extraction, a master model that refreshes on its own, and outputs that distribute on a schedule.</p>
-      <p class="dark-body">Your team stops building. They start reviewing.</p>
-      <div class="what-we-do-divider"></div>
-      <p class="ai-heading">On AI — how it works, and why you can trust it.</p>
-      <p class="dark-body">We don't let AI calculate anything. Python scripts handle every extraction, transformation, and calculation — the same methodology your team uses manually, automated in deterministic code. The AI layer sits on top: it reads the validated numbers and writes the commentary. The narrative, the anomaly flags, the board-ready insights.</p>
-      <p class="dark-body">Scripts ensure the numbers are right. AI ensures leadership understands what they mean.</p>
-      <p class="dark-body">This is enterprise-grade integration. Not a chatbot approximating your revenue.</p>
-    </div>
-  </section>
-
-  <!-- ===== WHO WE WORK WITH ===== -->
-  <section class="section-light" id="whoweworkwith">
-    <div class="section-inner animate-on-scroll">
-      <p class="eyebrow">WHO WE WORK WITH</p>
-      <h2 class="h2">Professional services firms, scaling tech companies, and mid-market businesses across Australia.</h2>
-      <p class="body-s">The finance leaders we work with usually have some version of the same situation: a team capable of real strategic work but stuck doing data assembly. A CRM full of pipeline data that never makes it cleanly into a financial model. A board pack that takes days to build and is outdated the moment it's sent. A month-end process that still feels like a fire drill.</p>
-      <p class="body-s">We're not a fit for investment banks, insurers with complex actuarial models, or firms whose core product is financial derivatives. We work best where the pain is in the plumbing.</p>
-      <div class="tags-container">
-        <span class="industry-tag">Management Consulting</span>
-        <span class="industry-tag">Staffing &amp; Recruitment</span>
-        <span class="industry-tag">Marketing &amp; Creative Agencies</span>
-        <span class="industry-tag">Accounting &amp; Advisory</span>
-        <span class="industry-tag">SaaS &amp; Technology</span>
-        <span class="industry-tag">IT Services</span>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-content reveal">
+        <p class="eyebrow">FP&amp;A Automation · Sydney, Australia</p>
+        <h1 class="hero-title">Your finance team shouldn't spend their week building the report.</h1>
+        <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="btn btn--outline">Book a 15-min call →</a>
+        <p class="hero-note">15 minutes · Google Meet · No pitch deck</p>
       </div>
-    </div>
-  </section>
+      <div class="scroll-indicator">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+    </section>
 
-  <!-- ===== PROOF / RESULTS ===== -->
-  <section class="proof-section" id="proof">
-    <div class="proof-heading-block animate-on-scroll">
-      <p class="dark-eyebrow">RESULTS</p>
-      <h2 class="h2-white" style="text-align:center;">Two engagements. Both still running.</h2>
-    </div>
-    <div class="proof-cards">
-      <!-- Card 1 -->
-      <div class="proof-card animate-on-scroll">
-        <p class="dark-eyebrow">FP&amp;A REPORTING RESTRUCTURE</p>
-        <p class="card-descriptor">Global medical devices company · ASX-listed · South Pacific division</p>
-        <p class="dark-body">The client retired a major division and reallocated product lines across four new business units. Every formula, every external reference, every roll-up needed rebuilding. One broken link would cascade errors across the entire reporting chain.</p>
-        <p class="dark-body">We rebuilt the full P&amp;L and franchise sales reporting from the ground up — new BU hierarchy, automated data extraction, dynamic models feeding downstream reporting, board-ready dashboards for leadership.</p>
-        <div class="result-lines">
-          <p class="result-line">→ $100,000+ in labour cost savings over five years</p>
-          <p class="result-line">→ 10 hours of manual work eliminated every week</p>
-          <p class="result-line">→ Finance team shifted from maintaining fragile spreadsheets to reviewing clean, automated outputs</p>
+    <!-- ===== TRUST BAR ===== -->
+    <section class="trust-bar" id="trust">
+      <div class="reveal">
+        <p class="trust-text">Trusted by finance teams at ASX-listed companies, PE-backed consultancies, and scaling professional services firms across Australia.</p>
+      </div>
+    </section>
+
+    <!-- ===== THE PROBLEM ===== -->
+    <section class="section section--bg section--brisbane" id="problem">
+      <div class="section-inner reveal">
+        <p class="eyebrow">The Problem</p>
+        <h2 class="section-heading">You already know what the problem is. You live it every month.</h2>
+        <p class="body-text">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
+        <p class="body-text">This isn't an analyst problem. It's a plumbing problem — and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
+        <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
+        <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
+      </div>
+    </section>
+
+    <!-- ===== WHAT WE DO ===== -->
+    <section class="section section--bg section--melbourne" id="whatwedo">
+      <div class="section-inner reveal">
+        <p class="eyebrow">What We Do</p>
+        <h2 class="section-heading">We rebuild the finance engine underneath the reports.</h2>
+        <p class="body-text">Most consultants update formulas. We go deeper — into the data architecture, the business logic, and the downstream dependencies — so the output holds up as the business changes.</p>
+        <p class="body-text">A typical engagement: we map how your team currently gets from raw data to finished report. We identify every manual step, every brittle formula, every system that doesn't talk to another. Then we rebuild it — automated data extraction, a master model that refreshes on its own, and outputs that distribute on a schedule.</p>
+        <p class="body-text">Your team stops building. They start reviewing.</p>
+        <div class="section-divider"></div>
+        <p class="ai-heading">On AI — how it works, and why you can trust it.</p>
+        <p class="body-text">We don't let AI calculate anything. Python scripts handle every extraction, transformation, and calculation — the same methodology your team uses manually, automated in deterministic code. The AI layer sits on top: it reads the validated numbers and writes the commentary. The narrative, the anomaly flags, the board-ready insights.</p>
+        <p class="body-text">Scripts ensure the numbers are right. AI ensures leadership understands what they mean.</p>
+        <p class="body-text">This is enterprise-grade integration. Not a chatbot approximating your revenue.</p>
+      </div>
+    </section>
+
+    <!-- ===== WHO WE WORK WITH ===== -->
+    <section class="section" id="whoweworkwith">
+      <div class="section-inner reveal">
+        <p class="eyebrow">Who We Work With</p>
+        <h2 class="section-heading">Professional services firms, scaling tech companies, and mid-market businesses across Australia.</h2>
+        <p class="body-text">The finance leaders we work with usually have some version of the same situation: a team capable of real strategic work but stuck doing data assembly. A CRM full of pipeline data that never makes it cleanly into a financial model. A board pack that takes days to build and is outdated the moment it's sent. A month-end process that still feels like a fire drill.</p>
+        <p class="body-text">We're not a fit for investment banks, insurers with complex actuarial models, or firms whose core product is financial derivatives. We work best where the pain is in the plumbing.</p>
+        <div class="tags-container">
+          <span class="industry-tag">Management Consulting</span>
+          <span class="industry-tag">Staffing &amp; Recruitment</span>
+          <span class="industry-tag">Marketing &amp; Creative Agencies</span>
+          <span class="industry-tag">Accounting &amp; Advisory</span>
+          <span class="industry-tag">SaaS &amp; Technology</span>
+          <span class="industry-tag">IT Services</span>
         </div>
       </div>
-      <!-- Card 2 -->
-      <div class="proof-card animate-on-scroll">
-        <p class="dark-eyebrow">CRM-TO-FINANCE INTELLIGENCE</p>
-        <p class="card-descriptor">PE-backed AI consultancy · 200+ specialists · $45M+ pipeline</p>
-        <p class="dark-body">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets — nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
-        <p class="dark-body">We built automated HubSpot extraction via API, Python data aggregation scripts, an LLM narrative layer on validated figures, automated pipeline emails, 13-week cashflow forecast, invoicing automation, and employee-level profitability analysis.</p>
-        <div class="result-lines">
-          <p class="result-line">→ 1 full week saved per monthly close cycle</p>
-          <p class="result-line">→ 2 days of recurring weekly manual work eliminated</p>
-          <p class="result-line">→ Pipeline, delivery, and actuals connected in one view for the first time</p>
-          <p class="result-line">→ Leadership gained profitability visibility at employee, project, and customer level</p>
+    </section>
+
+    <!-- ===== PROOF / RESULTS ===== -->
+    <section class="section" id="proof">
+      <div class="proof-heading-block reveal">
+        <p class="eyebrow">Results</p>
+        <h2 class="section-heading section-heading--center">Three engagements. All still running.</h2>
+      </div>
+      <div class="proof-cards">
+        <!-- Card 1 -->
+        <div class="proof-card reveal reveal-delay-1">
+          <p class="eyebrow">FP&amp;A Reporting Restructure</p>
+          <p class="card-descriptor">Global medical devices company · ASX-listed</p>
+          <p class="body-text">The client retired a major division and reallocated product lines across four new business units. Every formula, every external reference, every roll-up needed rebuilding. One broken link would cascade errors across the entire reporting chain.</p>
+          <p class="body-text">We rebuilt the full P&amp;L and franchise sales reporting from the ground up — new BU hierarchy, automated data extraction, dynamic models feeding downstream reporting, board-ready dashboards for leadership.</p>
+          <div class="result-lines">
+            <p class="result-line">→ $100,000+ in labour cost savings over five years</p>
+            <p class="result-line">→ 10 hours of manual work eliminated every week</p>
+            <p class="result-line">→ Full reporting chain rebuilt without a single day of downtime</p>
+            <p class="result-line">→ Finance team shifted from maintaining fragile spreadsheets to reviewing clean, automated outputs</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="proof-card reveal reveal-delay-2">
+          <p class="eyebrow">CRM-to-Finance Intelligence</p>
+          <p class="card-descriptor">PE-backed AI consultancy · 200+ specialists · $45M+ pipeline</p>
+          <p class="body-text">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets — nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
+          <p class="body-text">We built automated HubSpot extraction via API, Python data aggregation scripts, an LLM narrative layer on validated figures, automated pipeline emails, 13-week cashflow forecast, invoicing automation, and employee-level profitability analysis.</p>
+          <div class="result-lines">
+            <p class="result-line">→ 1 full week saved per monthly close cycle</p>
+            <p class="result-line">→ 2 days of recurring weekly manual work eliminated</p>
+            <p class="result-line">→ Pipeline, delivery, and actuals connected in one view for the first time</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="proof-card reveal reveal-delay-3">
+          <p class="eyebrow">Board Pack &amp; Cashflow Automation</p>
+          <p class="card-descriptor">National staffing group · 300+ contractors · Multi-entity structure</p>
+          <p class="body-text">Five entities, three ERPs, and a finance team producing the consolidated board pack in Excel every month. The process took four days, involved manual inter-company eliminations, and broke every time someone changed a tab name. Leadership had no rolling forecast — just last month's actuals and gut feel.</p>
+          <p class="body-text">We built a centralised data model pulling from all three systems, automated the consolidation and elimination logic, and layered a 13-week rolling cashflow forecast on top. The board pack now generates in under an hour.</p>
+          <div class="result-lines">
+            <p class="result-line">→ Board pack turnaround reduced from 4 days to under 1 hour</p>
+            <p class="result-line">→ 13-week rolling cashflow forecast delivered for the first time</p>
+            <p class="result-line">→ Three separate ERPs consolidated into a single reporting view</p>
+            <p class="result-line">→ Month-end close shortened by 2 full days</p>
+            <p class="result-line">→ Finance team now spends month-end on analysis, not assembly</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== PRICING ===== -->
-  <section class="section-light" id="pricing">
-    <div class="section-inner animate-on-scroll">
-      <p class="eyebrow">HOW IT WORKS</p>
-      <h2 class="h2">Straightforward engagements. Fixed scope, defined deliverables, no surprises.</h2>
-      <p class="body-s pricing-intro">We start with a diagnostic — a structured conversation to map your current workflow, identify where the hours are going, and determine what's worth automating first. From there we scope a fixed-price build and deliver in 8–14 weeks.</p>
+    <!-- ===== PRICING ===== -->
+    <section class="section" id="pricing">
+      <div class="section-inner reveal">
+        <p class="eyebrow">How It Works</p>
+        <h2 class="section-heading">Straightforward engagements. Fixed scope, defined deliverables, no surprises.</h2>
+        <p class="body-text pricing-intro">We start with a diagnostic — a structured conversation to map your current workflow, identify where the hours are going, and determine what's worth automating first. From there we scope a fixed-price build and deliver in 8–14 weeks.</p>
 
-      <div class="pricing-row">
-        <div class="pricing-info">
-          <p class="pricing-label">Diagnostic</p>
-          <p class="card-descriptor">Map your current state. Identify the highest-value automation opportunities. Deliverable: documented workflow audit and build recommendation.</p>
+        <div class="pricing-row">
+          <div class="pricing-info">
+            <p class="pricing-label">Diagnostic</p>
+            <p class="pricing-descriptor">Map your current state. Identify the highest-value automation opportunities. Deliverable: documented workflow audit and build recommendation.</p>
+          </div>
+          <p class="price">$2,500 – $5,000</p>
         </div>
-        <p class="price">$2,500 – $5,000</p>
-      </div>
-      <div class="pricing-row">
-        <div class="pricing-info">
-          <p class="pricing-label">FP&amp;A Build</p>
-          <p class="card-descriptor">Reporting pack restructures, Excel automation, P&amp;L builds, SharePoint integration. Fixed deliverables, defined scope.</p>
+        <div class="pricing-row">
+          <div class="pricing-info">
+            <p class="pricing-label">FP&amp;A Build</p>
+            <p class="pricing-descriptor">Reporting pack restructures, Excel automation, P&amp;L builds, SharePoint integration. Fixed deliverables, defined scope.</p>
+          </div>
+          <p class="price">$5,000 – $20,000</p>
         </div>
-        <p class="price">$5,000 – $20,000</p>
-      </div>
-      <div class="pricing-row">
-        <div class="pricing-info">
-          <p class="pricing-label">CRM-to-Finance Build</p>
-          <p class="card-descriptor">Automated data pipeline from your CRM into financial models and reporting outputs. Board pack automation and multi-source builds at the higher end.</p>
+        <div class="pricing-row">
+          <div class="pricing-info">
+            <p class="pricing-label">CRM-to-Finance Build</p>
+            <p class="pricing-descriptor">Automated data pipeline from your CRM into financial models and reporting outputs. Board pack automation and multi-source builds at the higher end.</p>
+          </div>
+          <p class="price">$12,000 – $25,000</p>
         </div>
-        <p class="price">$12,000 – $25,000</p>
-      </div>
-      <div class="pricing-row">
-        <div class="pricing-info">
-          <p class="pricing-label">Ongoing Support</p>
-          <p class="card-descriptor">Monitoring, enhancements, and support. Fixed monthly retainer.</p>
+        <div class="pricing-row">
+          <div class="pricing-info">
+            <p class="pricing-label">Ongoing Support</p>
+            <p class="pricing-descriptor">Monitoring, enhancements, and support. Fixed monthly retainer.</p>
+          </div>
+          <p class="price">$2,000 – $4,000 / month</p>
         </div>
-        <p class="price">$2,000 – $4,000 / month</p>
+
+        <div class="tools-note-wrap">
+          <p class="tools-note">We work with HubSpot, Salesforce, Dynamics 365, Zoho, Xero, NetSuite, SAP, Excel, SharePoint, and Power BI. CRM-agnostic — if it has an API, we can extract from it.</p>
+        </div>
       </div>
+    </section>
 
-      <div class="tools-note-wrap">
-        <p class="tools-note">We work with HubSpot, Salesforce, Dynamics 365, Zoho, Xero, NetSuite, SAP, Excel, SharePoint, and Power BI. CRM-agnostic — if it has an API, we can extract from it.</p>
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta" id="cta">
+      <div class="final-cta-inner reveal">
+        <h2 class="section-heading section-heading--center">If your team is still building the report, let's talk about what it would take to change that.</h2>
+        <p class="body-text">A 15-minute call is enough to understand your current workflow and whether we're a fit. No pitch deck, no proposal until we know it makes sense.</p>
+        <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="btn btn--outline">Book a 15-min call →</a>
+        <p class="final-cta-note">Mon–Fri · 7am–7pm AEST · Google Meet</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FINAL CTA ===== -->
-  <section class="final-cta" id="cta">
-    <div class="final-cta-inner animate-on-scroll">
-      <h2 class="h2b-white">If your team is still building the report, let's talk about what it would take to change that.</h2>
-      <p class="dark-body">A 15-minute call is enough to understand your current workflow and whether we're a fit. No pitch deck, no proposal until we know it makes sense.</p>
-      <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="cta-button">Book a 15-min call →</a>
-      <p class="dark-small">Mon–Fri · 7am–7pm AEST · Google Meet</p>
-    </div>
-  </section>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="footer-logo">
+        <span class="footer-logo-main">CapitalCurve</span>
+        <span class="footer-logo-sub">ADVISORY</span>
+      </div>
+      <p class="footer-abn">ABN 68 901 143 285  ·  Sydney, Australia  ·  khaled@capitalcurve.com.au</p>
+      <p class="footer-services">FP&amp;A Automation  ·  CRM-to-Finance Intelligence  ·  Finance Function Automation</p>
+      <p class="footer-copy">© 2026 CapitalCurve Advisory</p>
+    </footer>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-logo">
-      <span class="footer-logo-main">CapitalCurve</span>
-      <span class="footer-logo-sub">ADVISORY</span>
-    </div>
-    <p class="footer-abn">ABN 68 901 143 285  ·  Sydney, Australia  ·  khaled@capitalcurve.com.au</p>
-    <p class="footer-services">FP&amp;A Automation  ·  CRM-to-Finance Intelligence  ·  Finance Function Automation</p>
-    <p class="footer-copy">© 2026 CapitalCurve Advisory</p>
-  </footer>
+  </div><!-- /.page-frame -->
 
-  <!-- ===== FLOATING CTA (mobile only) ===== -->
+  <!-- ===== FLOATING CTA (mobile only, outside frame) ===== -->
   <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="floating-cta" id="floating-cta">Book a 15-min call →</a>
 
   <!-- ===== JAVASCRIPT ===== -->
@@ -899,13 +1081,34 @@
         }
       }, { passive: true });
 
+      // --- Hamburger menu ---
+      var hamburger = document.getElementById('nav-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function() {
+          var isOpen = hamburger.classList.toggle('open');
+          mobileMenu.classList.toggle('open');
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        // Close menu when a link is clicked
+        var menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
       // --- Floating CTA visibility ---
       var floatingCta = document.getElementById('floating-cta');
       var ctaSection = document.getElementById('cta');
       if (floatingCta && ctaSection) {
         var ctaObserver = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
-            // Hide floating CTA when the final CTA section is in view
             if (entry.isIntersecting) {
               floatingCta.classList.add('hidden');
             } else {
@@ -916,23 +1119,22 @@
         ctaObserver.observe(ctaSection);
       }
 
-      // --- Scroll animations ---
+      // --- Scroll reveal animations ---
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        var animateEls = document.querySelectorAll('.animate-on-scroll');
-        var animateObserver = new IntersectionObserver(function(entries) {
+        var revealEls = document.querySelectorAll('.reveal');
+        var revealObserver = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
-              animateObserver.unobserve(entry.target);
+              revealObserver.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.15 });
-        animateEls.forEach(function(el) {
-          animateObserver.observe(el);
+        }, { threshold: 0.12 });
+        revealEls.forEach(function(el) {
+          revealObserver.observe(el);
         });
       } else {
-        // If reduced motion, make everything visible immediately
-        document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        document.querySelectorAll('.reveal').forEach(function(el) {
           el.classList.add('visible');
         });
       }
