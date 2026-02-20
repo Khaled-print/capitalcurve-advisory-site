@@ -880,6 +880,41 @@
       flex-direction: row-reverse;
     }
 
+    /* Combined strip tabs (Pipeline / CFO toggle) */
+    .mockup-strip--tabs .mockup-strip__inner {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    .strip-tabs__nav {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .strip-tab-btn {
+      padding: 8px 0;
+      margin-right: 24px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      cursor: pointer;
+      transition: color 0.25s ease, border-color 0.25s ease;
+      white-space: nowrap;
+    }
+    .strip-tab-btn:hover { color: rgba(255,255,255,0.70); }
+    .strip-tab-btn.active { color: #fff; border-bottom-color: #3B82F6; }
+    .strip-tab-text { display: none; }
+    .strip-tab-text.active { display: block; animation: panelFadeIn 0.35s ease; }
+    .strip-tab-panel { display: none; }
+    .strip-tab-panel.active { display: block; animation: panelFadeIn 0.35s ease; }
+
     .mockup-strip--full .mockup-strip__inner {
       flex-direction: column;
       text-align: center;
@@ -1485,7 +1520,8 @@
 
     /* Consistent frame height for side-by-side strips */
     .mockup-strip--right .email-body,
-    .mockup-strip--left .email-body {
+    .mockup-strip--left .email-body,
+    .mockup-strip--tabs .email-body {
       max-height: 420px;
       overflow-y: auto;
       mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 92%, transparent 100%);
@@ -1688,9 +1724,12 @@
         font-size: 22px;
       }
       .mockup-strip--right .email-body,
-      .mockup-strip--left .email-body {
+      .mockup-strip--left .email-body,
+      .mockup-strip--tabs .email-body {
         max-height: 320px;
       }
+      .strip-tabs__nav { margin-bottom: 20px; }
+      .strip-tab-btn { flex: 1; text-align: center; margin-right: 0; padding: 10px 8px; }
       .metric-blocks {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1818,15 +1857,44 @@
       </div>
     </section>
 
-    <!-- ===== MOCKUP 1: REVENUE PIPELINE WEEKLY SUMMARY ===== -->
-    <section class="mockup-strip mockup-strip--right">
+    <!-- ===== THE PROBLEM (moved before demo strips) ===== -->
+    <section class="section section--bg section--brisbane" id="problem" style="padding-top:80px;padding-bottom:80px;">
+      <div class="section-inner reveal">
+        <p class="eyebrow">The Problem</p>
+        <h2 class="section-heading">You already know what the problem is. You live it every month.</h2>
+        <p class="body-text">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
+        <p class="body-text">This isn't an analyst problem. It's a plumbing problem - and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
+        <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
+        <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
+      </div>
+    </section>
+
+    <!-- ===== COMBINED STRIP: PIPELINE + CFO SCORECARD (TABBED) ===== -->
+    <section class="mockup-strip mockup-strip--tabs" id="demo-strips">
       <div class="mockup-strip__inner reveal">
         <div class="mockup-strip__content">
-          <p class="eyebrow">Daily or Weekly - Your Cadence</p>
-          <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
-          <p class="body-text">Your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary. Delivered daily or weekly, whatever cadence fits your rhythm.</p>
+          <div class="strip-tabs__nav">
+            <button class="strip-tab-btn active" data-strip-tab="pipeline">Pipeline</button>
+            <button class="strip-tab-btn" data-strip-tab="cfo">CFO Scorecard</button>
+          </div>
+
+          <!-- Pipeline text (active by default) -->
+          <div class="strip-tab-text active" data-strip-text="pipeline">
+            <p class="eyebrow">Daily or Weekly - Your Cadence</p>
+            <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
+            <p class="body-text">Your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary. Delivered daily or weekly, whatever cadence fits your rhythm.</p>
+          </div>
+
+          <!-- CFO text (hidden until tab switch) -->
+          <div class="strip-tab-text" data-strip-text="cfo">
+            <p class="eyebrow">Daily, Weekly, or Both</p>
+            <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
+            <p class="body-text">Automated finance briefings on your schedule - daily flash updates, a forward-looking Monday brief, a Friday scorecard with traffic-light KPIs, or all of the above. You choose the cadence.</p>
+          </div>
         </div>
         <div class="mockup-strip__frame">
+          <!-- Pipeline panel (active by default) -->
+          <div class="strip-tab-panel active" data-strip-panel="pipeline">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -1973,31 +2041,10 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+          </div><!-- /.strip-tab-panel pipeline -->
 
-    <!-- ===== THE PROBLEM ===== -->
-    <section class="section section--bg section--brisbane" id="problem">
-      <div class="section-inner reveal">
-        <p class="eyebrow">The Problem</p>
-        <h2 class="section-heading">You already know what the problem is. You live it every month.</h2>
-        <p class="body-text">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
-        <p class="body-text">This isn't an analyst problem. It's a plumbing problem - and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
-        <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
-        <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
-      </div>
-    </section>
-
-    <!-- ===== MOCKUP 2: WEEKLY FINANCE HEALTH CHECK ===== -->
-    <section class="mockup-strip mockup-strip--left">
-      <div class="mockup-strip__inner reveal">
-        <div class="mockup-strip__content">
-          <p class="eyebrow">Daily, Weekly, or Both</p>
-          <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
-          <p class="body-text">Automated finance briefings on your schedule - daily flash updates, a forward-looking Monday brief, a Friday scorecard with traffic-light KPIs, or all of the above. You choose the cadence.</p>
-        </div>
-        <div class="mockup-strip__frame">
+          <!-- CFO Scorecard panel -->
+          <div class="strip-tab-panel" data-strip-panel="cfo">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2160,6 +2207,7 @@
               </div>
             </div>
           </div>
+          </div><!-- /.strip-tab-panel cfo -->
         </div>
       </div>
     </section>
@@ -3242,6 +3290,53 @@
             }
           });
         });
+      }
+
+      // --- Combined strip tab switcher (Pipeline / CFO Scorecard) ---
+      var stripSection = document.getElementById('demo-strips');
+      if (stripSection) {
+        var stripTabBtns = Array.from(stripSection.querySelectorAll('.strip-tab-btn'));
+        var stripTexts = Array.from(stripSection.querySelectorAll('.strip-tab-text'));
+        var stripPanels = Array.from(stripSection.querySelectorAll('.strip-tab-panel'));
+        var stripAutoTimer = null;
+        var stripCurrentIdx = 0;
+
+        function showStrip(idx) {
+          stripCurrentIdx = idx % stripTabBtns.length;
+          var target = stripTabBtns[stripCurrentIdx].getAttribute('data-strip-tab');
+          stripTabBtns.forEach(function(b) { b.classList.remove('active'); });
+          stripTexts.forEach(function(t) { t.classList.remove('active'); });
+          stripPanels.forEach(function(p) { p.classList.remove('active'); });
+          stripTabBtns[stripCurrentIdx].classList.add('active');
+          var textEl = stripSection.querySelector('[data-strip-text="' + target + '"]');
+          var panelEl = stripSection.querySelector('[data-strip-panel="' + target + '"]');
+          if (textEl) textEl.classList.add('active');
+          if (panelEl) panelEl.classList.add('active');
+          // Trigger email auto-scroll for visible panel
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var emailBody = (target === 'cfo')
+              ? panelEl && panelEl.querySelector('.cfo-tab-panel.active .email-body')
+              : panelEl && panelEl.querySelector('.email-body');
+            if (emailBody) initEmailAutoScroll(emailBody);
+          }
+        }
+
+        function startStripAuto() {
+          clearInterval(stripAutoTimer);
+          if (window.innerWidth < 768) return;
+          stripAutoTimer = setInterval(function() { showStrip(stripCurrentIdx + 1); }, 8000);
+        }
+        function stopStripAuto() { clearInterval(stripAutoTimer); }
+
+        stripTabBtns.forEach(function(btn, i) {
+          btn.addEventListener('click', function() { showStrip(i); startStripAuto(); });
+        });
+        stripSection.addEventListener('mouseenter', stopStripAuto);
+        stripSection.addEventListener('mouseleave', startStripAuto);
+
+        new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) { e.isIntersecting ? startStripAuto() : stopStripAuto(); });
+        }, { threshold: 0.2 }).observe(stripSection);
       }
 
       // --- Cash Forecast: Data-driven rendering ---
