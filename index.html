@@ -1311,6 +1311,11 @@
     }
 
     /* Board pack tabs */
+    .board-tabs {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+    }
+
     .board-tabs__nav {
       display: flex;
     }
@@ -1344,20 +1349,20 @@
     }
 
     .board-tab-panel {
-      display: none;
+      display: block;
+      grid-row: 3;
+      grid-column: 1;
       background: #0F172A;
       border-radius: 0 0 12px 12px;
       overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
     }
 
     .board-tab-panel.active {
-      display: block;
-      animation: panelFadeIn 0.4s ease;
-    }
-
-    @keyframes panelFadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* Slide content */
@@ -1394,8 +1399,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 36px 16px;
-      margin: 0 -36px 20px;
+      padding: 20px 36px 12px;
+      margin: 0 -36px 14px;
       background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.03) 100%);
       border-bottom: 1px solid rgba(59,130,246,0.2);
     }
@@ -1419,14 +1424,14 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .slide-highlight-box {
       background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(255,255,255,0.03) 100%);
       border: 1px solid rgba(59,130,246,0.2);
       border-radius: 10px;
-      padding: 18px 16px;
+      padding: 14px 12px;
       text-align: center;
       position: relative;
     }
@@ -1442,7 +1447,7 @@
     }
 
     .slide-highlight-box__value {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
     }
 
@@ -1568,14 +1573,14 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .cash-callout {
       background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(255,255,255,0.03) 100%);
       border: 1px solid rgba(59,130,246,0.2);
       border-radius: 10px;
-      padding: 18px 16px;
+      padding: 14px 12px;
       text-align: center;
       position: relative;
     }
@@ -1607,7 +1612,7 @@
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 10px;
       flex: 1;
       align-content: start;
     }
@@ -1616,7 +1621,7 @@
       background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(255,255,255,0.02) 100%);
       border: 1px solid rgba(59,130,246,0.15);
       border-radius: 10px;
-      padding: 16px;
+      padding: 12px;
       position: relative;
     }
 
@@ -1628,7 +1633,7 @@
     }
 
     .kpi-card__value {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       margin: 4px 0;
     }
@@ -1645,6 +1650,99 @@
       height: 6px;
       border-radius: 50%;
       display: inline-block;
+    }
+
+    /* AI Commentary */
+    .slide-ai-commentary {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 16px;
+      margin-top: auto;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(59,130,246,0.06) 100%);
+      border: 1px solid rgba(139,92,246,0.2);
+      border-radius: 8px;
+      font-size: 11px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+    }
+
+    .slide-ai-badge {
+      flex-shrink: 0;
+      font-size: 7.5px;
+      font-weight: 700;
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(139,92,246,0.9);
+      background: rgba(139,92,246,0.12);
+      padding: 3px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    /* Profitability slide */
+    .slide-cost-bar {
+      display: flex;
+      height: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .slide-cost-bar__segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.02em;
+    }
+
+    .slide-cost-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .slide-cost-legend span {
+      font-size: 9px;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .slide-cost-legend span::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .slide-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .slide-metric-row:last-child {
+      border-bottom: none;
+    }
+
+    .slide-metric-row strong {
+      font-weight: 600;
+      color: #fff;
     }
 
     /* Consistent frame height for side-by-side strips */
@@ -2885,11 +2983,13 @@
             <div class="board-tabs" id="board-tabs">
               <div class="board-tabs__nav">
                 <button class="board-tab-btn active" data-tab="exec">Executive Summary</button>
-                <button class="board-tab-btn" data-tab="revenue">Revenue &amp; Pipeline</button>
-                <button class="board-tab-btn" data-tab="cash">Cash Position</button>
+                <button class="board-tab-btn" data-tab="revenue">Revenue</button>
+                <button class="board-tab-btn" data-tab="cash">Cash Flow</button>
+                <button class="board-tab-btn" data-tab="profit">Profitability</button>
                 <button class="board-tab-btn" data-tab="kpis">KPIs</button>
               </div>
               <div class="board-progress"><div class="board-progress__bar" id="board-progress-bar"></div></div>
+
               <!-- Slide 1: Executive Summary -->
               <div class="board-tab-panel active" data-panel="exec">
                 <div class="slide-content">
@@ -2930,9 +3030,14 @@
                       </ul>
                     </div>
                   </div>
+                  <div class="slide-ai-commentary">
+                    <span class="slide-ai-badge">AI Insight</span>
+                    Revenue momentum is strong but the EBITDA miss signals cost discipline is slipping. The AR ageing breach needs immediate attention &mdash; at current trajectory, you'll cross $400K by month-end. Recommend a dedicated collections sprint this week.
+                  </div>
                 </div>
               </div>
-              <!-- Slide 2: Revenue & Pipeline -->
+
+              <!-- Slide 2: Revenue -->
               <div class="board-tab-panel" data-panel="revenue">
                 <div class="slide-content">
                   <div class="slide-header">
@@ -2992,13 +3097,18 @@
                       </table>
                     </div>
                   </div>
+                  <div class="slide-ai-commentary">
+                    <span class="slide-ai-badge">AI Insight</span>
+                    Jan's $2.4M was your strongest month in 12 months &mdash; Feb is tracking to land at $2.1M, still above plan. Pipeline coverage at 4.3x gives you a healthy buffer, but watch the $8.2M in Qualified Leads &mdash; conversion has slowed 12% this quarter.
+                  </div>
                 </div>
               </div>
-              <!-- Slide 3: Cash Position -->
+
+              <!-- Slide 3: Cash Flow -->
               <div class="board-tab-panel" data-panel="cash">
                 <div class="slide-content">
                   <div class="slide-header">
-                    <div class="slide-header__title">Cash Position</div>
+                    <div class="slide-header__title">Cash Flow</div>
                     <div class="slide-header__period">13-Week Outlook · Feb – May 2025</div>
                   </div>
                   <div class="cash-callouts">
@@ -3011,7 +3121,7 @@
                       <div class="cash-callout__value" style="color:#22C55E">$3.8M</div>
                     </div>
                   </div>
-                  <div class="slide-bar-chart" style="margin-bottom:20px">
+                  <div class="slide-bar-chart" style="margin-bottom:14px">
                     <div class="slide-bar">
                       <div class="slide-bar__value">3.2</div>
                       <div class="slide-bar__fill" style="height:82%"></div>
@@ -3078,10 +3188,63 @@
                       <div class="slide-bar__label">W13</div>
                     </div>
                   </div>
-                  <p style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6">Cash position remains healthy throughout the forecast period. Payroll weeks (W2, W3, W5) show expected dips. Upward trend driven by strong collections and project completions in Q1. No liquidity concerns identified.</p>
+                  <div class="slide-ai-commentary">
+                    <span class="slide-ai-badge">AI Insight</span>
+                    Cash generation is trending positively with a projected $600K build over 13 weeks. The W2-W3 payroll dips are predictable and manageable. Key risk: if the $340K AR ageing isn't collected by W6, the W7 trough could dip below $2.8M.
+                  </div>
                 </div>
               </div>
-              <!-- Slide 4: KPIs -->
+
+              <!-- Slide 4: Profitability -->
+              <div class="board-tab-panel" data-panel="profit">
+                <div class="slide-content">
+                  <div class="slide-header">
+                    <div class="slide-header__title">Profitability Analysis</div>
+                    <div class="slide-header__period">February 2025 · Month-to-Date</div>
+                  </div>
+                  <p class="slide-section-title" style="margin-bottom:8px">Revenue Breakdown</p>
+                  <div class="slide-cost-bar">
+                    <div class="slide-cost-bar__segment" style="width:38%;background:#EF4444">COGS 38%</div>
+                    <div class="slide-cost-bar__segment" style="width:28%;background:#F59E0B">People 28%</div>
+                    <div class="slide-cost-bar__segment" style="width:14%;background:#6366F1">Overheads 14%</div>
+                    <div class="slide-cost-bar__segment" style="width:20%;background:#22C55E">EBITDA 20%</div>
+                  </div>
+                  <div class="slide-cost-legend">
+                    <span style="--dot-color:#EF4444"><span style="background:#EF4444;width:8px;height:8px;border-radius:2px;display:inline-block"></span> COGS</span>
+                    <span style="--dot-color:#F59E0B"><span style="background:#F59E0B;width:8px;height:8px;border-radius:2px;display:inline-block"></span> People</span>
+                    <span style="--dot-color:#6366F1"><span style="background:#6366F1;width:8px;height:8px;border-radius:2px;display:inline-block"></span> Overheads</span>
+                    <span style="--dot-color:#22C55E"><span style="background:#22C55E;width:8px;height:8px;border-radius:2px;display:inline-block"></span> EBITDA</span>
+                  </div>
+                  <div style="flex:1">
+                    <div class="slide-metric-row">
+                      <span>Gross Margin</span>
+                      <strong style="color:#22C55E">62.4%</strong>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs 60% target</span>
+                    </div>
+                    <div class="slide-metric-row">
+                      <span>EBITDA Margin</span>
+                      <strong style="color:#F59E0B">19.9%</strong>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs 22% target</span>
+                    </div>
+                    <div class="slide-metric-row">
+                      <span>Revenue per Head</span>
+                      <strong>$15.2K</strong>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs $14K target</span>
+                    </div>
+                    <div class="slide-metric-row">
+                      <span>Contractor Spend</span>
+                      <strong style="color:#EF4444">$182K</strong>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs $120K budget</span>
+                    </div>
+                  </div>
+                  <div class="slide-ai-commentary">
+                    <span class="slide-ai-badge">AI Insight</span>
+                    Gross margin is healthy at 62.4% but EBITDA is being squeezed by $62K in unplanned contractor costs on Project Titan. If Titan wraps on schedule in March, margins should normalise. Consider whether the contractor dependency reflects a capability gap worth a permanent hire.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 5: KPIs -->
               <div class="board-tab-panel" data-panel="kpis">
                 <div class="slide-content">
                   <div class="slide-header">
@@ -3119,6 +3282,10 @@
                       <div class="kpi-card__value">23</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 2</span> vs last month</div>
                     </div>
+                  </div>
+                  <div class="slide-ai-commentary">
+                    <span class="slide-ai-badge">AI Insight</span>
+                    Two amber flags and one red. The AR ageing breach is your highest-priority action item &mdash; it's a leading indicator of cash risk. Utilisation at 84.7% is within tolerance but trending down for the third consecutive week.
                   </div>
                 </div>
               </div>
