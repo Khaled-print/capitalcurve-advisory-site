@@ -2369,9 +2369,9 @@
     <section class="mockup-strip mockup-strip--full">
       <div class="mockup-strip__inner reveal">
         <div class="mockup-strip__content">
-          <p class="eyebrow">Refreshed Daily or Weekly</p>
-          <h3 class="section-heading">13-Week Cash Forecast</h3>
-          <p class="body-text">Your rolling cash position, refreshed automatically from actuals on the cadence you need - daily or weekly. Colour-coded to flag shortfalls before they happen - not after.</p>
+          <p class="eyebrow">Automated End-to-End</p>
+          <h3 class="section-heading">End-to-End P&amp;Ls</h3>
+          <p class="body-text">Cash forecasts, scenario modelling, and assumption tracking - all automated from your source systems. We help you build the plumbing so the numbers refresh themselves and leadership gets the full picture without the manual assembly.</p>
         </div>
         <div class="mockup-strip__frame">
           <div class="screen-frame">
@@ -3246,7 +3246,7 @@
       // --- Cash Forecast: Data-driven rendering ---
       var cashViews = {
         '13w': {
-          title: '13-Week Cash Forecast',
+          title: '13-Week Cash Flow',
           headers: ['Wk 1<br>17 Feb','Wk 2<br>24 Feb','Wk 3<br>3 Mar','Wk 4<br>10 Mar','Wk 5<br>17 Mar','Wk 6<br>24 Mar','Wk 7<br>31 Mar','Wk 8<br>7 Apr','Wk 9<br>14 Apr','Wk 10<br>21 Apr','Wk 11<br>28 Apr','Wk 12<br>5 May','Wk 13<br>12 May'],
           chartLabels: ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12','W13'],
           rows: [
@@ -3268,7 +3268,7 @@
           ]
         },
         '6m': {
-          title: '6-Month Cash Forecast',
+          title: '6-Month Cash Flow',
           headers: ['Feb<br>2025','Mar<br>2025','Apr<br>2025','May<br>2025','Jun<br>2025','Jul<br>2025'],
           chartLabels: ['Feb','Mar','Apr','May','Jun','Jul'],
           rows: [
@@ -3290,7 +3290,7 @@
           ]
         },
         '12m': {
-          title: '12-Month Cash Forecast',
+          title: '12-Month Cash Flow',
           headers: ['Feb<br>2025','Mar<br>2025','Apr<br>2025','May<br>2025','Jun<br>2025','Jul<br>2025','Aug<br>2025','Sep<br>2025','Oct<br>2025','Nov<br>2025','Dec<br>2025','Jan<br>2026'],
           chartLabels: ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan'],
           rows: [
@@ -3380,11 +3380,14 @@
         // Lock the entire screen-frame height so switching tabs doesn't resize
         var screenFrame = cashTabs.closest('.screen-frame');
         if (screenFrame) {
-          var h = screenFrame.offsetHeight + 'px';
-          screenFrame.style.height = h;
-          screenFrame.style.minHeight = h;
+          // Temporarily lift overflow to measure true content height
+          screenFrame.style.overflow = 'visible';
           screenFrame.style.display = 'flex';
           screenFrame.style.flexDirection = 'column';
+          var h = screenFrame.scrollHeight + 'px';
+          screenFrame.style.overflow = '';
+          screenFrame.style.height = h;
+          screenFrame.style.minHeight = h;
         }
 
         var excelTabBtns = Array.from(cashTabs.querySelectorAll('.excel-tab-btn'));
