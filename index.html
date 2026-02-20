@@ -3342,6 +3342,12 @@
       // --- Excel tab switcher ---
       var cashTabs = document.getElementById('cash-forecast-tabs');
       if (cashTabs) {
+        // Lock the entire screen-frame height so switching tabs doesn't resize
+        var screenFrame = cashTabs.closest('.screen-frame');
+        if (screenFrame) {
+          screenFrame.style.minHeight = screenFrame.offsetHeight + 'px';
+        }
+
         var excelTabBtns = Array.from(cashTabs.querySelectorAll('.excel-tab-btn'));
         var excelTabPanels = Array.from(cashTabs.querySelectorAll('.excel-tab-panel'));
         excelTabBtns.forEach(function(btn) {
