@@ -1559,12 +1559,13 @@
     .excel-tab-btn.active { background:#fff; color:#1E293B; border-bottom:2px solid #22C55E; }
     .excel-tab-panel { display:none; }
     .excel-tab-panel.active { display:block; animation:panelFadeIn 0.4s ease; }
-    #cash-forecast-tabs { display:flex; flex-direction:column; flex:1; }
-    #cash-forecast-tabs > .excel-tab-panel.active { display:flex; flex-direction:column; flex:1; }
+    #cash-forecast-tabs { display:flex; flex-direction:column; flex:1; min-height:0; }
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"].active,
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"].active { display:flex; flex-direction:column; flex:1; min-height:0; }
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"] > div,
-    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] > div { flex:1; display:flex; flex-direction:column; background:#fff; }
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] > div { flex:1; display:flex; flex-direction:column; background:#fff; min-height:0; }
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"] .spreadsheet-frame,
-    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] .spreadsheet-frame { flex:1; }
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] .spreadsheet-frame { flex:1; min-height:0; overflow-y:auto; }
 
     /* Week selector pills */
     .week-selector { display:flex; gap:4px; padding:12px 20px 0; background:#fff; }
@@ -2509,11 +2510,27 @@
                         <tr><td>Office lease</td><td>$85K</td><td>Monthly</td><td>Lease agreement</td><td>1 Jan 2025</td><td>Renewal due Jun 2025</td></tr>
                         <tr><td>Software &amp; SaaS</td><td>$42K</td><td>Monthly</td><td>Subscription tracker</td><td>1 Feb 2025</td><td>12 licences, 3 annual</td></tr>
                         <tr><td>Insurance (D&amp;O + PI)</td><td>$28K</td><td>Quarterly</td><td>Broker schedule</td><td>1 Jan 2025</td><td>Next payment 7 Mar</td></tr>
+                        <tr class="group-header"><td colspan="6">Capital Expenditure</td></tr>
+                        <tr><td>Cloud infrastructure (AWS)</td><td>$38K</td><td>Monthly</td><td>AWS billing</td><td>14 Feb 2025</td><td>Reserved instances locked to Sep</td></tr>
+                        <tr><td>Hardware refresh cycle</td><td>$15K</td><td>Quarterly</td><td>IT asset register</td><td>31 Jan 2025</td><td>12 laptops due Q2 replacement</td></tr>
+                        <tr><td>Security tooling (SOC2)</td><td>$8.5K</td><td>Monthly</td><td>Vendor contracts</td><td>1 Feb 2025</td><td>Annual audit due May 2025</td></tr>
+                        <tr><td>Office fit-out (Level 4)</td><td>$120K</td><td>One-off</td><td>Project budget</td><td>10 Feb 2025</td><td>Phased: $60K Mar, $60K Apr</td></tr>
+                        <tr class="group-header"><td colspan="6">Working Capital</td></tr>
+                        <tr><td>Debtor days target</td><td>&le;30 days</td><td>Rolling</td><td>Finance policy</td><td>14 Feb 2025</td><td>Currently 32d, above target</td></tr>
+                        <tr><td>Creditor days (avg)</td><td>21 days</td><td>Rolling</td><td>AP ageing report</td><td>14 Feb 2025</td><td>Early-pay discount on 3 vendors</td></tr>
+                        <tr><td>Retainer prepayments</td><td>$95K</td><td>Monthly</td><td>Client billing</td><td>12 Feb 2025</td><td>4 clients on monthly retainer</td></tr>
+                        <tr><td>Work-in-progress (WIP)</td><td>$310K</td><td>Weekly</td><td>PM time tracking</td><td>14 Feb 2025</td><td>Target: bill within 14 days</td></tr>
                         <tr class="group-header"><td colspan="6">External Factors</td></tr>
                         <tr><td>RBA cash rate</td><td>4.10%</td><td>-</td><td>RBA</td><td>4 Feb 2025</td><td>Market expects hold at next meeting</td></tr>
                         <tr><td>AUD/USD</td><td>0.6542</td><td>Daily</td><td>Bloomberg</td><td>14 Feb 2025</td><td>Hedged at 0.65 for Q1</td></tr>
                         <tr><td>CPI (annualised)</td><td>3.4%</td><td>Quarterly</td><td>ABS</td><td>Q4 2024</td><td>Q1 2025 release Mar</td></tr>
                         <tr><td>Wage price index</td><td>4.2%</td><td>Quarterly</td><td>ABS</td><td>Q4 2024</td><td>Impacts next payroll review</td></tr>
+                        <tr><td>Credit facility (undrawn)</td><td>$500K</td><td>-</td><td>NAB facility</td><td>1 Jan 2025</td><td>Covenants: DSCR &gt;1.5x, leverage &lt;2x</td></tr>
+                        <tr class="group-header"><td colspan="6">Growth &amp; Pipeline</td></tr>
+                        <tr><td>Weighted pipeline (90d)</td><td>$2.8M</td><td>Weekly</td><td>CRM (HubSpot)</td><td>14 Feb 2025</td><td>3 deals in final negotiation</td></tr>
+                        <tr><td>Expected new hires (Q1)</td><td>4 FTE</td><td>-</td><td>Hiring plan</td><td>10 Feb 2025</td><td>2 senior devs, 1 PM, 1 QA</td></tr>
+                        <tr><td>Onboarding cost per FTE</td><td>$12K</td><td>Per hire</td><td>HR budget</td><td>31 Jan 2025</td><td>Equipment + training + ramp</td></tr>
+                        <tr><td>Marketing spend (monthly)</td><td>$22K</td><td>Monthly</td><td>Marketing budget</td><td>1 Feb 2025</td><td>Events $8K, digital $14K</td></tr>
                       </tbody>
                     </table>
                   </div>
@@ -2547,6 +2564,18 @@
                         <tr><td>Contractor Costs</td><td>Held flat</td><td>Per budget</td><td>+$150K uplift</td></tr>
                         <tr><td>Client Delays</td><td>None</td><td>None</td><td>2 major delays</td></tr>
                         <tr><td>AR Ageing (&gt;60d)</td><td>&lt;$200K</td><td>$340K</td><td style="color:#EF4444">$500K+</td></tr>
+                        <tr class="group-header"><td colspan="4">Operational Metrics</td></tr>
+                        <tr><td>Utilisation Rate</td><td style="color:#166534">82%</td><td>75%</td><td style="color:#EF4444">65%</td></tr>
+                        <tr><td>Monthly Burn Rate</td><td>$620K</td><td>$680K</td><td style="color:#EF4444">$780K</td></tr>
+                        <tr><td>Revenue per FTE</td><td style="color:#166534">$28.5K</td><td>$24.2K</td><td style="color:#EF4444">$19.8K</td></tr>
+                        <tr><td>Gross Margin</td><td style="color:#166534">48%</td><td>42%</td><td style="color:#EF4444">34%</td></tr>
+                        <tr><td>Headcount (End of Period)</td><td>74 FTE</td><td>72 FTE</td><td>68 FTE</td></tr>
+                        <tr class="group-header"><td colspan="4">Risk Indicators</td></tr>
+                        <tr><td>Probability Weight</td><td>20%</td><td style="color:#3B82F6">60%</td><td>20%</td></tr>
+                        <tr><td>Covenant Breach Risk</td><td style="color:#166534">None</td><td style="color:#166534">None</td><td style="color:#EF4444">DSCR at 1.6x</td></tr>
+                        <tr><td>Facility Draw Required</td><td style="color:#166534">No</td><td style="color:#166534">No</td><td style="color:#F59E0B">$200K in Wk 9</td></tr>
+                        <tr><td>Payroll Cover (weeks)</td><td style="color:#166534">11.2</td><td>8.4</td><td style="color:#EF4444">5.1</td></tr>
+                        <tr><td>Break-even Point</td><td>Week 4</td><td>Week 7</td><td style="color:#EF4444">Not reached</td></tr>
                         <tr class="group-header"><td colspan="4">Sensitivity Analysis</td></tr>
                         <tr><td>Revenue &plusmn;10%</td><td colspan="2" style="text-align:center;color:#3B82F6;">Cash impact: $320K - $480K</td><td>Balance range: $3.1M - $4.1M</td></tr>
                         <tr><td>Collection Days &plusmn;7d</td><td colspan="2" style="text-align:center;color:#3B82F6;">Cash impact: $180K - $250K</td><td>Balance range: $3.3M - $3.8M</td></tr>
