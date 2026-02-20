@@ -2866,7 +2866,7 @@
               </div>
               <!-- Excel bottom tab bar -->
               <div class="excel-tabs">
-                <button class="excel-tab-btn active" data-excel-tab="cashflow">&#9654; Cash Flow</button>
+                <button class="excel-tab-btn active" data-excel-tab="cashflow">Cash Flow</button>
                 <button class="excel-tab-btn" data-excel-tab="assumptions">Assumptions</button>
                 <button class="excel-tab-btn" data-excel-tab="scenarios">Scenarios</button>
               </div>
@@ -3973,7 +3973,7 @@
       if (periods[3]) periods[3].textContent = curMonth + ' \u00b7 Month-to-Date';
 
       // Update static HTML week headers
-      document.querySelectorAll('[data-week]').forEach(function(th) {
+      document.querySelectorAll('th[data-week]').forEach(function(th) {
         var n = parseInt(th.getAttribute('data-week')) - 1;
         var d = new Date(thisMon); d.setDate(thisMon.getDate() + n * 7);
         th.innerHTML = 'Wk ' + (n+1) + '<br>' + d.getDate() + ' ' + MONTHS_S[d.getMonth()];
