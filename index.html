@@ -3394,16 +3394,33 @@
 
         var excelTabBtns = Array.from(cashTabs.querySelectorAll('.excel-tab-btn'));
         var excelTabPanels = Array.from(cashTabs.querySelectorAll('.excel-tab-panel'));
-        excelTabBtns.forEach(function(btn) {
+
+        function switchExcelTab(idx) {
+          excelTabBtns.forEach(function(b) { b.classList.remove('active'); });
+          excelTabPanels.forEach(function(p) { p.classList.remove('active'); });
+          excelTabBtns[idx].classList.add('active');
+          var target = excelTabBtns[idx].getAttribute('data-excel-tab');
+          var panel = cashTabs.querySelector('[data-excel-panel="' + target + '"]');
+          if (panel) panel.classList.add('active');
+        }
+
+        excelTabBtns.forEach(function(btn, i) {
           btn.addEventListener('click', function() {
-            var target = btn.getAttribute('data-excel-tab');
-            excelTabBtns.forEach(function(b) { b.classList.remove('active'); });
-            excelTabPanels.forEach(function(p) { p.classList.remove('active'); });
-            btn.classList.add('active');
-            var panel = cashTabs.querySelector('[data-excel-panel="' + target + '"]');
-            if (panel) panel.classList.add('active');
+            switchExcelTab(i);
+            // Reset auto-cycle to restart from this tab
+            clearInterval(excelAutoTimer);
+            excelAutoIdx = i;
+            excelAutoTimer = setInterval(excelAutoCycle, 3000);
           });
         });
+
+        // Auto-cycle tabs every 3 seconds
+        var excelAutoIdx = 0;
+        function excelAutoCycle() {
+          excelAutoIdx = (excelAutoIdx + 1) % excelTabBtns.length;
+          switchExcelTab(excelAutoIdx);
+        }
+        var excelAutoTimer = setInterval(excelAutoCycle, 3000);
 
         // --- View selector (13w / 6m / 12m) ---
         var viewBtns = Array.from(cashTabs.querySelectorAll('.week-selector__btn'));
