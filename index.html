@@ -1979,20 +1979,20 @@
       min-height: 0;
     }
 
-    /* Text rendering */
+    /* Text rendering — sharper at small sizes */
     #pnl-boardpack-carousel .spreadsheet-table,
     #pnl-boardpack-carousel .slide-content {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+      text-rendering: geometricPrecision;
     }
 
     /* Compact spreadsheet inside carousel — no scrollbars */
     #pnl-boardpack-carousel .spreadsheet-frame { overflow: hidden; }
-    #pnl-boardpack-carousel .spreadsheet-table { font-size: 8px; min-width: 0; }
-    #pnl-boardpack-carousel .spreadsheet-table th { padding: 4px 6px; font-size: 7.5px; }
+    #pnl-boardpack-carousel .spreadsheet-table { font-size: 9.5px; min-width: 0; font-feature-settings: "kern" 1, "tnum" 1, "lnum" 1; }
+    #pnl-boardpack-carousel .spreadsheet-table th { padding: 4px 6px; font-size: 9px; }
     #pnl-boardpack-carousel .spreadsheet-table td { padding: 3px 6px; }
-    #pnl-boardpack-carousel .spreadsheet-table .group-header td { font-size: 7.5px; }
+    #pnl-boardpack-carousel .spreadsheet-table .group-header td { font-size: 9px; }
     #pnl-boardpack-carousel .week-selector { padding: 6px 12px 0; }
     #pnl-boardpack-carousel .week-selector__btn { padding: 3px 10px; font-size: 8px; }
     #pnl-boardpack-carousel .cash-chart { padding: 12px 16px 4px; }
