@@ -1553,7 +1553,8 @@
     .milestone-pct { min-width:30px; text-align:right; font-size:9px; font-weight:600; }
 
     /* Excel worksheet tabs (bottom of cash forecast frame) */
-    .excel-tabs { display:flex; background:#E2E8F0; border-top:1px solid #CBD5E1; }
+    .excel-tabs { display:flex; background:#E2E8F0; border-top:1px solid #CBD5E1; border-radius:0 0 12px 12px; overflow:hidden; flex-shrink:0; }
+    #pnl-strip { overflow:visible; }
     .excel-tab-btn { padding:8px 20px; font-size:10px; font-weight:600; color:#64748B; background:#E2E8F0; border:none; border-right:1px solid #CBD5E1; cursor:pointer; transition:color 0.2s,background 0.2s; }
     .excel-tab-btn:hover { background:#F1F5F9; color:#1E293B; }
     .excel-tab-btn.active { background:#fff; color:#1E293B; border-bottom:2px solid #22C55E; }
@@ -2366,7 +2367,7 @@
     </section>
 
     <!-- ===== MOCKUP 4: 13-WEEK CASH FORECAST ===== -->
-    <section class="mockup-strip mockup-strip--full">
+    <section id="pnl-strip" class="mockup-strip mockup-strip--full">
       <div class="mockup-strip__inner reveal">
         <div class="mockup-strip__content">
           <p class="eyebrow">Automated End-to-End</p>
@@ -3380,12 +3381,13 @@
         // Lock the entire screen-frame height so switching tabs doesn't resize
         var screenFrame = cashTabs.closest('.screen-frame');
         if (screenFrame) {
-          // Temporarily lift overflow to measure true content height
+          // Set overflow visible so Excel tabs at the bottom are never clipped
           screenFrame.style.overflow = 'visible';
           screenFrame.style.display = 'flex';
           screenFrame.style.flexDirection = 'column';
+          // Force reflow then lock height to prevent resize on tab switch
+          void screenFrame.offsetHeight;
           var h = screenFrame.scrollHeight + 'px';
-          screenFrame.style.overflow = '';
           screenFrame.style.height = h;
           screenFrame.style.minHeight = h;
         }
