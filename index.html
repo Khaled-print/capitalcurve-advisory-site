@@ -1956,9 +1956,18 @@
       .cfo-tab-btn { font-size:8px; padding:8px 10px; }
       .excel-tab-btn { padding:6px 12px; font-size:9px; }
       #pnl-boardpack-carousel .carousel-frame .screen-frame { height: auto; }
+      #pnl-boardpack-carousel .carousel-layout { max-width: none; gap: 24px; transform: none; }
+      #pnl-boardpack-carousel .carousel-sidebar { flex: none; }
     }
 
-    /* P&L / Board Pack carousel — height matching */
+    /* P&L / Board Pack carousel — layout overrides */
+    #pnl-boardpack-carousel .carousel-layout {
+      max-width: 1320px;
+      gap: 40px;
+      transform: translateX(-100px);
+    }
+    #pnl-boardpack-carousel .carousel-sidebar { flex: 0 0 24%; }
+
     #pnl-boardpack-carousel .carousel-frame .screen-frame {
       display: flex;
       flex-direction: column;
@@ -1969,18 +1978,27 @@
       min-height: 0;
     }
 
+    /* Text rendering */
+    #pnl-boardpack-carousel .spreadsheet-table,
+    #pnl-boardpack-carousel .slide-content {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
     /* Compact spreadsheet inside carousel — no scrollbars */
     #pnl-boardpack-carousel .spreadsheet-frame { overflow: hidden; }
-    #pnl-boardpack-carousel .spreadsheet-table { font-size: 7px; min-width: 0; }
-    #pnl-boardpack-carousel .spreadsheet-table th { padding: 3px 4px; font-size: 6.5px; }
-    #pnl-boardpack-carousel .spreadsheet-table td { padding: 2px 4px; }
-    #pnl-boardpack-carousel .spreadsheet-table .group-header td { font-size: 7px; }
+    #pnl-boardpack-carousel .spreadsheet-table { font-size: 8px; min-width: 0; }
+    #pnl-boardpack-carousel .spreadsheet-table th { padding: 4px 6px; font-size: 7.5px; }
+    #pnl-boardpack-carousel .spreadsheet-table td { padding: 3px 6px; }
+    #pnl-boardpack-carousel .spreadsheet-table .group-header td { font-size: 7.5px; }
     #pnl-boardpack-carousel .week-selector { padding: 6px 12px 0; }
-    #pnl-boardpack-carousel .week-selector__btn { padding: 3px 10px; font-size: 7px; }
-    #pnl-boardpack-carousel .cash-chart { padding: 8px 12px 4px; }
-    #pnl-boardpack-carousel .cash-chart > div:first-child { font-size: 8px !important; margin-bottom: 4px !important; }
+    #pnl-boardpack-carousel .week-selector__btn { padding: 3px 10px; font-size: 8px; }
+    #pnl-boardpack-carousel .cash-chart { padding: 12px 16px 4px; }
+    #pnl-boardpack-carousel .cash-chart svg { min-height: 140px; }
+    #pnl-boardpack-carousel .cash-chart > div:first-child { font-size: 9px !important; margin-bottom: 4px !important; }
     #pnl-boardpack-carousel .excel-tabs { padding: 0; }
-    #pnl-boardpack-carousel .excel-tab-btn { padding: 5px 10px; font-size: 8px; }
+    #pnl-boardpack-carousel .excel-tab-btn { padding: 5px 12px; font-size: 9px; }
 
     /* Board pack slides inside carousel */
     #pnl-boardpack-carousel .slide-content { height: auto; }
