@@ -1725,14 +1725,17 @@
     .excel-tab-btn:hover { background:#F1F5F9; color:#1E293B; }
     .excel-tab-btn.active { background:#fff; color:#1E293B; border-bottom:2px solid #22C55E; }
     .excel-tab-panel { display:none; }
-    .excel-tab-panel.active { display:block; animation:panelFadeIn 0.4s ease; }
+    .excel-tab-panel.active { display:flex; flex-direction:column; flex:1; min-height:0; animation:panelFadeIn 0.4s ease; }
     #cash-forecast-tabs { display:flex; flex-direction:column; flex:1; min-height:0; }
-    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"].active,
-    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"].active { display:flex; flex-direction:column; flex:1; min-height:0; }
+    /* Assumptions & Scenarios: single wrapper div fills space, spreadsheet scrolls */
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"] > div,
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] > div { flex:1; display:flex; flex-direction:column; background:#fff; min-height:0; }
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"] .spreadsheet-frame,
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] .spreadsheet-frame { flex:1; min-height:0; overflow-y:auto; }
+    /* Cashflow: week-selector & chart stay fixed, table wrapper fills remaining space and scrolls */
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] .week-selector { flex-shrink:0; }
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] .cash-chart { flex-shrink:0; }
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] > div:last-of-type { flex:1; min-height:0; overflow-y:auto; }
 
     /* Week selector pills */
     .week-selector { display:flex; gap:4px; padding:12px 20px 0; background:#fff; }
@@ -1952,17 +1955,19 @@
       }
       .cfo-tab-btn { font-size:8px; padding:8px 10px; }
       .excel-tab-btn { padding:6px 12px; font-size:9px; }
-      #pnl-boardpack-carousel .carousel-frame .screen-frame { min-height: 0; }
+      #pnl-boardpack-carousel .carousel-frame .screen-frame { height: auto; }
     }
 
     /* P&L / Board Pack carousel — height matching */
     #pnl-boardpack-carousel .carousel-frame .screen-frame {
-      min-height: 580px;
+      height: 580px;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
     #pnl-boardpack-carousel .carousel-frame .screen-frame > *:last-child {
       flex: 1;
+      min-height: 0;
     }
     #pnl-boardpack-carousel .slide-content {
       height: auto;
@@ -3800,19 +3805,6 @@
       // --- Excel tab switcher ---
       var cashTabs = document.getElementById('cash-forecast-tabs');
       if (cashTabs) {
-        // Lock the entire screen-frame height so switching tabs doesn't resize
-        var screenFrame = cashTabs.closest('.screen-frame');
-        if (screenFrame) {
-          // Set overflow visible so Excel tabs at the bottom are never clipped
-          screenFrame.style.overflow = 'visible';
-          screenFrame.style.display = 'flex';
-          screenFrame.style.flexDirection = 'column';
-          // Force reflow then lock height to prevent resize on tab switch
-          void screenFrame.offsetHeight;
-          var h = screenFrame.scrollHeight + 'px';
-          screenFrame.style.height = h;
-          screenFrame.style.minHeight = h;
-        }
 
         var excelTabBtns = Array.from(cashTabs.querySelectorAll('.excel-tab-btn'));
         var excelTabPanels = Array.from(cashTabs.querySelectorAll('.excel-tab-panel'));
