@@ -131,7 +131,7 @@
       padding: 0 48px;
       height: 64px;
       background: transparent;
-      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease;
       border-radius: 20px 20px 0 0;
     }
 
@@ -140,6 +140,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 1px 0 var(--border);
+      border-radius: 20px;
     }
 
     .nav-logo {
@@ -693,6 +694,9 @@
         padding: 0 32px;
         border-radius: 14px 14px 0 0;
       }
+      .nav.scrolled {
+        border-radius: 14px;
+      }
       .section {
         padding: 100px 40px;
       }
@@ -734,6 +738,9 @@
         right: 7px;
         padding: 0 20px;
         border-radius: 14px 14px 0 0;
+      }
+      .nav.scrolled {
+        border-radius: 14px;
       }
       .nav-links {
         display: none;
