@@ -1952,6 +1952,21 @@
       }
       .cfo-tab-btn { font-size:8px; padding:8px 10px; }
       .excel-tab-btn { padding:6px 12px; font-size:9px; }
+      #pnl-boardpack-carousel .carousel-frame .screen-frame { min-height: 0; }
+    }
+
+    /* P&L / Board Pack carousel — height matching */
+    #pnl-boardpack-carousel .carousel-frame .screen-frame {
+      min-height: 580px;
+      display: flex;
+      flex-direction: column;
+    }
+    #pnl-boardpack-carousel .carousel-frame .screen-frame > *:last-child {
+      flex: 1;
+    }
+    #pnl-boardpack-carousel .slide-content {
+      height: auto;
+      min-height: 480px;
     }
   </style>
 </head>
@@ -2574,15 +2589,29 @@
       </div>
     </section>
 
-    <!-- ===== MOCKUP 4: 13-WEEK CASH FORECAST ===== -->
-    <section id="pnl-strip" class="mockup-strip mockup-strip--full">
-      <div class="mockup-strip__inner reveal">
-        <div class="mockup-strip__content">
-          <p class="eyebrow">Automated End-to-End</p>
-          <h3 class="section-heading">End-to-End P&amp;Ls</h3>
-          <p class="body-text">Cash forecasts, scenario modelling, and assumption tracking - all automated from your source systems. We help you build the plumbing so the numbers refresh themselves and leadership gets the full picture without the manual assembly.</p>
+    <!-- ===== MOCKUP 4: P&L + BOARD PACK CAROUSEL ===== -->
+    <section class="mockup-strip mockup-strip--carousel" id="pnl-boardpack-carousel">
+      <div class="carousel-layout reveal">
+
+        <!-- LEFT: sidebar text (toggles with carousel) -->
+        <div class="carousel-sidebar">
+          <div class="carousel-sidebar__panel active" data-sidebar="0">
+            <p class="eyebrow">Automated End-to-End</p>
+            <h3 class="section-heading">End-to-End P&amp;Ls</h3>
+            <p class="body-text">Cash forecasts, scenario modelling, and assumption tracking - all automated from your source systems. We help you build the plumbing so the numbers refresh themselves and leadership gets the full picture without the manual assembly.</p>
+          </div>
+          <div class="carousel-sidebar__panel" data-sidebar="1">
+            <p class="eyebrow">Board-Ready on Your Timeline</p>
+            <h3 class="section-heading">Board Pack Slides</h3>
+            <p class="body-text">A complete board pack generated from your data in under an hour - monthly, quarterly, or on demand. Executive summary, revenue, cash, and KPIs - presentation-ready, not presentation-building.</p>
+          </div>
         </div>
-        <div class="mockup-strip__frame">
+
+        <!-- RIGHT: carousel stage -->
+        <div class="carousel-stage">
+
+          <!-- Frame 0: P&L (screen-frame with excel tabs) -->
+          <div class="carousel-frame active" data-frame="0">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2804,68 +2833,10 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+          </div>
 
-    <!-- ===== PROOF / RESULTS ===== -->
-    <section class="section" id="proof">
-      <div class="proof-heading-block reveal">
-        <p class="eyebrow">Results</p>
-        <h2 class="section-heading section-heading--center">Three engagements. All still running.</h2>
-      </div>
-      <div class="proof-cards">
-        <!-- Card 1 -->
-        <div class="proof-card reveal reveal-delay-1">
-          <p class="eyebrow">FP&amp;A Reporting Restructure</p>
-          <p class="card-descriptor">Global technology company · NYSE-listed</p>
-          <p class="body-text">The client underwent a major restructure - product lines were remapped across new business units, and the entire reporting chain needed to follow. Every formula, every cross-reference, every roll-up had to be rebuilt. One broken link would cascade errors across the full P&amp;L.</p>
-          <p class="body-text">We mapped the new organisational structure end-to-end, rebuilt the reporting hierarchy from scratch, automated data extraction across systems, and delivered dynamic models feeding downstream reporting with board-ready dashboards for leadership.</p>
-          <div class="result-lines">
-            <p class="result-line">$100,000+ in labour cost savings over five years</p>
-            <p class="result-line">10 hours of manual work eliminated every week</p>
-            <p class="result-line">Full reporting chain rebuilt without a single day of downtime</p>
-            <p class="result-line">Finance team shifted from maintaining fragile spreadsheets to reviewing clean, automated outputs</p>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="proof-card reveal reveal-delay-2">
-          <p class="eyebrow">CRM-to-Finance Intelligence</p>
-          <p class="card-descriptor">PE-backed AI consultancy · 200+ specialists · $45M+ pipeline</p>
-          <p class="body-text">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets - nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
-          <p class="body-text">We built automated HubSpot extraction via API, Python data aggregation scripts, an LLM narrative layer on validated figures, automated pipeline emails, 13-week cashflow forecast, invoicing automation, and employee-level profitability analysis.</p>
-          <div class="result-lines">
-            <p class="result-line">1 full week saved per monthly close cycle</p>
-            <p class="result-line">2 days of recurring weekly manual work eliminated</p>
-            <p class="result-line">Pipeline, delivery, and actuals connected in one view for the first time</p>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="proof-card reveal reveal-delay-3">
-          <p class="eyebrow">Board Pack &amp; Cashflow Automation</p>
-          <p class="card-descriptor">National staffing group · 300+ contractors · Multi-entity structure</p>
-          <p class="body-text">Five entities, three ERPs, and a finance team producing the consolidated board pack in Excel every month. The process took four days, involved manual inter-company eliminations, and broke every time someone changed a tab name. Leadership had no rolling forecast - just last month's actuals and gut feel.</p>
-          <p class="body-text">We built a centralised data model pulling from all three systems, automated the consolidation and elimination logic, and layered a 13-week rolling cashflow forecast on top. The board pack now generates in under an hour.</p>
-          <div class="result-lines">
-            <p class="result-line">Board pack turnaround reduced from 4 days to under 1 hour</p>
-            <p class="result-line">13-week rolling cashflow forecast delivered for the first time</p>
-            <p class="result-line">Three separate ERPs consolidated into a single reporting view</p>
-            <p class="result-line">Month-end close shortened by 2 full days</p>
-            <p class="result-line">Finance team now spends month-end on analysis, not assembly</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== MOCKUP 5: BOARD PACK SLIDES ===== -->
-    <section class="mockup-strip mockup-strip--full">
-      <div class="mockup-strip__inner reveal">
-        <div class="mockup-strip__content">
-          <p class="eyebrow">Board-Ready on Your Timeline</p>
-          <h3 class="section-heading">Board Pack Slides</h3>
-          <p class="body-text">A complete board pack generated from your data in under an hour - monthly, quarterly, or on demand. Executive summary, revenue, cash, and KPIs - presentation-ready, not presentation-building.</p>
-        </div>
-        <div class="mockup-strip__frame">
+          <!-- Frame 1: Board Pack (screen-frame with board tabs) -->
+          <div class="carousel-frame" data-frame="1">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -3113,6 +3084,67 @@
                 </div>
               </div>
             </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dot nav -->
+      <div class="carousel-nav">
+        <button class="carousel-dot active" data-dot="0" aria-label="P&Ls">
+          <span class="carousel-dot__label">P&amp;Ls</span>
+        </button>
+        <button class="carousel-dot" data-dot="1" aria-label="Board Pack">
+          <span class="carousel-dot__label">Board Pack</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== PROOF / RESULTS ===== -->
+    <section class="section" id="proof">
+      <div class="proof-heading-block reveal">
+        <p class="eyebrow">Results</p>
+        <h2 class="section-heading section-heading--center">Three engagements. All still running.</h2>
+      </div>
+      <div class="proof-cards">
+        <!-- Card 1 -->
+        <div class="proof-card reveal reveal-delay-1">
+          <p class="eyebrow">FP&amp;A Reporting Restructure</p>
+          <p class="card-descriptor">Global technology company · NYSE-listed</p>
+          <p class="body-text">The client underwent a major restructure - product lines were remapped across new business units, and the entire reporting chain needed to follow. Every formula, every cross-reference, every roll-up had to be rebuilt. One broken link would cascade errors across the full P&amp;L.</p>
+          <p class="body-text">We mapped the new organisational structure end-to-end, rebuilt the reporting hierarchy from scratch, automated data extraction across systems, and delivered dynamic models feeding downstream reporting with board-ready dashboards for leadership.</p>
+          <div class="result-lines">
+            <p class="result-line">$100,000+ in labour cost savings over five years</p>
+            <p class="result-line">10 hours of manual work eliminated every week</p>
+            <p class="result-line">Full reporting chain rebuilt without a single day of downtime</p>
+            <p class="result-line">Finance team shifted from maintaining fragile spreadsheets to reviewing clean, automated outputs</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="proof-card reveal reveal-delay-2">
+          <p class="eyebrow">CRM-to-Finance Intelligence</p>
+          <p class="card-descriptor">PE-backed AI consultancy · 200+ specialists · $45M+ pipeline</p>
+          <p class="body-text">CRM data in HubSpot, delivery data in timesheets, actuals in spreadsheets - nobody connecting them. The weekly pipeline report was being built manually every week: log in, pull data, reconcile, write commentary, email leadership. Hours of work for a single report.</p>
+          <p class="body-text">We built automated HubSpot extraction via API, Python data aggregation scripts, an LLM narrative layer on validated figures, automated pipeline emails, 13-week cashflow forecast, invoicing automation, and employee-level profitability analysis.</p>
+          <div class="result-lines">
+            <p class="result-line">1 full week saved per monthly close cycle</p>
+            <p class="result-line">2 days of recurring weekly manual work eliminated</p>
+            <p class="result-line">Pipeline, delivery, and actuals connected in one view for the first time</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="proof-card reveal reveal-delay-3">
+          <p class="eyebrow">Board Pack &amp; Cashflow Automation</p>
+          <p class="card-descriptor">National staffing group · 300+ contractors · Multi-entity structure</p>
+          <p class="body-text">Five entities, three ERPs, and a finance team producing the consolidated board pack in Excel every month. The process took four days, involved manual inter-company eliminations, and broke every time someone changed a tab name. Leadership had no rolling forecast - just last month's actuals and gut feel.</p>
+          <p class="body-text">We built a centralised data model pulling from all three systems, automated the consolidation and elimination logic, and layered a 13-week rolling cashflow forecast on top. The board pack now generates in under an hour.</p>
+          <div class="result-lines">
+            <p class="result-line">Board pack turnaround reduced from 4 days to under 1 hour</p>
+            <p class="result-line">13-week rolling cashflow forecast delivered for the first time</p>
+            <p class="result-line">Three separate ERPs consolidated into a single reporting view</p>
+            <p class="result-line">Month-end close shortened by 2 full days</p>
+            <p class="result-line">Finance team now spends month-end on analysis, not assembly</p>
           </div>
         </div>
       </div>
@@ -3528,6 +3560,78 @@
           if (Math.abs(diff) > 50) {
             goToSlide(currentSlide + (diff > 0 ? 1 : -1));
             startAuto();
+          }
+        }, { passive: true });
+      }
+
+      // --- Carousel: P&L / Board Pack ---
+      var pnlCarousel = document.getElementById('pnl-boardpack-carousel');
+      if (pnlCarousel) {
+        var pnlFrames = Array.from(pnlCarousel.querySelectorAll('.carousel-frame'));
+        var pnlSidebar = Array.from(pnlCarousel.querySelectorAll('.carousel-sidebar__panel'));
+        var pnlDots = Array.from(pnlCarousel.querySelectorAll('.carousel-dot'));
+        var pnlTimer = null;
+        var pnlCurrent = 0;
+        var pnlTotal = pnlFrames.length;
+
+        function pnlGoTo(idx) {
+          pnlCurrent = ((idx % pnlTotal) + pnlTotal) % pnlTotal;
+          var prevIdx = (pnlCurrent - 1 + pnlTotal) % pnlTotal;
+          var nextIdx = (pnlCurrent + 1) % pnlTotal;
+
+          pnlFrames.forEach(function(f, i) {
+            f.classList.remove('active','prev','next','hidden');
+            if (i === pnlCurrent) f.classList.add('active');
+            else if (i === prevIdx) f.classList.add('prev');
+            else if (i === nextIdx) f.classList.add('next');
+            else f.classList.add('hidden');
+          });
+          pnlSidebar.forEach(function(p, i) {
+            p.classList.toggle('active', i === pnlCurrent);
+          });
+          pnlDots.forEach(function(d, i) {
+            d.classList.toggle('active', i === pnlCurrent);
+          });
+        }
+
+        pnlGoTo(0);
+
+        // Dot click
+        pnlDots.forEach(function(d, i) {
+          d.addEventListener('click', function() { pnlGoTo(i); pnlStartAuto(); });
+        });
+        // Click prev/next frame to navigate
+        pnlFrames.forEach(function(f) {
+          f.addEventListener('click', function() {
+            if (f.classList.contains('prev')) { pnlGoTo(pnlCurrent - 1); pnlStartAuto(); }
+            else if (f.classList.contains('next')) { pnlGoTo(pnlCurrent + 1); pnlStartAuto(); }
+          });
+        });
+
+        // Auto-advance (10s)
+        function pnlStartAuto() {
+          clearInterval(pnlTimer);
+          if (window.innerWidth < 768) return;
+          pnlTimer = setInterval(function() { pnlGoTo(pnlCurrent + 1); }, 10000);
+        }
+        function pnlStopAuto() { clearInterval(pnlTimer); }
+        pnlCarousel.addEventListener('mouseenter', pnlStopAuto);
+        pnlCarousel.addEventListener('mouseleave', pnlStartAuto);
+        new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) { e.isIntersecting ? pnlStartAuto() : pnlStopAuto(); });
+        }, { threshold: 0.2 }).observe(pnlCarousel);
+
+        // Touch swipe
+        var pnlTouchStartX = 0;
+        var pnlStage = pnlCarousel.querySelector('.carousel-stage');
+        pnlStage.addEventListener('touchstart', function(e) {
+          pnlTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        pnlStage.addEventListener('touchend', function(e) {
+          var diff = pnlTouchStartX - e.changedTouches[0].screenX;
+          if (Math.abs(diff) > 50) {
+            pnlGoTo(pnlCurrent + (diff > 0 ? 1 : -1));
+            pnlStartAuto();
           }
         }, { passive: true });
       }
