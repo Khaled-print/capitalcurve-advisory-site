@@ -887,32 +887,96 @@
       flex-direction: row-reverse;
     }
 
-    /* Carousel (Pipeline / CFO / Ops) */
+    /* Carousel (Pipeline / CFO / Ops) — 3D perspective */
     .mockup-strip--carousel { overflow: hidden; }
 
-    .carousel-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .carousel-track::-webkit-scrollbar { display: none; }
-
-    .carousel-slide {
-      flex: 0 0 100%;
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
-    }
-
-    .carousel-slide__inner {
+    /* Main layout: sidebar left + stage right */
+    .carousel-layout {
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 56px;
       padding: 0 48px;
+    }
+
+    /* --- Sidebar --- */
+    .carousel-sidebar {
+      flex: 0 0 28%;
+      position: relative;
+      min-height: 180px;
+    }
+    .carousel-sidebar__panel {
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+    .carousel-sidebar__panel.active {
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* --- 3D Stage --- */
+    .carousel-stage {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      perspective: 1200px;
+    }
+    .carousel-frame {
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.6s ease, filter 0.6s ease;
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+    }
+
+    /* Active: front and centre */
+    .carousel-frame.active {
+      position: relative;      /* gives stage its height */
+      transform: translateX(0) translateZ(0) scale(1);
+      opacity: 1; z-index: 3;
+      filter: brightness(1);
+    }
+    /* Prev: peeking left, behind */
+    .carousel-frame.prev {
+      transform: translateX(-55%) translateZ(-120px) scale(0.85);
+      opacity: 0.35; z-index: 2;
+      pointer-events: none;
+      filter: brightness(0.6);
+    }
+    /* Next: peeking right, behind */
+    .carousel-frame.next {
+      transform: translateX(55%) translateZ(-120px) scale(0.85);
+      opacity: 0.35; z-index: 2;
+      pointer-events: none;
+      filter: brightness(0.6);
+    }
+    /* Hidden (not adjacent) */
+    .carousel-frame.hidden {
+      transform: translateX(0) translateZ(-200px) scale(0.7);
+      opacity: 0; z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Blue glow behind active carousel frame */
+    .carousel-frame.active::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 70%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Dot navigation */
@@ -1770,17 +1834,28 @@
       .mockup-strip--carousel .email-body {
         max-height: 320px;
       }
-      .carousel-slide__inner {
+      .carousel-layout {
         flex-direction: column;
-        gap: 32px;
+        gap: 24px;
         padding: 0 20px;
       }
-      .carousel-slide__inner .mockup-strip__content {
-        flex: none;
-        width: 100%;
-        text-align: center;
+      .carousel-sidebar {
+        flex: none; width: 100%;
+        text-align: center; min-height: auto;
       }
-      .carousel-slide__inner .mockup-strip__frame { width: 100%; }
+      .carousel-sidebar__panel {
+        position: relative; display: none;
+      }
+      .carousel-sidebar__panel.active { display: block; }
+      .carousel-stage { width: 100%; perspective: none; }
+      .carousel-frame { transition: opacity 0.4s ease; }
+      .carousel-frame.active { position: relative; opacity: 1; }
+      .carousel-frame.prev,
+      .carousel-frame.next,
+      .carousel-frame.hidden {
+        position: absolute; transform: none;
+        opacity: 0; pointer-events: none;
+      }
       .carousel-nav { gap: 16px; margin-top: 24px; }
       .carousel-dot__label { font-size: 9px; }
       .metric-blocks {
@@ -1924,17 +1999,32 @@
 
     <!-- ===== CAROUSEL: PIPELINE / CFO / OPS ===== -->
     <section class="mockup-strip mockup-strip--carousel" id="demo-strips">
-      <div class="carousel-track">
+      <div class="carousel-layout reveal">
 
-        <!-- Slide 1: Pipeline -->
-        <div class="carousel-slide" data-slide="0">
-          <div class="carousel-slide__inner reveal">
-            <div class="mockup-strip__content">
-              <p class="eyebrow">Daily or Weekly - Your Cadence</p>
-              <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
-              <p class="body-text">Your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary. Delivered daily or weekly, whatever cadence fits your rhythm.</p>
-            </div>
-            <div class="mockup-strip__frame">
+        <!-- LEFT: Text sidebar (content switches per active slide) -->
+        <div class="carousel-sidebar">
+          <div class="carousel-sidebar__panel active" data-sidebar="0">
+            <p class="eyebrow">Daily or Weekly - Your Cadence</p>
+            <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
+            <p class="body-text">Your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary. Delivered daily or weekly, whatever cadence fits your rhythm.</p>
+          </div>
+          <div class="carousel-sidebar__panel" data-sidebar="1">
+            <p class="eyebrow">Daily, Weekly, or Both</p>
+            <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
+            <p class="body-text">Automated finance briefings on your schedule - daily flash updates, a forward-looking Monday brief, a Friday scorecard with traffic-light KPIs, or all of the above. You choose the cadence.</p>
+          </div>
+          <div class="carousel-sidebar__panel" data-sidebar="2">
+            <p class="eyebrow">Delivered on Your Schedule</p>
+            <h3 class="section-heading">Delivery &amp; Operations<br>Intelligence</h3>
+            <p class="body-text">Operational intelligence covering project health, resource allocation, delivery risks, and client satisfaction - with AI-flagged items that need attention. Daily or weekly, tuned to your ops rhythm.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: 3D carousel stage -->
+        <div class="carousel-stage">
+
+          <!-- Frame 1: Pipeline -->
+          <div class="carousel-frame active" data-frame="0">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2081,19 +2171,10 @@
               </div>
             </div>
           </div>
-            </div><!-- /.mockup-strip__frame -->
-          </div><!-- /.carousel-slide__inner -->
-        </div><!-- /.carousel-slide Pipeline -->
+          </div><!-- /.carousel-frame Pipeline -->
 
-        <!-- Slide 2: CFO Scorecard -->
-        <div class="carousel-slide" data-slide="1">
-          <div class="carousel-slide__inner reveal">
-            <div class="mockup-strip__content">
-              <p class="eyebrow">Daily, Weekly, or Both</p>
-              <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
-              <p class="body-text">Automated finance briefings on your schedule - daily flash updates, a forward-looking Monday brief, a Friday scorecard with traffic-light KPIs, or all of the above. You choose the cadence.</p>
-            </div>
-            <div class="mockup-strip__frame">
+          <!-- Frame 2: CFO Scorecard -->
+          <div class="carousel-frame next" data-frame="1">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2256,19 +2337,10 @@
               </div>
             </div>
           </div>
-            </div><!-- /.mockup-strip__frame -->
-          </div><!-- /.carousel-slide__inner -->
-        </div><!-- /.carousel-slide CFO -->
+          </div><!-- /.carousel-frame CFO -->
 
-        <!-- Slide 3: Ops Intelligence (moved from standalone Mockup 3) -->
-        <div class="carousel-slide" data-slide="2">
-          <div class="carousel-slide__inner reveal">
-            <div class="mockup-strip__content">
-              <p class="eyebrow">Delivered on Your Schedule</p>
-              <h3 class="section-heading">Delivery &amp; Operations<br>Intelligence</h3>
-              <p class="body-text">Operational intelligence covering project health, resource allocation, delivery risks, and client satisfaction - with AI-flagged items that need attention. Daily or weekly, tuned to your ops rhythm.</p>
-            </div>
-            <div class="mockup-strip__frame">
+          <!-- Frame 3: Ops Intelligence -->
+          <div class="carousel-frame hidden" data-frame="2">
               <div class="screen-frame">
                 <div class="screen-frame__bar">
                   <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2424,11 +2496,10 @@
                   </div>
                 </div>
               </div>
-            </div><!-- /.mockup-strip__frame -->
-          </div><!-- /.carousel-slide__inner -->
-        </div><!-- /.carousel-slide Ops -->
+          </div><!-- /.carousel-frame Ops -->
 
-      </div><!-- /.carousel-track -->
+        </div><!-- /.carousel-stage -->
+      </div><!-- /.carousel-layout -->
 
       <!-- Dot nav below carousel -->
       <div class="carousel-nav">
@@ -3329,7 +3400,9 @@
             initEmailAutoScroll(el);
           });
         }, { threshold: 0.3 });
-        emailBodies.forEach(function(el) { emailScrollObserver.observe(el); });
+        emailBodies.forEach(function(el) {
+          if (!el.closest('.carousel-frame')) emailScrollObserver.observe(el);
+        });
       }
 
       // --- CFO tab switcher (Monday/Friday) ---
@@ -3356,40 +3429,54 @@
         });
       }
 
-      // --- Carousel: Pipeline / CFO / Ops ---
+      // --- Carousel: Pipeline / CFO / Ops (3D perspective) ---
       var carouselSection = document.getElementById('demo-strips');
       if (carouselSection) {
-        var track = carouselSection.querySelector('.carousel-track');
-        var slides = Array.from(track.querySelectorAll('.carousel-slide'));
+        var frames = Array.from(carouselSection.querySelectorAll('.carousel-frame'));
+        var sidebarPanels = Array.from(carouselSection.querySelectorAll('.carousel-sidebar__panel'));
         var dots = Array.from(carouselSection.querySelectorAll('.carousel-dot'));
         var autoTimer = null;
         var currentSlide = 0;
+        var totalSlides = frames.length;
 
         function goToSlide(idx) {
-          currentSlide = ((idx % slides.length) + slides.length) % slides.length;
-          slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          currentSlide = ((idx % totalSlides) + totalSlides) % totalSlides;
+          var prevIdx = (currentSlide - 1 + totalSlides) % totalSlides;
+          var nextIdx = (currentSlide + 1) % totalSlides;
+
+          frames.forEach(function(f, i) {
+            f.classList.remove('active','prev','next','hidden');
+            if (i === currentSlide) f.classList.add('active');
+            else if (i === prevIdx) f.classList.add('prev');
+            else if (i === nextIdx) f.classList.add('next');
+            else f.classList.add('hidden');
+          });
+          sidebarPanels.forEach(function(p, i) {
+            p.classList.toggle('active', i === currentSlide);
+          });
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === currentSlide);
+          });
+          // Trigger email auto-scroll
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var emailBody = frames[currentSlide].querySelector('.cfo-tab-panel.active .email-body')
+                         || frames[currentSlide].querySelector('.email-body');
+            if (emailBody) initEmailAutoScroll(emailBody);
+          }
         }
 
-        // IntersectionObserver on slides to sync dots + trigger email scroll
-        var slideObserver = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (!entry.isIntersecting) return;
-            var idx = +entry.target.getAttribute('data-slide');
-            currentSlide = idx;
-            dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
-            // Trigger email auto-scroll for newly visible slide
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-              var emailBody = entry.target.querySelector('.cfo-tab-panel.active .email-body')
-                           || entry.target.querySelector('.email-body');
-              if (emailBody) initEmailAutoScroll(emailBody);
-            }
-          });
-        }, { root: track, threshold: 0.6 });
-        slides.forEach(function(s) { slideObserver.observe(s); });
+        goToSlide(0); // initialize
 
         // Dot click
-        dots.forEach(function(dot, i) {
-          dot.addEventListener('click', function() { goToSlide(i); startAuto(); });
+        dots.forEach(function(d, i) {
+          d.addEventListener('click', function() { goToSlide(i); startAuto(); });
+        });
+        // Click prev/next frame to navigate
+        frames.forEach(function(f) {
+          f.addEventListener('click', function() {
+            if (f.classList.contains('prev')) { goToSlide(currentSlide - 1); startAuto(); }
+            else if (f.classList.contains('next')) { goToSlide(currentSlide + 1); startAuto(); }
+          });
         });
 
         // Auto-advance (10s)
@@ -3399,17 +3486,25 @@
           autoTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 10000);
         }
         function stopAuto() { clearInterval(autoTimer); }
-
         carouselSection.addEventListener('mouseenter', stopAuto);
         carouselSection.addEventListener('mouseleave', startAuto);
-
-        // Start when section enters viewport
         new IntersectionObserver(function(entries) {
           entries.forEach(function(e) { e.isIntersecting ? startAuto() : stopAuto(); });
         }, { threshold: 0.2 }).observe(carouselSection);
 
-        // Reset auto-timer on manual scroll (touch/wheel)
-        track.addEventListener('scroll', function() { startAuto(); }, { passive: true });
+        // Touch swipe
+        var touchStartX = 0;
+        var stage = carouselSection.querySelector('.carousel-stage');
+        stage.addEventListener('touchstart', function(e) {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        stage.addEventListener('touchend', function(e) {
+          var diff = touchStartX - e.changedTouches[0].screenX;
+          if (Math.abs(diff) > 50) {
+            goToSlide(currentSlide + (diff > 0 ? 1 : -1));
+            startAuto();
+          }
+        }, { passive: true });
       }
 
       // --- Cash Forecast: Data-driven rendering ---
