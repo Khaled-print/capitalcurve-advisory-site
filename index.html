@@ -1727,15 +1727,15 @@
     .excel-tab-panel { display:none; }
     .excel-tab-panel.active { display:flex; flex-direction:column; flex:1; min-height:0; animation:panelFadeIn 0.4s ease; }
     #cash-forecast-tabs { display:flex; flex-direction:column; flex:1; min-height:0; }
-    /* Assumptions & Scenarios: single wrapper div fills space, spreadsheet scrolls */
+    /* Assumptions & Scenarios: single wrapper div fills space */
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"] > div,
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] > div { flex:1; display:flex; flex-direction:column; background:#fff; min-height:0; }
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="assumptions"] .spreadsheet-frame,
-    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] .spreadsheet-frame { flex:1; min-height:0; overflow-y:auto; }
-    /* Cashflow: week-selector & chart stay fixed, table wrapper fills remaining space and scrolls */
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="scenarios"] .spreadsheet-frame { flex:1; min-height:0; overflow:hidden; }
+    /* Cashflow: week-selector & chart stay fixed, table wrapper fills remaining space */
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] .week-selector { flex-shrink:0; }
     #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] .cash-chart { flex-shrink:0; }
-    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] > div:last-of-type { flex:1; min-height:0; overflow-y:auto; }
+    #cash-forecast-tabs > .excel-tab-panel[data-excel-panel="cashflow"] > div:last-of-type { flex:1; min-height:0; overflow:hidden; }
 
     /* Week selector pills */
     .week-selector { display:flex; gap:4px; padding:12px 20px 0; background:#fff; }
@@ -1960,7 +1960,6 @@
 
     /* P&L / Board Pack carousel — height matching */
     #pnl-boardpack-carousel .carousel-frame .screen-frame {
-      height: 580px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -1969,10 +1968,26 @@
       flex: 1;
       min-height: 0;
     }
-    #pnl-boardpack-carousel .slide-content {
-      height: auto;
-      min-height: 480px;
-    }
+
+    /* Compact spreadsheet inside carousel — no scrollbars */
+    #pnl-boardpack-carousel .spreadsheet-frame { overflow: hidden; }
+    #pnl-boardpack-carousel .spreadsheet-table { font-size: 7px; min-width: 0; }
+    #pnl-boardpack-carousel .spreadsheet-table th { padding: 3px 4px; font-size: 6.5px; }
+    #pnl-boardpack-carousel .spreadsheet-table td { padding: 2px 4px; }
+    #pnl-boardpack-carousel .spreadsheet-table .group-header td { font-size: 7px; }
+    #pnl-boardpack-carousel .week-selector { padding: 6px 12px 0; }
+    #pnl-boardpack-carousel .week-selector__btn { padding: 3px 10px; font-size: 7px; }
+    #pnl-boardpack-carousel .cash-chart { padding: 8px 12px 4px; }
+    #pnl-boardpack-carousel .cash-chart > div:first-child { font-size: 8px !important; margin-bottom: 4px !important; }
+    #pnl-boardpack-carousel .excel-tabs { padding: 0; }
+    #pnl-boardpack-carousel .excel-tab-btn { padding: 5px 10px; font-size: 8px; }
+
+    /* Board pack slides inside carousel */
+    #pnl-boardpack-carousel .slide-content { height: auto; }
+    #pnl-boardpack-carousel .board-tab-btn { padding: 10px 20px; font-size: 9px; }
+
+    /* Remove scroll from cashflow panel inside carousel */
+    #pnl-boardpack-carousel .excel-tab-panel[data-excel-panel="cashflow"] > div:last-of-type { overflow: hidden; }
   </style>
 </head>
 <body>
@@ -2736,7 +2751,7 @@
               <div class="excel-tab-panel" data-excel-panel="assumptions">
                 <div style="background:#fff;padding:4px;">
                   <div class="spreadsheet-frame">
-                    <table class="spreadsheet-table" style="min-width:900px;">
+                    <table class="spreadsheet-table">
                       <thead>
                         <tr><th style="width:22%">Assumption</th><th style="width:14%">Value</th><th style="width:14%">Frequency</th><th style="width:16%">Source</th><th style="width:14%">Last Updated</th><th style="width:20%">Notes</th></tr>
                       </thead>
