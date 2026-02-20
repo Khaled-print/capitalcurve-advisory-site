@@ -887,40 +887,75 @@
       flex-direction: row-reverse;
     }
 
-    /* Combined strip tabs (Pipeline / CFO toggle) */
-    .mockup-strip--tabs .mockup-strip__inner {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-    .strip-tabs__nav {
+    /* Carousel (Pipeline / CFO / Ops) */
+    .mockup-strip--carousel { overflow: hidden; }
+
+    .carousel-track {
       display: flex;
-      gap: 0;
-      margin-bottom: 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
-    .strip-tab-btn {
-      padding: 8px 0;
-      margin-right: 24px;
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    .carousel-slide__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 56px;
+      padding: 0 48px;
+    }
+
+    /* Dot navigation */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-top: 36px;
+      padding: 0 48px;
+    }
+    .carousel-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       background: none;
       border: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
       cursor: pointer;
-      transition: color 0.25s ease, border-color 0.25s ease;
-      white-space: nowrap;
+      padding: 0;
     }
-    .strip-tab-btn:hover { color: rgba(255,255,255,0.70); }
-    .strip-tab-btn.active { color: #fff; border-bottom-color: #3B82F6; }
-    .strip-tab-text { display: none; }
-    .strip-tab-text.active { display: block; animation: panelFadeIn 0.35s ease; }
-    .strip-tab-panel { display: none; }
-    .strip-tab-panel.active { display: block; animation: panelFadeIn 0.35s ease; }
+    .carousel-dot::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .carousel-dot.active::before {
+      background: #3B82F6;
+      transform: scale(1.25);
+    }
+    .carousel-dot__label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      transition: color 0.3s ease;
+    }
+    .carousel-dot.active .carousel-dot__label { color: rgba(255,255,255,0.80); }
 
     .mockup-strip--full .mockup-strip__inner {
       flex-direction: column;
@@ -1528,7 +1563,7 @@
     /* Consistent frame height for side-by-side strips */
     .mockup-strip--right .email-body,
     .mockup-strip--left .email-body,
-    .mockup-strip--tabs .email-body {
+    .mockup-strip--carousel .email-body {
       max-height: 420px;
       overflow-y: auto;
       mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 92%, transparent 100%);
@@ -1732,11 +1767,22 @@
       }
       .mockup-strip--right .email-body,
       .mockup-strip--left .email-body,
-      .mockup-strip--tabs .email-body {
+      .mockup-strip--carousel .email-body {
         max-height: 320px;
       }
-      .strip-tabs__nav { margin-bottom: 20px; }
-      .strip-tab-btn { flex: 1; text-align: center; margin-right: 0; padding: 10px 8px; }
+      .carousel-slide__inner {
+        flex-direction: column;
+        gap: 32px;
+        padding: 0 20px;
+      }
+      .carousel-slide__inner .mockup-strip__content {
+        flex: none;
+        width: 100%;
+        text-align: center;
+      }
+      .carousel-slide__inner .mockup-strip__frame { width: 100%; }
+      .carousel-nav { gap: 16px; margin-top: 24px; }
+      .carousel-dot__label { font-size: 9px; }
       .metric-blocks {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1876,32 +1922,19 @@
       </div>
     </section>
 
-    <!-- ===== COMBINED STRIP: PIPELINE + CFO SCORECARD (TABBED) ===== -->
-    <section class="mockup-strip mockup-strip--tabs" id="demo-strips">
-      <div class="mockup-strip__inner reveal">
-        <div class="mockup-strip__content">
-          <div class="strip-tabs__nav">
-            <button class="strip-tab-btn active" data-strip-tab="pipeline">Pipeline</button>
-            <button class="strip-tab-btn" data-strip-tab="cfo">CFO Scorecard</button>
-          </div>
+    <!-- ===== CAROUSEL: PIPELINE / CFO / OPS ===== -->
+    <section class="mockup-strip mockup-strip--carousel" id="demo-strips">
+      <div class="carousel-track">
 
-          <!-- Pipeline text (active by default) -->
-          <div class="strip-tab-text active" data-strip-text="pipeline">
-            <p class="eyebrow">Daily or Weekly - Your Cadence</p>
-            <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
-            <p class="body-text">Your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary. Delivered daily or weekly, whatever cadence fits your rhythm.</p>
-          </div>
-
-          <!-- CFO text (hidden until tab switch) -->
-          <div class="strip-tab-text" data-strip-text="cfo">
-            <p class="eyebrow">Daily, Weekly, or Both</p>
-            <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
-            <p class="body-text">Automated finance briefings on your schedule - daily flash updates, a forward-looking Monday brief, a Friday scorecard with traffic-light KPIs, or all of the above. You choose the cadence.</p>
-          </div>
-        </div>
-        <div class="mockup-strip__frame">
-          <!-- Pipeline panel (active by default) -->
-          <div class="strip-tab-panel active" data-strip-panel="pipeline">
+        <!-- Slide 1: Pipeline -->
+        <div class="carousel-slide" data-slide="0">
+          <div class="carousel-slide__inner reveal">
+            <div class="mockup-strip__content">
+              <p class="eyebrow">Daily or Weekly - Your Cadence</p>
+              <h3 class="section-heading">Pipeline &amp; Revenue<br>Intelligence</h3>
+              <p class="body-text">Your leadership team receives a complete pipeline intelligence brief - stage movements, at-risk deals, conversion analytics, and AI-generated commentary. Delivered daily or weekly, whatever cadence fits your rhythm.</p>
+            </div>
+            <div class="mockup-strip__frame">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2048,10 +2081,19 @@
               </div>
             </div>
           </div>
-          </div><!-- /.strip-tab-panel pipeline -->
+            </div><!-- /.mockup-strip__frame -->
+          </div><!-- /.carousel-slide__inner -->
+        </div><!-- /.carousel-slide Pipeline -->
 
-          <!-- CFO Scorecard panel -->
-          <div class="strip-tab-panel" data-strip-panel="cfo">
+        <!-- Slide 2: CFO Scorecard -->
+        <div class="carousel-slide" data-slide="1">
+          <div class="carousel-slide__inner reveal">
+            <div class="mockup-strip__content">
+              <p class="eyebrow">Daily, Weekly, or Both</p>
+              <h3 class="section-heading">CFO Weekly<br>Scorecard</h3>
+              <p class="body-text">Automated finance briefings on your schedule - daily flash updates, a forward-looking Monday brief, a Friday scorecard with traffic-light KPIs, or all of the above. You choose the cadence.</p>
+            </div>
+            <div class="mockup-strip__frame">
           <div class="screen-frame">
             <div class="screen-frame__bar">
               <span class="screen-frame__dot screen-frame__dot--red"></span>
@@ -2214,8 +2256,191 @@
               </div>
             </div>
           </div>
-          </div><!-- /.strip-tab-panel cfo -->
-        </div>
+            </div><!-- /.mockup-strip__frame -->
+          </div><!-- /.carousel-slide__inner -->
+        </div><!-- /.carousel-slide CFO -->
+
+        <!-- Slide 3: Ops Intelligence (moved from standalone Mockup 3) -->
+        <div class="carousel-slide" data-slide="2">
+          <div class="carousel-slide__inner reveal">
+            <div class="mockup-strip__content">
+              <p class="eyebrow">Delivered on Your Schedule</p>
+              <h3 class="section-heading">Delivery &amp; Operations<br>Intelligence</h3>
+              <p class="body-text">Operational intelligence covering project health, resource allocation, delivery risks, and client satisfaction - with AI-flagged items that need attention. Daily or weekly, tuned to your ops rhythm.</p>
+            </div>
+            <div class="mockup-strip__frame">
+              <div class="screen-frame">
+                <div class="screen-frame__bar">
+                  <span class="screen-frame__dot screen-frame__dot--red"></span>
+                  <span class="screen-frame__dot screen-frame__dot--amber"></span>
+                  <span class="screen-frame__dot screen-frame__dot--green"></span>
+                </div>
+                <div class="email-chrome">
+                  <strong>From:</strong> CapitalCurve Automation<br>
+                  <strong>To:</strong> COO, Ops Team<br>
+                  <strong>Subject:</strong> Delivery &amp; Operations Intelligence - Week Ending 14 Feb
+                </div>
+                <div class="email-body">
+                  <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Wednesday 12 Feb 2025, 8:00 AM AEST &middot; Apex Consulting</div>
+                  <div class="metric-blocks">
+                    <div class="metric-block">
+                      <div class="metric-block__value">23</div>
+                      <div class="metric-block__label">Active Projects</div>
+                    </div>
+                    <div class="metric-block">
+                      <div class="metric-block__value">84.7%</div>
+                      <div class="metric-block__label">Billable Util.</div>
+                    </div>
+                    <div class="metric-block">
+                      <div class="metric-block__value">6.2</div>
+                      <div class="metric-block__label">Avg Days to Invoice</div>
+                    </div>
+                    <div class="metric-block">
+                      <div class="metric-block__value">42</div>
+                      <div class="metric-block__label">Contractors</div>
+                    </div>
+                  </div>
+                  <div style="font-weight:600;font-size:10px;margin:12px 0 6px;color:#1E293B;">Flagged Items</div>
+                  <div class="flag-item"><span class="status-dot status-dot--red"></span> Project Titan - delivery milestone overdue by 5 days, client escalation pending</div>
+                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> 3 contractors approaching 6-month tenure limit - conversion decisions needed by 21 Feb</div>
+                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> Invoicing backlog: 4 projects with unbilled work &gt;$50K each</div>
+                  <div class="flag-item"><span class="status-dot status-dot--red"></span> Resource conflict: 2 senior devs double-booked across Meridian CRM and Bloom Ops next sprint</div>
+                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> Scope creep risk: Coastal ERP discovery phase expanding -3 additional modules requested by client</div>
+
+                  <div class="ai-commentary-card">
+                    <strong><span class="ai-badge">AI</span> Operational Analysis</strong>
+                    Utilisation softened 1.2pp from last week as the Vantage Analytics and Titan Rollout projects entered transition and remediation phases respectively. The invoicing backlog now sits at $210K across four projects - recommend batch processing this week to bring days-to-invoice back under the 5-day target. The contractor conversion deadline on 21 Feb is time-sensitive given the 4-week notice period requirement; delaying these decisions risks losing institutional knowledge on active engagements. The resource double-booking on Meridian/Bloom needs resolution before sprint planning on Monday.
+                  </div>
+
+                  <div class="email-section-title">Project Status Summary</div>
+                  <table class="mockup-table">
+                    <thead>
+                      <tr><th>Project</th><th>Phase</th><th>Health</th><th>Margin</th><th>Next Milestone</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Titan Rollout</td><td>Delivery</td><td><span class="status-dot status-dot--red"></span></td><td>34%</td><td>UAT Sign-off (overdue)</td></tr>
+                      <tr><td>Meridian CRM</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>52%</td><td>Sprint 4 Demo -19 Feb</td></tr>
+                      <tr><td>Coastal ERP</td><td>Discovery</td><td><span class="status-dot status-dot--green"></span></td><td>48%</td><td>Requirements Sign-off -21 Feb</td></tr>
+                      <tr><td>Vantage Analytics</td><td>Transition</td><td><span class="status-dot status-dot--amber"></span></td><td>41%</td><td>Handover Complete -28 Feb</td></tr>
+                      <tr><td>Bloom Ops</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>56%</td><td>Integration Testing -24 Feb</td></tr>
+                    </tbody>
+                  </table>
+
+                  <div class="email-section-title">Delivery Timeline</div>
+                  <div class="milestone-tracker">
+                    <div class="milestone-item">
+                      <span class="milestone-label">Titan Rollout</span>
+                      <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--red" style="width:72%"></div></div>
+                      <span class="milestone-pct">72%</span>
+                    </div>
+                    <div class="milestone-item">
+                      <span class="milestone-label">Meridian CRM</span>
+                      <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--green" style="width:58%"></div></div>
+                      <span class="milestone-pct">58%</span>
+                    </div>
+                    <div class="milestone-item">
+                      <span class="milestone-label">Coastal ERP</span>
+                      <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--blue" style="width:25%"></div></div>
+                      <span class="milestone-pct">25%</span>
+                    </div>
+                    <div class="milestone-item">
+                      <span class="milestone-label">Vantage Analytics</span>
+                      <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--amber" style="width:88%"></div></div>
+                      <span class="milestone-pct">88%</span>
+                    </div>
+                    <div class="milestone-item">
+                      <span class="milestone-label">Bloom Ops</span>
+                      <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--green" style="width:42%"></div></div>
+                      <span class="milestone-pct">42%</span>
+                    </div>
+                  </div>
+
+                  <div class="email-section-title">Resource Allocation</div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0;">
+                    <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                      <div style="font-size:16px;font-weight:700;color:#F59E0B;">4</div>
+                      <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Bench FTE</div>
+                    </div>
+                    <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                      <div style="font-size:16px;font-weight:700;color:#1E293B;">22%</div>
+                      <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Contractor %</div>
+                    </div>
+                    <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
+                      <div style="font-size:16px;font-weight:700;color:#1E293B;">6.2</div>
+                      <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Avg Span of Control</div>
+                    </div>
+                  </div>
+
+                  <div class="email-section-title">Team Capacity Forecast (4-Week)</div>
+                  <table class="mockup-table">
+                    <thead>
+                      <tr><th>Team</th><th>This Wk</th><th>Wk +1</th><th>Wk +2</th><th>Wk +3</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Delivery</td><td class="val-green">92%</td><td class="val-green">88%</td><td class="val-amber">78%</td><td class="val-amber">74%</td></tr>
+                      <tr><td>Technical</td><td class="val-green">86%</td><td class="val-green">90%</td><td class="val-green">85%</td><td class="val-amber">76%</td></tr>
+                      <tr><td>PMs</td><td class="val-amber">72%</td><td class="val-green">80%</td><td class="val-green">82%</td><td class="val-amber">70%</td></tr>
+                      <tr><td>QA</td><td class="val-green">95%</td><td class="val-green">88%</td><td class="val-amber">65%</td><td class="val-red">55%</td></tr>
+                    </tbody>
+                  </table>
+
+                  <div class="email-section-title">Subcontractor Performance</div>
+                  <table class="mockup-table">
+                    <thead>
+                      <tr><th>Partner</th><th>Quality</th><th>On-Time %</th><th>Active</th><th>RAG</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>TechForce AU</td><td>4.6/5</td><td>94%</td><td>12</td><td><span class="status-dot status-dot--green"></span></td></tr>
+                      <tr><td>DevPro Solutions</td><td>4.2/5</td><td>87%</td><td>18</td><td><span class="status-dot status-dot--amber"></span></td></tr>
+                      <tr><td>CloudBridge</td><td>4.8/5</td><td>96%</td><td>8</td><td><span class="status-dot status-dot--green"></span></td></tr>
+                      <tr><td>Nexgen Staffing</td><td>3.5/5</td><td>72%</td><td>4</td><td><span class="status-dot status-dot--red"></span></td></tr>
+                    </tbody>
+                  </table>
+
+                  <div class="email-section-title">Client Satisfaction</div>
+                  <div class="flag-item"><span class="status-dot status-dot--green"></span> NPS Score: <strong>62</strong> (up from 58 last month) - above industry benchmark of 55</div>
+                  <div class="flag-item"><span class="status-dot status-dot--amber"></span> Recent survey: 2 clients flagged communication delays on Titan and Vantage projects</div>
+                  <div class="flag-item"><span class="status-dot status-dot--red"></span> Active escalations: <strong>1</strong> - Titan Rollout (client exec meeting scheduled 18 Feb)</div>
+
+                  <div class="email-section-title">Risk Register - Top 5</div>
+                  <table class="mockup-table">
+                    <thead>
+                      <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Owner</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Titan UAT failure</td><td>High</td><td>High</td><td>J. Torres</td><td><span class="status-dot status-dot--red"></span></td></tr>
+                      <tr><td>Coastal scope creep</td><td>Medium</td><td>High</td><td>S. Patel</td><td><span class="status-dot status-dot--amber"></span></td></tr>
+                      <tr><td>Contractor attrition</td><td>Medium</td><td>Medium</td><td>HR Lead</td><td><span class="status-dot status-dot--amber"></span></td></tr>
+                      <tr><td>QA capacity gap (Wk+3)</td><td>High</td><td>Medium</td><td>L. Chen</td><td><span class="status-dot status-dot--amber"></span></td></tr>
+                      <tr><td>Key-person dependency</td><td>Low</td><td>High</td><td>COO</td><td><span class="status-dot status-dot--green"></span></td></tr>
+                    </tbody>
+                  </table>
+
+                  <div class="ai-commentary-card">
+                    <strong><span class="ai-badge">AI</span> Strategic Assessment</strong>
+                    <p style="margin:0 0 8px;">The Titan Rollout remains the single largest risk to this quarter's delivery performance. The overdue UAT milestone, combined with the active client escalation, requires senior attention before the 18 Feb exec meeting. I'd recommend preparing a remediation plan with revised timelines - the client will expect specifics, not reassurance.</p>
+                    <p style="margin:0 0 8px;">On the capacity front, QA utilisation is projected to drop to 55% by week +3 as current test cycles complete. This coincides with the Bloom Ops integration testing phase beginning 24 Feb - there's an opportunity to redeploy QA resources proactively rather than scramble when the sprint starts. The four bench FTEs could also accelerate the Meridian CRM build, which carries the highest margin at 52%.</p>
+                    <p style="margin:0;">Worth flagging: Nexgen Staffing's quality score (3.5/5) and on-time delivery rate (72%) are well below the other partners. If the three contractor conversions go ahead, consider shifting Nexgen allocations to TechForce or CloudBridge for remaining engagements.</p>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.mockup-strip__frame -->
+          </div><!-- /.carousel-slide__inner -->
+        </div><!-- /.carousel-slide Ops -->
+
+      </div><!-- /.carousel-track -->
+
+      <!-- Dot nav below carousel -->
+      <div class="carousel-nav">
+        <button class="carousel-dot active" data-dot="0" aria-label="Pipeline">
+          <span class="carousel-dot__label">Pipeline</span>
+        </button>
+        <button class="carousel-dot" data-dot="1" aria-label="CFO Scorecard">
+          <span class="carousel-dot__label">CFO Scorecard</span>
+        </button>
+        <button class="carousel-dot" data-dot="2" aria-label="Operations">
+          <span class="carousel-dot__label">Operations</span>
+        </button>
       </div>
     </section>
 
@@ -2232,174 +2457,6 @@
         <p class="body-text">We don't let AI calculate anything. Python scripts handle every extraction, transformation, and calculation - the same methodology your team uses manually, automated in deterministic code. The AI layer sits on top: it reads the validated numbers and writes the commentary. The narrative, the anomaly flags, the board-ready insights.</p>
         <p class="body-text">Scripts ensure the numbers are right. AI ensures leadership understands what they mean.</p>
         <p class="body-text">This is enterprise-grade integration. Not a chatbot approximating your revenue.</p>
-      </div>
-    </section>
-
-    <!-- ===== MOCKUP 3: OPS FLASH ===== -->
-    <section class="mockup-strip mockup-strip--right">
-      <div class="mockup-strip__inner reveal">
-        <div class="mockup-strip__content">
-          <p class="eyebrow">Delivered on Your Schedule</p>
-          <h3 class="section-heading">Delivery &amp; Operations<br>Intelligence</h3>
-          <p class="body-text">Operational intelligence covering project health, resource allocation, delivery risks, and client satisfaction - with AI-flagged items that need attention. Daily or weekly, tuned to your ops rhythm.</p>
-        </div>
-        <div class="mockup-strip__frame">
-          <div class="screen-frame">
-            <div class="screen-frame__bar">
-              <span class="screen-frame__dot screen-frame__dot--red"></span>
-              <span class="screen-frame__dot screen-frame__dot--amber"></span>
-              <span class="screen-frame__dot screen-frame__dot--green"></span>
-            </div>
-            <div class="email-chrome">
-              <strong>From:</strong> CapitalCurve Automation<br>
-              <strong>To:</strong> COO, Ops Team<br>
-              <strong>Subject:</strong> Delivery &amp; Operations Intelligence - Week Ending 14 Feb
-            </div>
-            <div class="email-body">
-              <div style="font-size:9px;color:#64748B;margin-bottom:8px;">Wednesday 12 Feb 2025, 8:00 AM AEST &middot; Apex Consulting</div>
-              <div class="metric-blocks">
-                <div class="metric-block">
-                  <div class="metric-block__value">23</div>
-                  <div class="metric-block__label">Active Projects</div>
-                </div>
-                <div class="metric-block">
-                  <div class="metric-block__value">84.7%</div>
-                  <div class="metric-block__label">Billable Util.</div>
-                </div>
-                <div class="metric-block">
-                  <div class="metric-block__value">6.2</div>
-                  <div class="metric-block__label">Avg Days to Invoice</div>
-                </div>
-                <div class="metric-block">
-                  <div class="metric-block__value">42</div>
-                  <div class="metric-block__label">Contractors</div>
-                </div>
-              </div>
-              <div style="font-weight:600;font-size:10px;margin:12px 0 6px;color:#1E293B;">Flagged Items</div>
-              <div class="flag-item"><span class="status-dot status-dot--red"></span> Project Titan - delivery milestone overdue by 5 days, client escalation pending</div>
-              <div class="flag-item"><span class="status-dot status-dot--amber"></span> 3 contractors approaching 6-month tenure limit - conversion decisions needed by 21 Feb</div>
-              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Invoicing backlog: 4 projects with unbilled work &gt;$50K each</div>
-              <div class="flag-item"><span class="status-dot status-dot--red"></span> Resource conflict: 2 senior devs double-booked across Meridian CRM and Bloom Ops next sprint</div>
-              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Scope creep risk: Coastal ERP discovery phase expanding -3 additional modules requested by client</div>
-
-              <div class="ai-commentary-card">
-                <strong><span class="ai-badge">AI</span> Operational Analysis</strong>
-                Utilisation softened 1.2pp from last week as the Vantage Analytics and Titan Rollout projects entered transition and remediation phases respectively. The invoicing backlog now sits at $210K across four projects - recommend batch processing this week to bring days-to-invoice back under the 5-day target. The contractor conversion deadline on 21 Feb is time-sensitive given the 4-week notice period requirement; delaying these decisions risks losing institutional knowledge on active engagements. The resource double-booking on Meridian/Bloom needs resolution before sprint planning on Monday.
-              </div>
-
-              <div class="email-section-title">Project Status Summary</div>
-              <table class="mockup-table">
-                <thead>
-                  <tr><th>Project</th><th>Phase</th><th>Health</th><th>Margin</th><th>Next Milestone</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Titan Rollout</td><td>Delivery</td><td><span class="status-dot status-dot--red"></span></td><td>34%</td><td>UAT Sign-off (overdue)</td></tr>
-                  <tr><td>Meridian CRM</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>52%</td><td>Sprint 4 Demo -19 Feb</td></tr>
-                  <tr><td>Coastal ERP</td><td>Discovery</td><td><span class="status-dot status-dot--green"></span></td><td>48%</td><td>Requirements Sign-off -21 Feb</td></tr>
-                  <tr><td>Vantage Analytics</td><td>Transition</td><td><span class="status-dot status-dot--amber"></span></td><td>41%</td><td>Handover Complete -28 Feb</td></tr>
-                  <tr><td>Bloom Ops</td><td>Build</td><td><span class="status-dot status-dot--green"></span></td><td>56%</td><td>Integration Testing -24 Feb</td></tr>
-                </tbody>
-              </table>
-
-              <div class="email-section-title">Delivery Timeline</div>
-              <div class="milestone-tracker">
-                <div class="milestone-item">
-                  <span class="milestone-label">Titan Rollout</span>
-                  <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--red" style="width:72%"></div></div>
-                  <span class="milestone-pct">72%</span>
-                </div>
-                <div class="milestone-item">
-                  <span class="milestone-label">Meridian CRM</span>
-                  <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--green" style="width:58%"></div></div>
-                  <span class="milestone-pct">58%</span>
-                </div>
-                <div class="milestone-item">
-                  <span class="milestone-label">Coastal ERP</span>
-                  <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--blue" style="width:25%"></div></div>
-                  <span class="milestone-pct">25%</span>
-                </div>
-                <div class="milestone-item">
-                  <span class="milestone-label">Vantage Analytics</span>
-                  <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--amber" style="width:88%"></div></div>
-                  <span class="milestone-pct">88%</span>
-                </div>
-                <div class="milestone-item">
-                  <span class="milestone-label">Bloom Ops</span>
-                  <div class="milestone-bar"><div class="milestone-bar__fill milestone-bar__fill--green" style="width:42%"></div></div>
-                  <span class="milestone-pct">42%</span>
-                </div>
-              </div>
-
-              <div class="email-section-title">Resource Allocation</div>
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0;">
-                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
-                  <div style="font-size:16px;font-weight:700;color:#F59E0B;">4</div>
-                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Bench FTE</div>
-                </div>
-                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
-                  <div style="font-size:16px;font-weight:700;color:#1E293B;">22%</div>
-                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Contractor %</div>
-                </div>
-                <div style="background:#F8FAFC;border-radius:6px;padding:10px;text-align:center;">
-                  <div style="font-size:16px;font-weight:700;color:#1E293B;">6.2</div>
-                  <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.04em;color:#64748B;margin-top:2px;">Avg Span of Control</div>
-                </div>
-              </div>
-
-              <div class="email-section-title">Team Capacity Forecast (4-Week)</div>
-              <table class="mockup-table">
-                <thead>
-                  <tr><th>Team</th><th>This Wk</th><th>Wk +1</th><th>Wk +2</th><th>Wk +3</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Delivery</td><td class="val-green">92%</td><td class="val-green">88%</td><td class="val-amber">78%</td><td class="val-amber">74%</td></tr>
-                  <tr><td>Technical</td><td class="val-green">86%</td><td class="val-green">90%</td><td class="val-green">85%</td><td class="val-amber">76%</td></tr>
-                  <tr><td>PMs</td><td class="val-amber">72%</td><td class="val-green">80%</td><td class="val-green">82%</td><td class="val-amber">70%</td></tr>
-                  <tr><td>QA</td><td class="val-green">95%</td><td class="val-green">88%</td><td class="val-amber">65%</td><td class="val-red">55%</td></tr>
-                </tbody>
-              </table>
-
-              <div class="email-section-title">Subcontractor Performance</div>
-              <table class="mockup-table">
-                <thead>
-                  <tr><th>Partner</th><th>Quality</th><th>On-Time %</th><th>Active</th><th>RAG</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>TechForce AU</td><td>4.6/5</td><td>94%</td><td>12</td><td><span class="status-dot status-dot--green"></span></td></tr>
-                  <tr><td>DevPro Solutions</td><td>4.2/5</td><td>87%</td><td>18</td><td><span class="status-dot status-dot--amber"></span></td></tr>
-                  <tr><td>CloudBridge</td><td>4.8/5</td><td>96%</td><td>8</td><td><span class="status-dot status-dot--green"></span></td></tr>
-                  <tr><td>Nexgen Staffing</td><td>3.5/5</td><td>72%</td><td>4</td><td><span class="status-dot status-dot--red"></span></td></tr>
-                </tbody>
-              </table>
-
-              <div class="email-section-title">Client Satisfaction</div>
-              <div class="flag-item"><span class="status-dot status-dot--green"></span> NPS Score: <strong>62</strong> (up from 58 last month) - above industry benchmark of 55</div>
-              <div class="flag-item"><span class="status-dot status-dot--amber"></span> Recent survey: 2 clients flagged communication delays on Titan and Vantage projects</div>
-              <div class="flag-item"><span class="status-dot status-dot--red"></span> Active escalations: <strong>1</strong> - Titan Rollout (client exec meeting scheduled 18 Feb)</div>
-
-              <div class="email-section-title">Risk Register - Top 5</div>
-              <table class="mockup-table">
-                <thead>
-                  <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Owner</th><th>Status</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Titan UAT failure</td><td>High</td><td>High</td><td>J. Torres</td><td><span class="status-dot status-dot--red"></span></td></tr>
-                  <tr><td>Coastal scope creep</td><td>Medium</td><td>High</td><td>S. Patel</td><td><span class="status-dot status-dot--amber"></span></td></tr>
-                  <tr><td>Contractor attrition</td><td>Medium</td><td>Medium</td><td>HR Lead</td><td><span class="status-dot status-dot--amber"></span></td></tr>
-                  <tr><td>QA capacity gap (Wk+3)</td><td>High</td><td>Medium</td><td>L. Chen</td><td><span class="status-dot status-dot--amber"></span></td></tr>
-                  <tr><td>Key-person dependency</td><td>Low</td><td>High</td><td>COO</td><td><span class="status-dot status-dot--green"></span></td></tr>
-                </tbody>
-              </table>
-
-              <div class="ai-commentary-card">
-                <strong><span class="ai-badge">AI</span> Strategic Assessment</strong>
-                <p style="margin:0 0 8px;">The Titan Rollout remains the single largest risk to this quarter's delivery performance. The overdue UAT milestone, combined with the active client escalation, requires senior attention before the 18 Feb exec meeting. I'd recommend preparing a remediation plan with revised timelines - the client will expect specifics, not reassurance.</p>
-                <p style="margin:0 0 8px;">On the capacity front, QA utilisation is projected to drop to 55% by week +3 as current test cycles complete. This coincides with the Bloom Ops integration testing phase beginning 24 Feb - there's an opportunity to redeploy QA resources proactively rather than scramble when the sprint starts. The four bench FTEs could also accelerate the Meridian CRM build, which carries the highest margin at 52%.</p>
-                <p style="margin:0;">Worth flagging: Nexgen Staffing's quality score (3.5/5) and on-time delivery rate (72%) are well below the other partners. If the three contractor conversions go ahead, consider shifting Nexgen allocations to TechForce or CloudBridge for remaining engagements.</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -3299,51 +3356,60 @@
         });
       }
 
-      // --- Combined strip tab switcher (Pipeline / CFO Scorecard) ---
-      var stripSection = document.getElementById('demo-strips');
-      if (stripSection) {
-        var stripTabBtns = Array.from(stripSection.querySelectorAll('.strip-tab-btn'));
-        var stripTexts = Array.from(stripSection.querySelectorAll('.strip-tab-text'));
-        var stripPanels = Array.from(stripSection.querySelectorAll('.strip-tab-panel'));
-        var stripAutoTimer = null;
-        var stripCurrentIdx = 0;
+      // --- Carousel: Pipeline / CFO / Ops ---
+      var carouselSection = document.getElementById('demo-strips');
+      if (carouselSection) {
+        var track = carouselSection.querySelector('.carousel-track');
+        var slides = Array.from(track.querySelectorAll('.carousel-slide'));
+        var dots = Array.from(carouselSection.querySelectorAll('.carousel-dot'));
+        var autoTimer = null;
+        var currentSlide = 0;
 
-        function showStrip(idx) {
-          stripCurrentIdx = idx % stripTabBtns.length;
-          var target = stripTabBtns[stripCurrentIdx].getAttribute('data-strip-tab');
-          stripTabBtns.forEach(function(b) { b.classList.remove('active'); });
-          stripTexts.forEach(function(t) { t.classList.remove('active'); });
-          stripPanels.forEach(function(p) { p.classList.remove('active'); });
-          stripTabBtns[stripCurrentIdx].classList.add('active');
-          var textEl = stripSection.querySelector('[data-strip-text="' + target + '"]');
-          var panelEl = stripSection.querySelector('[data-strip-panel="' + target + '"]');
-          if (textEl) textEl.classList.add('active');
-          if (panelEl) panelEl.classList.add('active');
-          // Trigger email auto-scroll for visible panel
-          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            var emailBody = (target === 'cfo')
-              ? panelEl && panelEl.querySelector('.cfo-tab-panel.active .email-body')
-              : panelEl && panelEl.querySelector('.email-body');
-            if (emailBody) initEmailAutoScroll(emailBody);
-          }
+        function goToSlide(idx) {
+          currentSlide = ((idx % slides.length) + slides.length) % slides.length;
+          slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
-        function startStripAuto() {
-          clearInterval(stripAutoTimer);
-          if (window.innerWidth < 768) return;
-          stripAutoTimer = setInterval(function() { showStrip(stripCurrentIdx + 1); }, 8000);
-        }
-        function stopStripAuto() { clearInterval(stripAutoTimer); }
+        // IntersectionObserver on slides to sync dots + trigger email scroll
+        var slideObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+            var idx = +entry.target.getAttribute('data-slide');
+            currentSlide = idx;
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+            // Trigger email auto-scroll for newly visible slide
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+              var emailBody = entry.target.querySelector('.cfo-tab-panel.active .email-body')
+                           || entry.target.querySelector('.email-body');
+              if (emailBody) initEmailAutoScroll(emailBody);
+            }
+          });
+        }, { root: track, threshold: 0.6 });
+        slides.forEach(function(s) { slideObserver.observe(s); });
 
-        stripTabBtns.forEach(function(btn, i) {
-          btn.addEventListener('click', function() { showStrip(i); startStripAuto(); });
+        // Dot click
+        dots.forEach(function(dot, i) {
+          dot.addEventListener('click', function() { goToSlide(i); startAuto(); });
         });
-        stripSection.addEventListener('mouseenter', stopStripAuto);
-        stripSection.addEventListener('mouseleave', startStripAuto);
 
+        // Auto-advance (10s)
+        function startAuto() {
+          clearInterval(autoTimer);
+          if (window.innerWidth < 768) return;
+          autoTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 10000);
+        }
+        function stopAuto() { clearInterval(autoTimer); }
+
+        carouselSection.addEventListener('mouseenter', stopAuto);
+        carouselSection.addEventListener('mouseleave', startAuto);
+
+        // Start when section enters viewport
         new IntersectionObserver(function(entries) {
-          entries.forEach(function(e) { e.isIntersecting ? startStripAuto() : stopStripAuto(); });
-        }, { threshold: 0.2 }).observe(stripSection);
+          entries.forEach(function(e) { e.isIntersecting ? startAuto() : stopAuto(); });
+        }, { threshold: 0.2 }).observe(carouselSection);
+
+        // Reset auto-timer on manual scroll (touch/wheel)
+        track.addEventListener('scroll', function() { startAuto(); }, { passive: true });
       }
 
       // --- Cash Forecast: Data-driven rendering ---
