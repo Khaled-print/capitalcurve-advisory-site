@@ -7,13 +7,19 @@
   <meta name="description" content="Bespoke finance automation for Australian mid-market companies. We automate the data work underneath so your team reviews a finished report instead of building one.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ===== RESET ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
+
+    /* SVG text rendering */
+    svg text {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
 
     /* ===== DESIGN TOKENS ===== */
     :root {
@@ -28,6 +34,7 @@
       --border:         rgba(255,255,255,0.10);
       --border-button:  rgba(255,255,255,0.60);
       --font-body:      'Inter', sans-serif;
+      --font-heading:   'DM Sans', 'Inter', sans-serif;
       --font-email:     'IBM Plex Sans', 'Inter', sans-serif;
     }
 
@@ -37,6 +44,11 @@
       background: var(--bg-outer);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "kern" 1, "liga" 1;
+      text-rendering: optimizeSpeed;
+      font-synthesis: none;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
       padding: 12px;
       background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
       min-height: 100vh;
@@ -53,25 +65,27 @@
 
     /* ===== TYPOGRAPHY ===== */
     .eyebrow {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 11px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.1;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.50);
       margin-bottom: 20px;
     }
 
     .section-heading {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 40px;
       font-weight: 700;
       line-height: 1.15;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.01em;
       text-transform: uppercase;
       color: var(--text-primary);
       margin-bottom: 32px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     }
 
     .section-heading--center {
@@ -91,14 +105,15 @@
     }
 
     .ai-heading {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 22px;
       font-weight: 700;
       line-height: 1.3;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.01em;
       text-transform: uppercase;
       color: var(--text-primary);
       margin-bottom: 24px;
+      text-rendering: optimizeLegibility;
     }
 
     /* ===== LAYOUT ===== */
@@ -160,10 +175,10 @@
     }
 
     .nav-link {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.60);
       transition: color 0.2s ease;
@@ -178,10 +193,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.10em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       cursor: pointer;
@@ -304,13 +319,15 @@
     }
 
     .hero-title {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 56px;
       font-weight: 700;
       line-height: 1.1;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.02em;
       text-transform: uppercase;
       color: #fff;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     }
 
     .hero .btn--outline {
@@ -502,11 +519,11 @@
     }
 
     .pricing-label {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 13px;
       font-weight: 600;
       line-height: 1.4;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       color: var(--text-primary);
       margin-bottom: 4px;
     }
@@ -520,9 +537,10 @@
     }
 
     .price {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 16px;
       font-weight: 600;
+      font-feature-settings: "kern" 1, "tnum" 1, "lnum" 1;
       line-height: 1.4;
       color: var(--text-primary);
       text-align: right;
@@ -1012,7 +1030,7 @@
       transform: scale(1.25);
     }
     .carousel-dot__label {
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.08em;
@@ -1098,6 +1116,7 @@
       border-collapse: collapse;
       font-size: 10px;
       margin: 12px 0;
+      font-feature-settings: "kern" 1, "tnum" 1, "lnum" 1;
     }
 
     .mockup-table th {
@@ -1172,6 +1191,7 @@
       font-size: 18px;
       font-weight: 700;
       color: #1E293B;
+      font-feature-settings: "kern" 1, "tnum" 1, "lnum" 1;
     }
 
     .metric-block__label {
@@ -1207,6 +1227,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 9px;
+      font-feature-settings: "kern" 1, "tnum" 1, "lnum" 1;
       white-space: nowrap;
       min-width: 900px;
     }
@@ -1643,8 +1664,9 @@
 
     /* Email content utility classes */
     .email-section-title {
-      font-size: 11px; font-weight: 700; color: #1E293B;
-      text-transform: uppercase; letter-spacing: 0.5px;
+      font-family: var(--font-heading);
+      font-size: 11px; font-weight: 600; color: #1E293B;
+      text-transform: uppercase; letter-spacing: 0.04em;
       margin: 18px 0 8px; padding-bottom: 4px;
       border-bottom: 1px solid #E2E8F0;
     }
@@ -1663,7 +1685,7 @@
     /* Hero metrics row (top of email bodies) */
     .email-hero-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:14px; }
     .email-hero-metric { background:linear-gradient(135deg,#EFF6FF,#F8FAFC); border:1px solid #DBEAFE; border-radius:6px; padding:10px 8px; text-align:center; }
-    .email-hero-metric__value { font-size:18px; font-weight:700; color:#1E293B; }
+    .email-hero-metric__value { font-size:18px; font-weight:700; color:#1E293B; font-feature-settings:"kern" 1,"tnum" 1,"lnum" 1; }
     .email-hero-metric__label { font-size:7px; text-transform:uppercase; letter-spacing:0.05em; color:#64748B; margin-top:2px; }
 
     /* Prominent AI commentary card */
@@ -1673,7 +1695,7 @@
 
     /* CFO tabs (Monday/Friday inside email frame) */
     .cfo-tabs__nav { display:flex; background:#1E293B; border-bottom:2px solid #334155; }
-    .cfo-tab-btn { flex:1; padding:12px 16px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.45); background:#1E293B; border:none; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.25s,background 0.25s; }
+    .cfo-tab-btn { flex:1; padding:12px 16px; font-family:var(--font-heading); font-size:12px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:rgba(255,255,255,0.45); background:#1E293B; border:none; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.25s,background 0.25s; }
     .cfo-tab-btn:hover { color:rgba(255,255,255,0.7); }
     .cfo-tab-btn.active { color:#fff; border-bottom-color:#3B82F6; background:#243044; }
     .cfo-tab-btn--pulse:not(.active) { position:relative; }
@@ -1698,7 +1720,7 @@
     /* Excel worksheet tabs (bottom of cash forecast frame) */
     .excel-tabs { display:flex; background:#E2E8F0; border-top:1px solid #CBD5E1; border-radius:0 0 12px 12px; overflow:hidden; flex-shrink:0; }
     #pnl-strip { overflow:visible; }
-    .excel-tab-btn { padding:8px 20px; font-size:10px; font-weight:600; color:#64748B; background:#E2E8F0; border:none; border-right:1px solid #CBD5E1; cursor:pointer; transition:color 0.2s,background 0.2s; }
+    .excel-tab-btn { padding:8px 20px; font-family:var(--font-heading); font-size:10px; font-weight:600; color:#64748B; background:#E2E8F0; border:none; border-right:1px solid #CBD5E1; cursor:pointer; transition:color 0.2s,background 0.2s; }
     .excel-tab-btn:hover { background:#F1F5F9; color:#1E293B; }
     .excel-tab-btn.active { background:#fff; color:#1E293B; border-bottom:2px solid #22C55E; }
     .excel-tab-panel { display:none; }
@@ -2591,7 +2613,7 @@
                     <polygon points="20,94 82,133 143,160 205,105 267,128 328,66 390,71 452,71 513,54 575,34 637,38 698,20 760,23 760,160 20,160" fill="url(#areaGrad)"/>
                     <polyline points="20,94 82,133 143,160 205,105 267,128 328,66 390,71 452,71 513,54 575,34 637,38 698,20 760,23" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chart-line-path"/>
                     <circle cx="20" cy="94" r="3" fill="#3B82F6"/><circle cx="82" cy="133" r="3" fill="#3B82F6"/><circle cx="143" cy="160" r="3.5" fill="#EF4444"/><circle cx="205" cy="105" r="3" fill="#3B82F6"/><circle cx="267" cy="128" r="3" fill="#3B82F6"/><circle cx="328" cy="66" r="3" fill="#22C55E"/><circle cx="390" cy="71" r="3" fill="#3B82F6"/><circle cx="452" cy="71" r="3" fill="#3B82F6"/><circle cx="513" cy="54" r="3" fill="#22C55E"/><circle cx="575" cy="34" r="3" fill="#22C55E"/><circle cx="637" cy="38" r="3" fill="#22C55E"/><circle cx="698" cy="20" r="3" fill="#22C55E"/><circle cx="760" cy="23" r="3" fill="#22C55E"/>
-                    <text x="20" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W1</text><text x="82" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W2</text><text x="143" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W3</text><text x="205" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W4</text><text x="267" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W5</text><text x="328" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W6</text><text x="390" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W7</text><text x="452" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W8</text><text x="513" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W9</text><text x="575" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W10</text><text x="637" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W11</text><text x="698" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W12</text><text x="760" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="Inter,sans-serif">W13</text>
+                    <text x="20" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W1</text><text x="82" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W2</text><text x="143" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W3</text><text x="205" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W4</text><text x="267" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W5</text><text x="328" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W6</text><text x="390" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W7</text><text x="452" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W8</text><text x="513" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W9</text><text x="575" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W10</text><text x="637" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W11</text><text x="698" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W12</text><text x="760" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:'tnum' 1,'lnum' 1">W13</text>
                   </svg>
                 </div>
                 <div style="background:#fff;padding:4px;">
@@ -3627,7 +3649,7 @@
           var col = closing[i] === mn + pad ? '#EF4444' : closing[i] >= avg ? '#22C55E' : '#3B82F6';
           var r = closing[i] <= mn + pad * 1.5 ? 3.5 : 3;
           circles += '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+col+'"/>';
-          txtLabels += '<text x="'+x+'" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="IBM Plex Sans,Inter,sans-serif">'+labels[i]+'</text>';
+          txtLabels += '<text x="'+x+'" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="DM Sans,Inter,sans-serif" style="font-feature-settings:\'tnum\' 1,\'lnum\' 1">'+labels[i]+'</text>';
         }
         var pStr = pts.join(' ');
         var xEnd = Math.round(xPad + chartW), xStart = xPad;
