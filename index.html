@@ -2377,9 +2377,9 @@
               <!-- Cash Flow Panel (active) -->
               <div class="excel-tab-panel active" data-excel-panel="cashflow">
                 <div class="week-selector">
-                  <button class="week-selector__btn" data-weeks="4">4 Weeks</button>
-                  <button class="week-selector__btn" data-weeks="8">8 Weeks</button>
-                  <button class="week-selector__btn active" data-weeks="13">13 Weeks</button>
+                  <button class="week-selector__btn active" data-view="13w">13 Weeks</button>
+                  <button class="week-selector__btn" data-view="6m">6 Months</button>
+                  <button class="week-selector__btn" data-view="12m">12 Months</button>
                 </div>
                 <div class="cash-chart" id="cash-chart">
                   <div style="font-size:10px;font-weight:600;color:#1E293B;margin-bottom:8px;">Closing Balance Trend ($K)</div>
@@ -2484,96 +2484,71 @@
               </div>
               <!-- Assumptions Panel -->
               <div class="excel-tab-panel" data-excel-panel="assumptions">
-                <div style="background:#fff;padding:20px;">
-                  <div style="font-size:11px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px;">Key Model Assumptions</div>
-                  <table class="assumptions-table">
-                    <thead>
-                      <tr><th>Assumption</th><th>Value</th><th>Source</th><th>Last Updated</th></tr>
-                    </thead>
-                    <tbody>
-                      <tr class="category-row"><td colspan="4">Revenue &amp; Collections</td></tr>
-                      <tr><td>Average collection period</td><td>32 days</td><td>AR ageing report</td><td>14 Feb 2025</td></tr>
-                      <tr><td>Monthly recurring revenue</td><td>$1.4M</td><td>Contract schedule</td><td>14 Feb 2025</td></tr>
-                      <tr><td>Project milestone payments</td><td>Per SOW schedule</td><td>PM tracker</td><td>12 Feb 2025</td></tr>
-                      <tr><td>Bad debt provision</td><td>1.5% of revenue</td><td>Historical average</td><td>31 Jan 2025</td></tr>
-                      <tr class="category-row"><td colspan="4">Expenses</td></tr>
-                      <tr><td>Payroll (weekly)</td><td>$280K</td><td>HRIS payroll file</td><td>14 Feb 2025</td></tr>
-                      <tr><td>Contractor cost (avg weekly)</td><td>$90K</td><td>Contractor invoices</td><td>14 Feb 2025</td></tr>
-                      <tr><td>Office lease (monthly)</td><td>$85K</td><td>Lease agreement</td><td>1 Jan 2025</td></tr>
-                      <tr><td>Software &amp; SaaS (monthly)</td><td>$42K</td><td>Subscription tracker</td><td>1 Feb 2025</td></tr>
-                      <tr class="category-row"><td colspan="4">External Factors</td></tr>
-                      <tr><td>RBA cash rate</td><td>4.10%</td><td>RBA</td><td>4 Feb 2025</td></tr>
-                      <tr><td>AUD/USD</td><td>0.6542</td><td>Bloomberg</td><td>14 Feb 2025</td></tr>
-                      <tr><td>CPI (annualised)</td><td>3.4%</td><td>ABS</td><td>Q4 2024</td></tr>
-                    </tbody>
-                  </table>
+                <div style="background:#fff;padding:4px;">
+                  <div class="spreadsheet-frame">
+                    <table class="spreadsheet-table" style="min-width:700px;">
+                      <thead>
+                        <tr><th style="width:22%">Assumption</th><th style="width:14%">Value</th><th style="width:14%">Frequency</th><th style="width:16%">Source</th><th style="width:14%">Last Updated</th><th style="width:20%">Notes</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-header"><td colspan="6">Revenue &amp; Collections</td></tr>
+                        <tr><td>Average collection period</td><td>32 days</td><td>Rolling</td><td>AR ageing report</td><td>14 Feb 2025</td><td>Trending up from 28d in Q3</td></tr>
+                        <tr><td>Monthly recurring revenue</td><td>$1.4M</td><td>Monthly</td><td>Contract schedule</td><td>14 Feb 2025</td><td>3 new contracts from Jan</td></tr>
+                        <tr><td>Project milestone payments</td><td>Per SOW schedule</td><td>Per milestone</td><td>PM tracker</td><td>12 Feb 2025</td><td>5 milestones due in Q1</td></tr>
+                        <tr><td>Bad debt provision</td><td>1.5% of revenue</td><td>Monthly</td><td>Historical average</td><td>31 Jan 2025</td><td>Stable at 1.3-1.7% range</td></tr>
+                        <tr><td>Payment terms (standard)</td><td>Net 30</td><td>-</td><td>Client contracts</td><td>14 Feb 2025</td><td>65% of clients on Net 30</td></tr>
+                        <tr class="group-header"><td colspan="6">Expenses</td></tr>
+                        <tr><td>Payroll (weekly)</td><td>$280K</td><td>Weekly</td><td>HRIS payroll file</td><td>14 Feb 2025</td><td>68 FTE, next review Apr</td></tr>
+                        <tr><td>Contractor cost (avg weekly)</td><td>$90K</td><td>Weekly</td><td>Contractor invoices</td><td>14 Feb 2025</td><td>42 active contractors</td></tr>
+                        <tr><td>Office lease</td><td>$85K</td><td>Monthly</td><td>Lease agreement</td><td>1 Jan 2025</td><td>Renewal due Jun 2025</td></tr>
+                        <tr><td>Software &amp; SaaS</td><td>$42K</td><td>Monthly</td><td>Subscription tracker</td><td>1 Feb 2025</td><td>12 licences, 3 annual</td></tr>
+                        <tr><td>Insurance (D&amp;O + PI)</td><td>$28K</td><td>Quarterly</td><td>Broker schedule</td><td>1 Jan 2025</td><td>Next payment 7 Mar</td></tr>
+                        <tr class="group-header"><td colspan="6">External Factors</td></tr>
+                        <tr><td>RBA cash rate</td><td>4.10%</td><td>-</td><td>RBA</td><td>4 Feb 2025</td><td>Market expects hold at next meeting</td></tr>
+                        <tr><td>AUD/USD</td><td>0.6542</td><td>Daily</td><td>Bloomberg</td><td>14 Feb 2025</td><td>Hedged at 0.65 for Q1</td></tr>
+                        <tr><td>CPI (annualised)</td><td>3.4%</td><td>Quarterly</td><td>ABS</td><td>Q4 2024</td><td>Q1 2025 release Mar</td></tr>
+                        <tr><td>Wage price index</td><td>4.2%</td><td>Quarterly</td><td>ABS</td><td>Q4 2024</td><td>Impacts next payroll review</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
               <!-- Scenarios Panel -->
               <div class="excel-tab-panel" data-excel-panel="scenarios">
-                <div style="background:#fff;padding:20px;">
-                  <div style="font-size:11px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px;">Scenario Analysis -13-Week Outlook</div>
-                  <div class="scenario-grid">
-                    <div class="scenario-col scenario-col--best">
-                      <div class="scenario-col__title">Best Case</div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#22C55E;">$4.2M</div>
-                        <div class="scenario-metric__label">Closing Balance</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#22C55E;">$3.1M</div>
-                        <div class="scenario-metric__label">Min Balance</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#22C55E;">+$1.0M</div>
-                        <div class="scenario-metric__label">Net Cash Flow</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value">$3.6M</div>
-                        <div class="scenario-metric__label">Avg Cash on Hand</div>
-                      </div>
-                      <p style="font-size:9px;color:#64748B;line-height:1.5;margin-top:8px;">Assumes accelerated collections (25-day avg), 2 large deal closings in Wk 4-5, and contractor costs held flat.</p>
-                    </div>
-                    <div class="scenario-col scenario-col--base">
-                      <div class="scenario-col__title">Base Case</div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#3B82F6;">$3.6M</div>
-                        <div class="scenario-metric__label">Closing Balance</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#F59E0B;">$2.8M</div>
-                        <div class="scenario-metric__label">Min Balance</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#22C55E;">+$383K</div>
-                        <div class="scenario-metric__label">Net Cash Flow</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value">$3.2M</div>
-                        <div class="scenario-metric__label">Avg Cash on Hand</div>
-                      </div>
-                      <p style="font-size:9px;color:#64748B;line-height:1.5;margin-top:8px;">Current run-rate assumptions. Collections at 32-day avg, pipeline converting at historical rates, costs per budget.</p>
-                    </div>
-                    <div class="scenario-col scenario-col--worst">
-                      <div class="scenario-col__title">Worst Case</div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#EF4444;">$2.4M</div>
-                        <div class="scenario-metric__label">Closing Balance</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#EF4444;">$2.0M</div>
-                        <div class="scenario-metric__label">Min Balance</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value" style="color:#EF4444;">&minus;$800K</div>
-                        <div class="scenario-metric__label">Net Cash Flow</div>
-                      </div>
-                      <div class="scenario-metric">
-                        <div class="scenario-metric__value">$2.5M</div>
-                        <div class="scenario-metric__label">Avg Cash on Hand</div>
-                      </div>
-                      <p style="font-size:9px;color:#64748B;line-height:1.5;margin-top:8px;">Assumes 2 major client delays, AR ageing extends to 45+ days, Titan remediation costs +$150K, and one deal loss.</p>
-                    </div>
+                <div style="background:#fff;padding:4px;">
+                  <div class="spreadsheet-frame">
+                    <table class="spreadsheet-table" id="scenario-table" style="min-width:700px;">
+                      <thead>
+                        <tr>
+                          <th style="width:28%">Metric</th>
+                          <th style="width:24%;background:#166534;color:#fff;">Best Case</th>
+                          <th style="width:24%;background:#1E40AF;color:#fff;">Base Case</th>
+                          <th style="width:24%;background:#991B1B;color:#fff;">Worst Case</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-header"><td colspan="4">Cash Position Summary</td></tr>
+                        <tr class="balance-row"><td>Closing Balance</td><td style="color:#166534">$4.2M</td><td>$3.6M</td><td style="color:#EF4444">$2.4M</td></tr>
+                        <tr><td>Minimum Balance</td><td style="color:#166534">$3.1M</td><td>$2.8M</td><td style="color:#EF4444">$2.0M</td></tr>
+                        <tr class="net-row"><td>Net Cash Flow (13 Wk)</td><td style="color:#22C55E">+$1.0M</td><td style="color:#22C55E">+$383K</td><td style="color:#EF4444">&minus;$800K</td></tr>
+                        <tr><td>Average Cash on Hand</td><td>$3.6M</td><td>$3.2M</td><td>$2.5M</td></tr>
+                        <tr><td>Days Cash Cover</td><td style="color:#166534">62 days</td><td>47 days</td><td style="color:#EF4444">31 days</td></tr>
+                        <tr><td>Cash Runway</td><td style="color:#166534">&gt;12 months</td><td style="color:#166534">&gt;12 months</td><td style="color:#F59E0B">8 months</td></tr>
+                        <tr class="group-header"><td colspan="4">Key Assumptions</td></tr>
+                        <tr><td>Collection Period</td><td>25 days</td><td>32 days</td><td>45+ days</td></tr>
+                        <tr><td>Pipeline Conversion</td><td>+2 large closings</td><td>Historical rates</td><td>&minus;1 deal loss</td></tr>
+                        <tr><td>Revenue Growth (QoQ)</td><td style="color:#22C55E">+8%</td><td>+3%</td><td style="color:#EF4444">&minus;5%</td></tr>
+                        <tr><td>Contractor Costs</td><td>Held flat</td><td>Per budget</td><td>+$150K uplift</td></tr>
+                        <tr><td>Client Delays</td><td>None</td><td>None</td><td>2 major delays</td></tr>
+                        <tr><td>AR Ageing (&gt;60d)</td><td>&lt;$200K</td><td>$340K</td><td style="color:#EF4444">$500K+</td></tr>
+                        <tr class="group-header"><td colspan="4">Sensitivity Analysis</td></tr>
+                        <tr><td>Revenue &plusmn;10%</td><td colspan="2" style="text-align:center;color:#3B82F6;">Cash impact: $320K - $480K</td><td>Balance range: $3.1M - $4.1M</td></tr>
+                        <tr><td>Collection Days &plusmn;7d</td><td colspan="2" style="text-align:center;color:#3B82F6;">Cash impact: $180K - $250K</td><td>Balance range: $3.3M - $3.8M</td></tr>
+                        <tr><td>Contractor Costs &plusmn;15%</td><td colspan="2" style="text-align:center;color:#3B82F6;">Cash impact: $95K - $140K</td><td>Balance range: $3.4M - $3.7M</td></tr>
+                        <tr><td>Major Client Loss (1)</td><td colspan="2" style="text-align:center;color:#EF4444;">Cash impact: &minus;$420K</td><td>Balance drops to: $3.2M</td></tr>
+                        <tr><td>Enterprise Deal Win (1)</td><td colspan="2" style="text-align:center;color:#22C55E;">Cash impact: +$350K</td><td>Balance rises to: $3.9M</td></tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -3233,7 +3208,135 @@
         });
       }
 
-      // --- Excel tab switcher (Cash Flow/Assumptions/Scenarios) ---
+      // --- Cash Forecast: Data-driven rendering ---
+      var cashViews = {
+        '13w': {
+          title: '13-Week Cash Forecast',
+          headers: ['Wk 1<br>17 Feb','Wk 2<br>24 Feb','Wk 3<br>3 Mar','Wk 4<br>10 Mar','Wk 5<br>17 Mar','Wk 6<br>24 Mar','Wk 7<br>31 Mar','Wk 8<br>7 Apr','Wk 9<br>14 Apr','Wk 10<br>21 Apr','Wk 11<br>28 Apr','Wk 12<br>5 May','Wk 13<br>12 May'],
+          chartLabels: ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12','W13'],
+          rows: [
+            {l:'Opening Balance',c:'balance-row',v:[3200,3185,2960,2810,3120,2890,3340,3110,3410,3190,3520,3310,3620]},
+            {l:'Cash In',c:'group-header'},
+            {l:'Client Receipts',v:[420,380,510,640,390,720,480,630,410,680,450,650,520]},
+            {l:'Other Income',v:[15,10,15,20,10,15,10,20,15,10,15,10,20]},
+            {l:'Total Cash In',c:'subtotal-row',v:[435,390,525,660,400,735,490,650,425,690,465,660,540]},
+            {l:'Cash Out',c:'group-header'},
+            {l:'Payroll',v:[-280,-280,-280,-280,-280,-280,-280,-280,-280,-280,-280,-280,-280]},
+            {l:'Contractors',v:[-95,-120,-95,-70,-110,-80,-105,-70,-95,-80,-110,-70,-95]},
+            {l:'Rent & Facilities',v:[0,-85,0,0,-85,0,0,-85,0,0,-85,0,0]},
+            {l:'Software & SaaS',v:[-42,0,0,0,-42,0,0,0,-42,0,0,0,-42]},
+            {l:'Tax / BAS',v:[0,-130,0,0,0,0,-135,0,0,0,0,0,-140]},
+            {l:'Other',v:[-33,0,-300,0,-13,-25,0,-15,-8,0,-10,-20,0]},
+            {l:'Total Cash Out',c:'subtotal-row',v:[-450,-615,-675,-350,-530,-385,-520,-450,-425,-360,-485,-370,-557]},
+            {l:'Net Cash Flow',c:'net-row',v:[-15,-225,-150,310,-130,350,-30,200,0,330,-20,290,-17]},
+            {l:'Closing Balance',c:'balance-row',v:[3185,2960,2810,3120,2990,3340,3310,3310,3410,3520,3500,3600,3583]}
+          ]
+        },
+        '6m': {
+          title: '6-Month Cash Forecast',
+          headers: ['Feb<br>2025','Mar<br>2025','Apr<br>2025','May<br>2025','Jun<br>2025','Jul<br>2025'],
+          chartLabels: ['Feb','Mar','Apr','May','Jun','Jul'],
+          rows: [
+            {l:'Opening Balance',c:'balance-row',v:[3200,3110,3380,3450,3370,3770]},
+            {l:'Cash In',c:'group-header'},
+            {l:'Client Receipts',v:[1690,1990,1860,1620,2040,1580]},
+            {l:'Other Income',v:[60,60,60,60,60,60]},
+            {l:'Total Cash In',c:'subtotal-row',v:[1750,2050,1920,1680,2100,1640]},
+            {l:'Cash Out',c:'group-header'},
+            {l:'Payroll',v:[-1120,-1120,-1120,-1120,-1120,-1120]},
+            {l:'Contractors',v:[-380,-365,-340,-355,-280,-345]},
+            {l:'Rent & Facilities',v:[-85,-85,-85,-85,-85,-85]},
+            {l:'Software & SaaS',v:[-42,-42,-42,-42,-42,-42]},
+            {l:'Tax / BAS',v:[-130,-135,0,-140,0,-145]},
+            {l:'Other',v:[-83,-33,-263,-18,-173,-23]},
+            {l:'Total Cash Out',c:'subtotal-row',v:[-1840,-1780,-1850,-1760,-1700,-1760]},
+            {l:'Net Cash Flow',c:'net-row',v:[-90,270,70,-80,400,-120]},
+            {l:'Closing Balance',c:'balance-row',v:[3110,3380,3450,3370,3770,3650]}
+          ]
+        },
+        '12m': {
+          title: '12-Month Cash Forecast',
+          headers: ['Feb<br>2025','Mar<br>2025','Apr<br>2025','May<br>2025','Jun<br>2025','Jul<br>2025','Aug<br>2025','Sep<br>2025','Oct<br>2025','Nov<br>2025','Dec<br>2025','Jan<br>2026'],
+          chartLabels: ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan'],
+          rows: [
+            {l:'Opening Balance',c:'balance-row',v:[3200,3110,3380,3450,3370,3770,3650,3830,3520,3800,3750,3570]},
+            {l:'Cash In',c:'group-header'},
+            {l:'Client Receipts',v:[1690,1990,1860,1620,2040,1580,1870,1390,2010,1650,1420,1920]},
+            {l:'Other Income',v:[60,60,60,60,60,60,60,60,60,60,60,60]},
+            {l:'Total Cash In',c:'subtotal-row',v:[1750,2050,1920,1680,2100,1640,1930,1450,2070,1710,1480,1980]},
+            {l:'Cash Out',c:'group-header'},
+            {l:'Payroll',v:[-1120,-1120,-1120,-1120,-1120,-1120,-1120,-1120,-1120,-1120,-1120,-1120]},
+            {l:'Contractors',v:[-380,-365,-340,-355,-280,-345,-360,-330,-350,-340,-320,-330]},
+            {l:'Rent & Facilities',v:[-85,-85,-85,-85,-85,-85,-85,-85,-85,-85,-85,-85]},
+            {l:'Software & SaaS',v:[-42,-42,-42,-42,-42,-42,-42,-42,-42,-42,-42,-42]},
+            {l:'Tax / BAS',v:[-130,-135,0,-140,0,-145,0,-135,0,-140,0,-145]},
+            {l:'Other',v:[-83,-33,-263,-18,-173,-23,-143,-48,-193,-33,-93,-8]},
+            {l:'Total Cash Out',c:'subtotal-row',v:[-1840,-1780,-1850,-1760,-1700,-1760,-1750,-1760,-1790,-1760,-1660,-1730]},
+            {l:'Net Cash Flow',c:'net-row',v:[-90,270,70,-80,400,-120,180,-310,280,-50,-180,250]},
+            {l:'Closing Balance',c:'balance-row',v:[3110,3380,3450,3370,3770,3650,3830,3520,3800,3750,3570,3820]}
+          ]
+        }
+      };
+
+      function fmtNum(n) { return Math.abs(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+      function renderCashTable(key) {
+        var d = cashViews[key]; if (!d) return;
+        var table = document.getElementById('cash-spreadsheet'); if (!table) return;
+        var n = d.headers.length;
+        var th = '<tr><th>Category</th>';
+        for (var i = 0; i < n; i++) th += '<th>' + d.headers[i] + '</th>';
+        th += '</tr>';
+        table.querySelector('thead').innerHTML = th;
+        var tb = '';
+        d.rows.forEach(function(r) {
+          if (r.c === 'group-header') { tb += '<tr class="group-header"><td colspan="'+(n+1)+'">'+r.l+'</td></tr>'; return; }
+          var cls = r.c ? ' class="'+r.c+'"' : '';
+          tb += '<tr'+cls+'><td>'+r.l+'</td>';
+          for (var i = 0; i < r.v.length; i++) {
+            var v = r.v[i], txt = '', sty = '';
+            if (v === 0 && r.c !== 'net-row' && r.c !== 'balance-row' && r.c !== 'subtotal-row') { txt = '-'; }
+            else if (v < 0) { sty = ' style="color:#EF4444"'; txt = '&minus;' + fmtNum(v); }
+            else if (v > 0 && r.c === 'net-row') { sty = ' style="color:#22C55E"'; txt = '+' + fmtNum(v); }
+            else if (v === 0 && r.c === 'net-row') { txt = '0'; }
+            else { txt = fmtNum(v); }
+            tb += '<td'+sty+'>' + txt + '</td>';
+          }
+          tb += '</tr>';
+        });
+        table.querySelector('tbody').innerHTML = tb;
+      }
+
+      function renderCashChart(key) {
+        var d = cashViews[key]; if (!d) return;
+        var el = document.getElementById('cash-chart'); if (!el) return;
+        var closing = d.rows[d.rows.length - 1].v;
+        var n = closing.length, labels = d.chartLabels;
+        var mn = Math.min.apply(null, closing), mx = Math.max.apply(null, closing);
+        var pad = (mx - mn) * 0.12 || 100; mn -= pad; mx += pad;
+        function yMap(v) { return Math.round(160 - ((v - mn) / (mx - mn)) * 140); }
+        var avg = closing.reduce(function(a,b){return a+b;},0) / n;
+        var xStep = n > 1 ? 780 / (n - 1) : 0;
+        var pts = [], circles = '', txtLabels = '';
+        for (var i = 0; i < n; i++) {
+          var x = Math.round(xStep * i), y = yMap(closing[i]);
+          pts.push(x+','+y);
+          var col = closing[i] === mn + pad ? '#EF4444' : closing[i] >= avg ? '#22C55E' : '#3B82F6';
+          var r = closing[i] <= mn + pad * 1.5 ? 3.5 : 3;
+          circles += '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+col+'"/>';
+          txtLabels += '<text x="'+x+'" y="175" text-anchor="middle" fill="#94A3B8" font-size="8" font-family="IBM Plex Sans,Inter,sans-serif">'+labels[i]+'</text>';
+        }
+        var pStr = pts.join(' ');
+        el.innerHTML = '<div style="font-size:10px;font-weight:600;color:#1E293B;margin-bottom:8px;">Closing Balance Trend ($K)</div>' +
+          '<svg viewBox="0 5 780 175" preserveAspectRatio="xMidYMid meet">' +
+          '<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0.02"/></linearGradient></defs>' +
+          '<line x1="0" y1="20" x2="780" y2="20" stroke="#F1F5F9"/><line x1="0" y1="55" x2="780" y2="55" stroke="#F1F5F9"/><line x1="0" y1="90" x2="780" y2="90" stroke="#F1F5F9"/><line x1="0" y1="125" x2="780" y2="125" stroke="#F1F5F9"/><line x1="0" y1="160" x2="780" y2="160" stroke="#E2E8F0"/>' +
+          '<polygon points="'+pStr+' 780,160 0,160" fill="url(#areaGrad)"/>' +
+          '<polyline points="'+pStr+'" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chart-line-path drawn"/>' +
+          circles + txtLabels + '</svg>';
+      }
+
+      // --- Excel tab switcher ---
       var cashTabs = document.getElementById('cash-forecast-tabs');
       if (cashTabs) {
         var excelTabBtns = Array.from(cashTabs.querySelectorAll('.excel-tab-btn'));
@@ -3249,25 +3352,15 @@
           });
         });
 
-        // --- Week selector ---
-        var weekBtns = Array.from(cashTabs.querySelectorAll('.week-selector__btn'));
-        weekBtns.forEach(function(btn) {
+        // --- View selector (13w / 6m / 12m) ---
+        var viewBtns = Array.from(cashTabs.querySelectorAll('.week-selector__btn'));
+        viewBtns.forEach(function(btn) {
           btn.addEventListener('click', function() {
-            weekBtns.forEach(function(b) { b.classList.remove('active'); });
+            viewBtns.forEach(function(b) { b.classList.remove('active'); });
             btn.classList.add('active');
-            var maxWeek = parseInt(btn.getAttribute('data-weeks'), 10);
-            var table = document.getElementById('cash-spreadsheet');
-            if (!table) return;
-            var weekCells = table.querySelectorAll('[data-week]');
-            weekCells.forEach(function(cell) {
-              var w = parseInt(cell.getAttribute('data-week'), 10);
-              cell.style.display = w > maxWeek ? 'none' : '';
-            });
-            // Update group-header colspan
-            var groupHeaders = table.querySelectorAll('.group-header td[colspan]');
-            groupHeaders.forEach(function(td) {
-              td.setAttribute('colspan', maxWeek + 1);
-            });
+            var view = btn.getAttribute('data-view');
+            renderCashTable(view);
+            renderCashChart(view);
           });
         });
       }
@@ -3275,18 +3368,16 @@
       // --- SVG line chart draw-on animation ---
       var cashChart = document.getElementById('cash-chart');
       if (cashChart) {
-        var chartLine = cashChart.querySelector('.chart-line-path');
-        if (chartLine) {
-          var chartObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-              if (entry.isIntersecting) {
-                chartLine.classList.add('drawn');
-                chartObserver.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.3 });
-          chartObserver.observe(cashChart);
-        }
+        var chartObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var line = cashChart.querySelector('.chart-line-path');
+              if (line) line.classList.add('drawn');
+              chartObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        chartObserver.observe(cashChart);
       }
     })();
   </script>
