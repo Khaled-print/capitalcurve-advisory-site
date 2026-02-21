@@ -192,6 +192,65 @@
       color: #fff;
     }
 
+    /* Services dropdown */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.60);
+      transition: color 0.2s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown:hover .nav-dropdown-toggle {
+      color: #fff;
+    }
+
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px 0;
+      min-width: 220px;
+      z-index: 200;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+      display: block;
+    }
+
+    .nav-dropdown-item {
+      display: block;
+      padding: 10px 20px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown-item:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+    }
+
     /* ===== BUTTONS ===== */
     .btn {
       display: inline-flex;
@@ -2227,7 +2286,16 @@
       <img src="capitalcurve-logo-white.svg" alt="CapitalCurve Advisory" class="nav-logo-img">
     </a>
     <div class="nav-links">
-      <a href="#whatwedo" class="nav-link">Services</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">Services ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="#demo-strips" class="nav-dropdown-item" data-slide="0">Pipeline &amp; Revenue Intelligence</a>
+          <a href="#demo-strips" class="nav-dropdown-item" data-slide="1">CFO Weekly Scorecard</a>
+          <a href="#demo-strips" class="nav-dropdown-item" data-slide="2">Delivery &amp; Operations Intelligence</a>
+          <a href="#pnl-boardpack-carousel" class="nav-dropdown-item" data-pnl-slide="0">End-to-End P&amp;Ls</a>
+          <a href="#pnl-boardpack-carousel" class="nav-dropdown-item" data-pnl-slide="1">Board Pack Slides</a>
+        </div>
+      </div>
       <a href="#proof" class="nav-link">Results</a>
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#cta" class="nav-link">Contact</a>
@@ -2242,7 +2310,11 @@
 
   <!-- ===== MOBILE MENU ===== -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#whatwedo" class="mobile-menu-link">Services</a>
+    <a href="#demo-strips" class="mobile-menu-link" data-slide="0">Pipeline &amp; Revenue Intelligence</a>
+    <a href="#demo-strips" class="mobile-menu-link" data-slide="1">CFO Weekly Scorecard</a>
+    <a href="#demo-strips" class="mobile-menu-link" data-slide="2">Delivery &amp; Operations Intelligence</a>
+    <a href="#pnl-boardpack-carousel" class="mobile-menu-link" data-pnl-slide="0">End-to-End P&amp;Ls</a>
+    <a href="#pnl-boardpack-carousel" class="mobile-menu-link" data-pnl-slide="1">Board Pack Slides</a>
     <a href="#proof" class="mobile-menu-link">Results</a>
     <a href="#pricing" class="mobile-menu-link">Pricing</a>
     <a href="#cta" class="mobile-menu-link">Contact</a>
@@ -3963,6 +4035,7 @@
         }
 
         goToSlide(0); // initialize
+        window._demoGoToSlide = function(idx) { goToSlide(idx); startAuto(); };
 
         // Dot click
         dots.forEach(function(d, i) {
@@ -4035,6 +4108,7 @@
         }
 
         pnlGoTo(0);
+        window._pnlGoToSlide = function(idx) { pnlGoTo(idx); pnlStartAuto(); };
 
         // Dot click
         pnlDots.forEach(function(d, i) {
@@ -4476,6 +4550,29 @@
       var per = document.querySelectorAll('.slide-header__period');
       if (per[4]) per[4].textContent = MF[cm] + ' ' + now.getFullYear() + ' \u00b7 Month-to-Date';
     })();
+
+    // --- Services dropdown: navigate to correct carousel slide ---
+    document.querySelectorAll('[data-slide]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var idx = parseInt(this.getAttribute('data-slide'));
+        if (window._demoGoToSlide) window._demoGoToSlide(idx);
+        document.getElementById('demo-strips').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close mobile menu if open
+        var mm = document.getElementById('mobile-menu');
+        if (mm) mm.classList.remove('open');
+      });
+    });
+    document.querySelectorAll('[data-pnl-slide]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var idx = parseInt(this.getAttribute('data-pnl-slide'));
+        if (window._pnlGoToSlide) window._pnlGoToSlide(idx);
+        document.getElementById('pnl-boardpack-carousel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        var mm = document.getElementById('mobile-menu');
+        if (mm) mm.classList.remove('open');
+      });
+    });
   </script>
 </body>
 </html>
