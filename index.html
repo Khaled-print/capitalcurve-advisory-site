@@ -2761,6 +2761,18 @@
       </div>
     </section>
 
+    <!-- ===== THE PROBLEM ===== -->
+    <section class="section section--bg section--brisbane" id="problem" style="padding-top:80px;padding-bottom:80px;">
+      <div class="section-inner reveal">
+        <p class="eyebrow">The Problem</p>
+        <h2 class="section-heading">You already know what the problem is. You live it every month.</h2>
+        <p class="body-text">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
+        <p class="body-text">This isn't an analyst problem. It's a plumbing problem - and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
+        <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
+        <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
+      </div>
+    </section>
+
     <!-- ===== MOCKUP 4: P&L + BOARD PACK CAROUSEL ===== -->
     <section class="mockup-strip mockup-strip--carousel" id="pnl-boardpack-carousel">
       <div class="carousel-layout reveal">
@@ -3487,19 +3499,6 @@
           <span class="industry-tag">SaaS &amp; Technology</span>
           <span class="industry-tag">IT Services</span>
         </div>
-      </div>
-    </section>
-
-
-    <!-- ===== THE PROBLEM ===== -->
-    <section class="section section--bg section--brisbane" id="problem" style="padding-top:80px;padding-bottom:80px;">
-      <div class="section-inner reveal">
-        <p class="eyebrow">The Problem</p>
-        <h2 class="section-heading">You already know what the problem is. You live it every month.</h2>
-        <p class="body-text">The CRM has pipeline data. The timesheets have delivery data. The GL has actuals. And someone on your team manually exports from all three, reconciles the differences, pastes everything into a model, reformats the charts, writes the commentary, and emails it to leadership. Then next month, they do it again.</p>
-        <p class="body-text">This isn't an analyst problem. It's a plumbing problem - and hiring another analyst to maintain broken plumbing just makes the cycle more expensive.</p>
-        <p class="body-text">The model was built once, patched since then, and nobody wants to touch it in case something breaks. The board pack takes two days. Month-end is a fire drill. Leadership is making decisions on data that's three days old by the time they read it.</p>
-        <p class="body-text">Finance is the last function in most businesses to benefit from automation. Sales got the CRM. Marketing got the dashboards. Operations got the workflows. Finance got another request to update the template.</p>
       </div>
     </section>
 
@@ -4341,6 +4340,102 @@
         var d = new Date(thisMon); d.setDate(thisMon.getDate() + n * 7);
         th.innerHTML = 'Wk ' + (n+1) + '<br>' + d.getDate() + ' ' + MONTHS_S[d.getMonth()];
       });
+    })();
+
+    // --- Board pack dynamic charts & values ---
+    (function pivotBoardPack() {
+      var MS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var MF = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var now = new Date(); now.setHours(0,0,0,0);
+      var cm = now.getMonth();
+
+      // Seed data indexed 0=Jan .. 11=Dec – values rotate so charts always look current
+      var REV    = [2.4, 2.1, 2.3, 2.0, 1.9, 1.7, 1.8, 2.0, 1.8, 1.9, 2.2, 1.7];
+      var MARGIN = [22,  20,  21,  19,  18,  17,  19,  20,  18,  21,  23,  17];
+
+      var rv  = REV[cm];                              // current month revenue ($M)
+      var mp  = MARGIN[cm];                            // current month EBITDA margin (%)
+      var ek  = Math.round(rv * mp * 10);              // EBITDA in $K
+      var cog = 58 - mp;                               // COGS% (100 - people 28 - overhead 14 - EBITDA)
+      var gm  = (100 - cog + 0.4).toFixed(1);         // gross margin with realistic decimal
+
+      function mi(off) { return (cm + off + 12) % 12; }
+
+      // ---- Slide 1: Executive Summary ----
+      var hl = document.querySelectorAll('[data-panel="exec"] .slide-highlight-box__value');
+      if (hl[0]) hl[0].textContent = '$' + rv.toFixed(1) + 'M';
+      if (hl[1]) hl[1].textContent = '$' + ek + 'K';
+
+      document.querySelectorAll('[data-panel="exec"] .slide-bullets li').forEach(function(li) {
+        if (/wins in \w+/.test(li.textContent))
+          li.textContent = li.textContent.replace(/wins in \w+/, 'wins in ' + MS[cm]);
+      });
+
+      // ---- Slide 2: Revenue bar chart (6-month trailing) ----
+      var revBars = document.querySelectorAll('[data-panel="revenue"] .slide-bar-chart .slide-bar');
+      var peak = 0, peakMi = cm;
+      for (var i = 0; i < 6; i++) { var m = mi(i - 5); if (REV[m] > peak) { peak = REV[m]; peakMi = m; } }
+
+      for (var i = 0; i < revBars.length && i < 6; i++) {
+        var m = mi(i - 5), v = REV[m], b = revBars[i];
+        b.querySelector('.slide-bar__label').textContent = MS[m];
+        b.querySelector('.slide-bar__value').textContent = '$' + v.toFixed(1) + 'M';
+        b.querySelector('.slide-bar__fill').style.height = Math.round(v / 2.5 * 100) + '%';
+      }
+
+      // Service line values scale with current revenue
+      var slR = [0.43, 0.33, 0.24];
+      document.querySelectorAll('[data-panel="revenue"] .service-line-row').forEach(function(row, i) {
+        if (i < 3) { var sp = row.querySelectorAll('span'); if (sp[2]) sp[2].textContent = '$' + (rv * slR[i]).toFixed(1) + 'M'; }
+      });
+
+      // Revenue AI insight
+      var ri = document.querySelector('[data-panel="revenue"] .slide-ai-commentary');
+      if (ri) ri.innerHTML = '<span class="slide-ai-badge">AI Insight</span> '
+        + MS[peakMi] + '\'s $' + peak.toFixed(1) + 'M was your strongest month in 12 months &mdash; '
+        + MS[cm] + ' is tracking to land at $' + rv.toFixed(1) + 'M, still above plan. '
+        + 'Pipeline coverage at 4.3x gives you a healthy buffer, but watch the $8.2M in Qualified Leads &mdash; conversion has slowed 12% this quarter.';
+
+      // ---- Slide 4: Profitability ----
+      // Cost breakdown bar
+      var cs = document.querySelectorAll('[data-panel="profit"] .slide-cost-bar__segment');
+      if (cs.length >= 4) {
+        cs[0].style.width = cog + '%'; cs[0].textContent = 'COGS ' + cog + '%';
+        cs[3].style.width = mp + '%';  cs[3].textContent = 'EBITDA ' + mp + '%';
+      }
+
+      // EBITDA margin trend chart
+      var eb = document.querySelectorAll('[data-panel="profit"] .slide-bar-chart .slide-bar');
+      for (var i = 0; i < eb.length && i < 6; i++) {
+        var m = mi(i - 5), v = MARGIN[m], bar = eb[i];
+        bar.querySelector('.slide-bar__label').textContent = MS[m];
+        bar.querySelector('.slide-bar__value').textContent = v + '%';
+        var f = bar.querySelector('.slide-bar__fill');
+        f.style.height = Math.round(v / 28 * 100) + '%';
+        f.style.background = v >= 21 ? '#2E8B57' : v >= 19 ? '#D4A843' : '#C0392B';
+      }
+
+      // Profitability metric rows
+      var pm = document.querySelectorAll('[data-panel="profit"] .slide-metric-row strong');
+      if (pm[0]) pm[0].textContent = gm + '%';
+      if (pm[1]) { pm[1].textContent = (mp - 0.1).toFixed(1) + '%'; pm[1].style.color = mp >= 22 ? '#2E8B57' : '#D4A843'; }
+
+      // Profitability AI insight
+      var pi = document.querySelector('[data-panel="profit"] .slide-ai-commentary');
+      if (pi) pi.innerHTML = '<span class="slide-ai-badge">AI Insight</span> '
+        + 'Gross margin is healthy at ' + gm + '% but EBITDA is being squeezed by $62K in unplanned contractor costs on Project Titan. '
+        + 'If Titan wraps on schedule in ' + MF[(cm + 1) % 12] + ', margins should normalise. '
+        + 'Consider whether the contractor dependency reflects a capability gap worth a permanent hire.';
+
+      // ---- Slide 5: KPIs ----
+      var kv = document.querySelectorAll('[data-panel="kpis"] .kpi-card__value');
+      if (kv[0]) kv[0].textContent = '$' + rv.toFixed(1) + 'M';
+      if (kv[1]) kv[1].textContent = gm + '%';
+      if (kv[2]) kv[2].textContent = '$' + ek + 'K';
+
+      // KPIs period header (5th .slide-header__period)
+      var per = document.querySelectorAll('.slide-header__period');
+      if (per[4]) per[4].textContent = MF[cm] + ' ' + now.getFullYear() + ' \u00b7 Month-to-Date';
     })();
   </script>
 </body>
