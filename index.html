@@ -298,17 +298,19 @@
     }
 
     /* ===== HERO ===== */
+    .hero-wrapper {
+      background-image: url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
     .hero {
       position: relative;
       min-height: 100vh;
       display: flex;
       align-items: flex-end;
       padding: 0 48px 100px;
-      background-image:
-        linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 40%, rgba(10,10,10,0.25) 100%),
-        url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=1920&q=80');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.45) 40%, rgba(10,10,10,0.25) 100%);
     }
 
     .hero-content {
@@ -396,14 +398,8 @@
 
     .section--melbourne {
       background-image:
-        linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.85)),
-        url('https://images.unsplash.com/photo-1610183880843-52fc754207a8?w=1920&q=80');
-    }
-
-    .section--hero-cont {
-      background-image:
-        linear-gradient(rgba(10,10,10,0.78), rgba(10,10,10,0.78)),
-        url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=1920&q=80');
+        linear-gradient(rgba(10,10,10,0.82), rgba(10,10,10,0.82)),
+        url('https://images.unsplash.com/photo-1585963087543-595d0c01f45d?w=1920&q=80');
     }
 
     /* ===== DIVIDER ===== */
@@ -782,8 +778,8 @@
       }
       .hero {
         padding: 0 20px 80px;
-        background-attachment: scroll;
       }
+      .hero-wrapper,
       .section--bg,
       .final-cta {
         background-attachment: scroll;
@@ -2225,29 +2221,31 @@
   <!-- ===== PAGE FRAME ===== -->
   <div class="page-frame">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
-      <div class="hero-content reveal">
-        <p class="eyebrow">FP&amp;A Automation · Sydney, Australia</p>
-        <h1 class="hero-title">Your finance team shouldn't spend their week building the report.</h1>
-        <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="btn btn--outline">Book a 15-min call →</a>
-        <p class="hero-note">15 minutes · Google Meet · No pitch deck</p>
-      </div>
-      <div class="scroll-indicator">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5">
-          <path d="M12 5v14M5 12l7 7 7-7"/>
-        </svg>
-      </div>
-    </section>
+    <!-- ===== HERO + BESPOKE WRAPPER ===== -->
+    <div class="hero-wrapper">
+      <section class="hero" id="hero">
+        <div class="hero-content reveal">
+          <p class="eyebrow">FP&amp;A Automation · Sydney, Australia</p>
+          <h1 class="hero-title">Your finance team shouldn't spend their week building the report.</h1>
+          <a href="https://calendly.com/khaledsahbi/quick-chat" target="_blank" rel="noopener" class="btn btn--outline">Book a 15-min call →</a>
+          <p class="hero-note">15 minutes · Google Meet · No pitch deck</p>
+        </div>
+        <div class="scroll-indicator">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </section>
 
-    <!-- ===== TAILORED HEADLINE ===== -->
-    <section class="section section--bg section--hero-cont" id="whatwedo" style="padding-top:80px;padding-bottom:60px;">
-      <div class="section-inner--wide reveal" style="text-align:center;">
-        <p class="eyebrow">Bespoke, Not Off-the-Shelf</p>
-        <h2 class="section-heading section-heading--center">Every model, report, and automation is built around your business — not a template.</h2>
-        <p class="body-text" style="text-align:center;max-width:700px;margin:0 auto;">We don't reskin dashboards or hand you a generic spreadsheet. We map your actual data sources, your reporting cadence, and your leadership's decision-making rhythm — then build the automation layer underneath. The outputs below are examples of what that looks like in practice.</p>
-      </div>
-    </section>
+      <!-- ===== TAILORED HEADLINE ===== -->
+      <section class="section" id="whatwedo" style="padding-top:80px;padding-bottom:60px;background:rgba(10,10,10,0.75);">
+        <div class="section-inner--wide reveal" style="text-align:center;">
+          <p class="eyebrow">Bespoke, Not Off-the-Shelf</p>
+          <h2 class="section-heading section-heading--center">Every model, report, and automation is built around your business — not a template.</h2>
+          <p class="body-text" style="text-align:center;max-width:700px;margin:0 auto;">We don't reskin dashboards or hand you a generic spreadsheet. We map your actual data sources, your reporting cadence, and your leadership's decision-making rhythm — then build the automation layer underneath. The outputs below are examples of what that looks like in practice.</p>
+        </div>
+      </section>
+    </div>
 
     <!-- ===== CAROUSEL: PIPELINE / CFO / OPS ===== -->
     <section class="mockup-strip mockup-strip--carousel" id="demo-strips">
