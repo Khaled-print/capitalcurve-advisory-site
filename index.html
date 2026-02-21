@@ -2437,6 +2437,23 @@
       .scenario-grid { grid-template-columns:1fr; }
       .scenario-col { border-right:none; border-bottom:1px solid #F1F5F9; }
       .week-selector { flex-wrap:wrap; }
+
+      /* P&L carousel mobile overrides */
+      #pnl-boardpack-carousel .carousel-layout { max-width: none; transform: none; gap: 24px; }
+      #pnl-boardpack-carousel .carousel-sidebar { flex: none; width: 100%; }
+      #pnl-boardpack-carousel .carousel-frame .screen-frame { height: auto; }
+
+      /* Solution Brief mobile */
+      .sb-meta { flex-wrap: wrap; gap: 12px; }
+      .sb-meta__col { padding-right: 24px; }
+      .sb-meta__col--wide { flex: 1 1 100%; }
+      .sb-columns { flex-direction: column; }
+      .sb-col--left { border-right: none; border-bottom: 1px solid #1E293B; }
+      .sb-table th, .sb-table td { font-size: 10px; }
+      .sb-check span { font-size: 10px; }
+      .carousel-dot { flex: 0 0 auto; min-width: 0; }
+      .carousel-nav { gap: 20px; padding: 0 16px; }
+      .sb-body { overflow-x: hidden; }
     }
 
     @media (max-width: 480px) {
@@ -2460,25 +2477,44 @@
       #pnl-boardpack-carousel .carousel-frame .screen-frame { height: auto; }
       #pnl-boardpack-carousel .carousel-layout { max-width: none; gap: 24px; transform: none; }
       #pnl-boardpack-carousel .carousel-sidebar { flex: none; }
+
+      /* Solution Brief small mobile */
+      .sb-header { padding: 8px 16px; }
+      .sb-meta { padding: 10px 16px; }
+      .sb-meta__col { padding-right: 0; }
+      .sb-meta__col--wide { flex: 1 1 100%; }
+      .sb-meta__value { font-size: 12px; }
+      .sb-col { padding: 12px 16px; }
+      .sb-quote { font-size: 10px; }
+      .sb-check { padding: 4px 6px; }
+      .sb-check span { font-size: 9px; }
+      .sb-table td, .sb-table th { font-size: 9px; padding: 5px 0; }
+      .sb-badge { font-size: 8px; padding: 1px 7px; }
+      .sb-tl-week { font-size: 9px; flex: 0 0 36px; }
+      .sb-tl-bar { font-size: 8px; padding: 0 4px; }
+      .sb-notes { padding: 10px 16px; }
+      .sb-notes p { font-size: 9px; }
+      .sb-footer { padding: 8px 16px; font-size: 9px; }
     }
 
-    /* P&L / Board Pack carousel — layout overrides */
-    #pnl-boardpack-carousel .carousel-layout {
-      max-width: 1320px;
-      gap: 40px;
-      transform: translateX(-100px);
-    }
-    #pnl-boardpack-carousel .carousel-sidebar { flex: 0 0 24%; }
-
-    #pnl-boardpack-carousel .carousel-frame .screen-frame {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      height: 620px;
-    }
-    #pnl-boardpack-carousel .carousel-frame .screen-frame > *:last-child {
-      flex: 1;
-      min-height: 0;
+    /* P&L / Board Pack carousel — layout overrides (desktop only) */
+    @media (min-width: 769px) {
+      #pnl-boardpack-carousel .carousel-layout {
+        max-width: 1320px;
+        gap: 40px;
+        transform: translateX(-100px);
+      }
+      #pnl-boardpack-carousel .carousel-sidebar { flex: 0 0 24%; }
+      #pnl-boardpack-carousel .carousel-frame .screen-frame {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        height: 620px;
+      }
+      #pnl-boardpack-carousel .carousel-frame .screen-frame > *:last-child {
+        flex: 1;
+        min-height: 0;
+      }
     }
 
     /* Text rendering — sharper at small sizes */
