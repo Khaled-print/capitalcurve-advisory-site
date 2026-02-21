@@ -1489,7 +1489,7 @@
 
     .slide-bullets li {
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.85;
       color: rgba(255,255,255,0.75);
       padding-left: 16px;
       position: relative;
@@ -1614,7 +1614,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       flex: 1;
-      align-content: start;
+      align-content: stretch;
     }
 
     .kpi-card {
@@ -1623,6 +1623,9 @@
       border-radius: 10px;
       padding: 12px;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .kpi-card__label {
@@ -1730,7 +1733,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
       font-size: 12px;
       color: rgba(255,255,255,0.8);
@@ -1743,6 +1746,69 @@
     .slide-metric-row strong {
       font-weight: 600;
       color: #fff;
+    }
+
+    /* KPI sparkline */
+    .kpi-sparkline {
+      margin-top: 6px;
+    }
+    .kpi-sparkline polyline {
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Cash summary row */
+    .cash-summary-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 10px 0;
+      margin-bottom: 8px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+    }
+    .cash-summary-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cash-summary-row strong {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Service line breakdown */
+    .service-line-breakdown {
+      margin-top: 12px;
+    }
+    .service-line-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+      font-size: 10px;
+      color: rgba(255,255,255,0.75);
+    }
+    .service-line-row__bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      margin: 0 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-line-row__bar span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: #3B82F6;
+      border-radius: 2px;
     }
 
     /* Consistent frame height for side-by-side strips */
@@ -3019,6 +3085,8 @@
                         <li>Pipeline at $42.9M - up 5.2% WoW with healthy stage distribution</li>
                         <li>Cash position stable at $3.2M with positive 13-week outlook</li>
                         <li>Utilisation at 84.7% - within 0.3pp of target</li>
+                        <li>Win rate improved to 68% - highest in 6 months</li>
+                        <li>New logo acquisition ahead of plan with 3 wins in Feb</li>
                       </ul>
                     </div>
                     <div>
@@ -3027,6 +3095,7 @@
                         <li>AR ageing >60 days has breached $340K - collections action required</li>
                         <li>EBITDA 7.1% below target due to unplanned contractor costs</li>
                         <li>Project Titan delivery milestone overdue by 5 days</li>
+                        <li>Two senior consultants flagged as flight risk - retention plans needed</li>
                       </ul>
                     </div>
                   </div>
@@ -3095,6 +3164,24 @@
                           <tr><td style="font-weight:700">Total Pipeline</td><td style="font-weight:700">$42.9M</td></tr>
                         </tbody>
                       </table>
+                      <div class="service-line-breakdown">
+                        <p class="slide-section-title" style="margin-top:10px;margin-bottom:6px">Revenue by Service Line</p>
+                        <div class="service-line-row">
+                          <span>Strategy</span>
+                          <div class="service-line-row__bar"><span style="width:86%"></span></div>
+                          <span style="font-weight:600;color:#fff">$0.9M</span>
+                        </div>
+                        <div class="service-line-row">
+                          <span>Digital</span>
+                          <div class="service-line-row__bar"><span style="width:67%"></span></div>
+                          <span style="font-weight:600;color:#fff">$0.7M</span>
+                        </div>
+                        <div class="service-line-row">
+                          <span>Operations</span>
+                          <div class="service-line-row__bar"><span style="width:48%"></span></div>
+                          <span style="font-weight:600;color:#fff">$0.5M</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="slide-ai-commentary">
@@ -3188,6 +3275,11 @@
                       <div class="slide-bar__label">W13</div>
                     </div>
                   </div>
+                  <div class="cash-summary-row">
+                    <span>Total Inflows <strong style="color:#22C55E">$4.8M</strong></span>
+                    <span>Total Outflows <strong style="color:#EF4444">$4.2M</strong></span>
+                    <span>Net <strong style="color:#22C55E">+$0.6M</strong></span>
+                  </div>
                   <div class="slide-ai-commentary">
                     <span class="slide-ai-badge">AI Insight</span>
                     Cash generation is trending positively with a projected $600K build over 13 weeks. The W2-W3 payroll dips are predictable and manageable. Key risk: if the $340K AR ageing isn't collected by W6, the W7 trough could dip below $2.8M.
@@ -3215,7 +3307,40 @@
                     <span style="--dot-color:#6366F1"><span style="background:#6366F1;width:8px;height:8px;border-radius:2px;display:inline-block"></span> Overheads</span>
                     <span style="--dot-color:#22C55E"><span style="background:#22C55E;width:8px;height:8px;border-radius:2px;display:inline-block"></span> EBITDA</span>
                   </div>
-                  <div style="flex:1">
+                  <p class="slide-section-title" style="margin-bottom:4px">EBITDA Margin Trend (%)</p>
+                  <div class="slide-bar-chart" style="min-height:70px;max-height:80px;padding-top:8px;margin-bottom:10px">
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">18%</div>
+                      <div class="slide-bar__fill" style="height:60%;background:#F59E0B"></div>
+                      <div class="slide-bar__label">Sep</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">21%</div>
+                      <div class="slide-bar__fill" style="height:72%;background:#22C55E"></div>
+                      <div class="slide-bar__label">Oct</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">23%</div>
+                      <div class="slide-bar__fill" style="height:82%;background:#22C55E"></div>
+                      <div class="slide-bar__label">Nov</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">17%</div>
+                      <div class="slide-bar__fill" style="height:55%;background:#EF4444"></div>
+                      <div class="slide-bar__label">Dec</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">22%</div>
+                      <div class="slide-bar__fill" style="height:76%;background:#22C55E"></div>
+                      <div class="slide-bar__label">Jan</div>
+                    </div>
+                    <div class="slide-bar">
+                      <div class="slide-bar__value">20%</div>
+                      <div class="slide-bar__fill" style="height:68%;background:#F59E0B"></div>
+                      <div class="slide-bar__label">Feb</div>
+                    </div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;justify-content:space-evenly">
                     <div class="slide-metric-row">
                       <span>Gross Margin</span>
                       <strong style="color:#22C55E">62.4%</strong>
@@ -3235,6 +3360,16 @@
                       <span>Contractor Spend</span>
                       <strong style="color:#EF4444">$182K</strong>
                       <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs $120K budget</span>
+                    </div>
+                    <div class="slide-metric-row">
+                      <span>Headcount</span>
+                      <strong>14</strong>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs 13 plan</span>
+                    </div>
+                    <div class="slide-metric-row">
+                      <span>Rev / Consultant</span>
+                      <strong style="color:#22C55E">$150K</strong>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.45)">vs $140K target</span>
                     </div>
                   </div>
                   <div class="slide-ai-commentary">
@@ -3256,31 +3391,55 @@
                       <div class="kpi-card__label">Revenue MTD</div>
                       <div class="kpi-card__value">$2.1M</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 5.0%</span> vs target</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,14 10,12 20,10 30,13 40,6 50,8" style="stroke:#22C55E"/></svg>
                     </div>
                     <div class="kpi-card">
                       <div class="kpi-card__label">Gross Margin</div>
                       <div class="kpi-card__value">62.4%</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 2.4pp</span> vs target</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,12 10,10 20,8 30,9 40,6 50,4" style="stroke:#22C55E"/></svg>
                     </div>
                     <div class="kpi-card">
                       <div class="kpi-card__label">EBITDA</div>
                       <div class="kpi-card__value">$418K</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#F59E0B"></span> <span style="color:#F59E0B">&#9660; 7.1%</span> vs target</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,10 10,8 20,4 30,6 40,9 50,11" style="stroke:#F59E0B"/></svg>
                     </div>
                     <div class="kpi-card">
                       <div class="kpi-card__label">Utilisation</div>
                       <div class="kpi-card__value">84.7%</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#F59E0B"></span> <span style="color:#F59E0B">&#9660; 0.3pp</span> vs target</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,6 10,5 20,7 30,8 40,9 50,10" style="stroke:#F59E0B"/></svg>
                     </div>
                     <div class="kpi-card">
                       <div class="kpi-card__label">AR Ageing >60d</div>
                       <div class="kpi-card__value">$340K</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#EF4444"></span> <span style="color:#EF4444">&#9650; 36.0%</span> above limit</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,14 10,12 20,10 30,8 40,5 50,2" style="stroke:#EF4444"/></svg>
                     </div>
                     <div class="kpi-card">
                       <div class="kpi-card__label">Active Projects</div>
                       <div class="kpi-card__value">23</div>
                       <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 2</span> vs last month</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,14 10,12 20,11 30,10 40,8 50,6" style="stroke:#22C55E"/></svg>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">Win Rate</div>
+                      <div class="kpi-card__value">68%</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 4.2pp</span> vs prior</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,13 10,11 20,12 30,9 40,7 50,4" style="stroke:#22C55E"/></svg>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">Avg Deal Size</div>
+                      <div class="kpi-card__value">$186K</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#22C55E"></span> <span style="color:#22C55E">&#9650; 8.1%</span> vs prior</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,14 10,13 20,11 30,10 40,8 50,5" style="stroke:#22C55E"/></svg>
+                    </div>
+                    <div class="kpi-card">
+                      <div class="kpi-card__label">NPS Score</div>
+                      <div class="kpi-card__value">72</div>
+                      <div class="kpi-card__trend"><span class="kpi-card__rag" style="background:#F59E0B"></span> <span style="color:#F59E0B">&#9660; 3pts</span> vs prior</div>
+                      <svg class="kpi-sparkline" width="60" height="16" viewBox="0 0 60 16"><polyline points="0,4 10,5 20,6 30,7 40,9 50,10" style="stroke:#F59E0B"/></svg>
                     </div>
                   </div>
                   <div class="slide-ai-commentary">
