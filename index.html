@@ -1191,6 +1191,236 @@
     .screen-frame__dot--amber { background: #F59E0B; }
     .screen-frame__dot--green { background: #22C55E; }
 
+    /* ── Solution Brief (Build Your Own slide) ── */
+    .sb-body {
+      background: #0F172A;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 11px;
+      color: #CBD5E1;
+      line-height: 1.5;
+      padding: 0;
+      overflow: hidden;
+    }
+    .sb-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 24px;
+      background: #1E293B;
+      border-bottom: 1px solid #334155;
+    }
+    .sb-header__title { color: #94A3B8; font-weight: 600; font-size: 12px; }
+    .sb-header__date  { color: #475569; font-size: 11px; }
+
+    .sb-meta {
+      display: flex;
+      gap: 0;
+      padding: 14px 24px;
+      border-bottom: 1px solid #334155;
+      align-items: center;
+    }
+    .sb-meta__col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 0 0 auto;
+      padding-right: 32px;
+    }
+    .sb-meta__col--wide { flex: 1 1 auto; }
+    .sb-meta__label { color: #475569; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
+    .sb-meta__value { color: #E2E8F0; font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .sb-status-badge {
+      display: inline-block;
+      padding: 2px 14px;
+      border-radius: 9px;
+      background: rgba(26,107,138,0.2);
+      color: #1A6B8A;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .sb-columns {
+      display: flex;
+      min-height: 0;
+    }
+    .sb-col { padding: 16px 24px; }
+    .sb-col--left  { flex: 1 1 50%; border-right: 1px solid #1E293B; }
+    .sb-col--right { flex: 1 1 50%; }
+
+    .sb-section-label {
+      color: #1A6B8A;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      margin: 0 0 8px 0;
+      text-transform: uppercase;
+    }
+
+    .sb-quote {
+      margin: 0 0 6px 0;
+      padding: 0;
+      border: none;
+      color: #CBD5E1;
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .sb-attribution {
+      color: #475569;
+      font-size: 10px;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Checklist */
+    .sb-checklist { display: flex; flex-direction: column; gap: 6px; }
+    .sb-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: default;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .sb-check:hover {
+      background: rgba(26,107,138,0.08);
+      transform: translateX(3px);
+    }
+    .sb-check input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #334155;
+      border-radius: 3px;
+      background: transparent;
+      flex-shrink: 0;
+      position: relative;
+      cursor: default;
+    }
+    .sb-check--done input[type="checkbox"] {
+      border-color: #1A6B8A;
+      background: rgba(26,107,138,0.15);
+    }
+    .sb-check--done input[type="checkbox"]::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 1px;
+      width: 5px;
+      height: 8px;
+      border: solid #1A6B8A;
+      border-width: 0 2px 2px 0;
+      transform: rotate(40deg);
+    }
+    .sb-check span { color: #94A3B8; font-size: 11px; }
+    .sb-check--done span { color: #E2E8F0; }
+
+    /* Data source table */
+    .sb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    .sb-table th {
+      text-align: left;
+      color: #475569;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0 0 6px 0;
+      border-bottom: 1px solid #1E293B;
+    }
+    .sb-table td {
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(30,41,59,0.5);
+      vertical-align: middle;
+      transition: background 0.2s;
+    }
+    .sb-table tr:hover td { background: rgba(26,107,138,0.06); }
+    .sb-table td:first-child { color: #E2E8F0; }
+    .sb-table td:last-child  { color: #64748B; font-size: 10px; }
+    .sb-badge {
+      display: inline-block;
+      padding: 1px 10px;
+      border-radius: 8px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+    .sb-badge--green { background: rgba(22,101,52,0.3); color: #4ADE80; }
+    .sb-badge--amber { background: rgba(133,77,14,0.3); color: #FACC15; }
+
+    /* Timeline */
+    .sb-timeline { display: flex; flex-direction: column; gap: 6px; }
+    .sb-tl-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sb-tl-week {
+      flex: 0 0 42px;
+      color: #64748B;
+      font-size: 10px;
+      text-align: right;
+    }
+    .sb-tl-track {
+      flex: 1;
+      height: 20px;
+      background: #1E293B;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sb-tl-bar {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      background: rgba(26,107,138,0.3);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 9px;
+      color: #94A3B8;
+      white-space: nowrap;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .sb-tl-bar:hover {
+      background: rgba(26,107,138,0.5);
+      transform: scaleY(1.15);
+    }
+    .sb-tl-bar--accent {
+      background: rgba(26,107,138,0.45);
+      color: #CBD5E1;
+    }
+    .sb-tl-bar--accent:hover { background: rgba(26,107,138,0.65); }
+
+    /* Notes */
+    .sb-notes {
+      padding: 12px 24px;
+      border-top: 1px solid #1E293B;
+    }
+    .sb-notes p {
+      margin: 0 0 3px 0;
+      color: #475569;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .sb-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 24px;
+      background: #1E293B;
+      border-top: 1px solid #334155;
+      color: #475569;
+      font-size: 10px;
+    }
+
     /* Email chrome */
     .email-chrome {
       background: #1E293B;
@@ -3586,115 +3816,84 @@
               <span class="screen-frame__dot screen-frame__dot--amber"></span>
               <span class="screen-frame__dot screen-frame__dot--green"></span>
             </div>
-            <div class="screen-frame__body" style="padding:0;overflow:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" style="display:block;width:100%;height:auto;background:#0F172A">
-                <!-- Header bar -->
-                <rect x="0" y="0" width="800" height="40" fill="#1E293B"/>
-                <text x="24" y="25" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="500">Solution Brief</text>
-                <text x="780" y="25" text-anchor="end" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="11">Draft · Feb 2026</text>
-                <line x1="0" y1="40" x2="800" y2="40" stroke="#334155" stroke-width="1"/>
+            <div class="screen-frame__body sb-body">
+              <!-- Header bar -->
+              <div class="sb-header">
+                <span class="sb-header__title">Solution Brief</span>
+                <span class="sb-header__date">Draft &middot; Feb 2026</span>
+              </div>
 
-                <!-- Client / Project header -->
-                <text x="24" y="68" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="0.8">CLIENT</text>
-                <text x="24" y="86" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600">Apex Consulting Group</text>
-                <text x="240" y="68" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="0.8">PROJECT</text>
-                <text x="240" y="86" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600">Automated Pipeline Reporting</text>
-                <text x="560" y="68" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="0.8">STATUS</text>
-                <rect x="560" y="74" width="72" height="18" rx="9" fill="#1A6B8A" fill-opacity="0.2"/>
-                <text x="596" y="87" text-anchor="middle" fill="#1A6B8A" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600">Scoping</text>
-                <line x1="0" y1="100" x2="800" y2="100" stroke="#334155" stroke-width="1"/>
+              <!-- Client / Project row -->
+              <div class="sb-meta">
+                <div class="sb-meta__col">
+                  <span class="sb-meta__label">CLIENT</span>
+                  <span class="sb-meta__value">Apex Consulting Group</span>
+                </div>
+                <div class="sb-meta__col sb-meta__col--wide">
+                  <span class="sb-meta__label">PROJECT</span>
+                  <span class="sb-meta__value">Automated Pipeline Reporting</span>
+                </div>
+                <div class="sb-meta__col">
+                  <span class="sb-meta__label">STATUS</span>
+                  <span class="sb-status-badge">Scoping</span>
+                </div>
+              </div>
 
-                <!-- LEFT COLUMN -->
-                <!-- Section: The Problem -->
-                <text x="24" y="124" fill="#1A6B8A" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8">THE PROBLEM</text>
-                <text x="24" y="142" fill="#CBD5E1" font-family="Inter,system-ui,sans-serif" font-size="11">"Our team spends 2 days every month pulling data from 4 systems</text>
-                <text x="24" y="157" fill="#CBD5E1" font-family="Inter,system-ui,sans-serif" font-size="11">into a board pack. Half the time there are errors nobody catches</text>
-                <text x="24" y="172" fill="#CBD5E1" font-family="Inter,system-ui,sans-serif" font-size="11">until the meeting."</text>
-                <text x="24" y="190" fill="#64748B" font-family="Inter,system-ui,sans-serif" font-size="10" font-style="italic">- Head of Finance, initial call 12 Feb</text>
+              <!-- Two-column body -->
+              <div class="sb-columns">
+                <!-- LEFT -->
+                <div class="sb-col sb-col--left">
+                  <p class="sb-section-label">THE PROBLEM</p>
+                  <blockquote class="sb-quote">
+                    "Our team spends 2 days every month pulling data from 4 systems into a board pack. Half the time there are errors nobody catches until the meeting."
+                  </blockquote>
+                  <p class="sb-attribution">&mdash; Head of Finance, initial call 12 Feb</p>
 
-                <!-- Section: What We'll Build -->
-                <text x="24" y="222" fill="#1A6B8A" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8">WHAT WE'LL BUILD</text>
+                  <p class="sb-section-label" style="margin-top:20px">WHAT WE'LL BUILD</p>
+                  <div class="sb-checklist">
+                    <label class="sb-check sb-check--done"><input type="checkbox" checked disabled><span>Automated data extraction from Xero, HubSpot, Harvest &amp; Sheets</span></label>
+                    <label class="sb-check sb-check--done"><input type="checkbox" checked disabled><span>Master financial model with refresh-on-schedule</span></label>
+                    <label class="sb-check"><input type="checkbox" disabled><span>Board pack slide generation (5 slides, branded)</span></label>
+                    <label class="sb-check"><input type="checkbox" disabled><span>AI commentary layer for executive summary</span></label>
+                    <label class="sb-check"><input type="checkbox" disabled><span>Email distribution &mdash; Monday AM to leadership team</span></label>
+                  </div>
+                </div>
 
-                <!-- Checklist items -->
-                <rect x="24" y="234" width="14" height="14" rx="3" fill="none" stroke="#1A6B8A" stroke-width="1.2"/>
-                <polyline points="27,241 30,245 35,238" fill="none" stroke="#1A6B8A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <text x="46" y="246" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="11">Automated data extraction from Xero, HubSpot, Harvest &amp; Sheets</text>
+                <!-- RIGHT -->
+                <div class="sb-col sb-col--right">
+                  <p class="sb-section-label">DATA SOURCES</p>
+                  <table class="sb-table">
+                    <thead><tr><th>System</th><th>Access</th><th>Data</th></tr></thead>
+                    <tbody>
+                      <tr><td>Xero (Accounting)</td><td><span class="sb-badge sb-badge--green">API</span></td><td>P&amp;L, BS, Cash</td></tr>
+                      <tr><td>HubSpot (CRM)</td><td><span class="sb-badge sb-badge--green">API</span></td><td>Pipeline, Deals</td></tr>
+                      <tr><td>Harvest (Time)</td><td><span class="sb-badge sb-badge--green">API</span></td><td>Utilisation, Hrs</td></tr>
+                      <tr><td>Google Sheets</td><td><span class="sb-badge sb-badge--amber">Manual</span></td><td>Budget, Targets</td></tr>
+                    </tbody>
+                  </table>
 
-                <rect x="24" y="256" width="14" height="14" rx="3" fill="none" stroke="#1A6B8A" stroke-width="1.2"/>
-                <polyline points="27,263 30,267 35,260" fill="none" stroke="#1A6B8A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <text x="46" y="268" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="11">Master financial model with refresh-on-schedule</text>
+                  <p class="sb-section-label" style="margin-top:18px">PROPOSED TIMELINE</p>
+                  <div class="sb-timeline">
+                    <div class="sb-tl-row"><span class="sb-tl-week">Wk 1-2</span><div class="sb-tl-track"><div class="sb-tl-bar" style="left:0%;width:40%">Data connectors</div></div></div>
+                    <div class="sb-tl-row"><span class="sb-tl-week">Wk 3-4</span><div class="sb-tl-track"><div class="sb-tl-bar" style="left:20%;width:50%">Model &amp; board pack</div></div></div>
+                    <div class="sb-tl-row"><span class="sb-tl-week">Wk 5</span><div class="sb-tl-track"><div class="sb-tl-bar sb-tl-bar--accent" style="left:60%;width:32%">UAT &amp; go-live</div></div></div>
+                  </div>
+                </div>
+              </div>
 
-                <rect x="24" y="278" width="14" height="14" rx="3" fill="none" stroke="#334155" stroke-width="1.2"/>
-                <text x="46" y="290" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="11">Board pack slide generation (5 slides, branded)</text>
+              <!-- Notes -->
+              <div class="sb-notes">
+                <p class="sb-section-label">NOTES</p>
+                <p>Client prefers Monday AM delivery. CFO + 3 direct reports on distribution list.</p>
+                <p>Existing board template in PowerPoint &mdash; we'll match their branding exactly.</p>
+                <p>Phase 2 discussion: automated cash forecast + scenario modelling (Q2).</p>
+              </div>
 
-                <rect x="24" y="300" width="14" height="14" rx="3" fill="none" stroke="#334155" stroke-width="1.2"/>
-                <text x="46" y="312" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="11">AI commentary layer for executive summary</text>
-
-                <rect x="24" y="322" width="14" height="14" rx="3" fill="none" stroke="#334155" stroke-width="1.2"/>
-                <text x="46" y="334" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="11">Email distribution - Monday AM to leadership team</text>
-
-                <!-- Vertical divider -->
-                <line x1="420" y1="110" x2="420" y2="460" stroke="#1E293B" stroke-width="1"/>
-
-                <!-- RIGHT COLUMN -->
-                <!-- Section: Data Sources -->
-                <text x="444" y="124" fill="#1A6B8A" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8">DATA SOURCES IDENTIFIED</text>
-
-                <!-- Source table rows -->
-                <text x="444" y="146" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600">System</text>
-                <text x="590" y="146" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600">Access</text>
-                <text x="680" y="146" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600">Data</text>
-                <line x1="444" y1="152" x2="776" y2="152" stroke="#1E293B" stroke-width="1"/>
-
-                <text x="444" y="168" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="11">Xero (Accounting)</text>
-                <rect x="590" y="158" width="46" height="16" rx="8" fill="#166534" fill-opacity="0.3"/>
-                <text x="613" y="170" text-anchor="middle" fill="#4ADE80" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="600">API</text>
-                <text x="680" y="168" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">P&amp;L, BS, Cash</text>
-
-                <text x="444" y="190" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="11">HubSpot (CRM)</text>
-                <rect x="590" y="180" width="46" height="16" rx="8" fill="#166534" fill-opacity="0.3"/>
-                <text x="613" y="192" text-anchor="middle" fill="#4ADE80" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="600">API</text>
-                <text x="680" y="190" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">Pipeline, Deals</text>
-
-                <text x="444" y="212" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="11">Harvest (Time)</text>
-                <rect x="590" y="202" width="46" height="16" rx="8" fill="#166534" fill-opacity="0.3"/>
-                <text x="613" y="214" text-anchor="middle" fill="#4ADE80" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="600">API</text>
-                <text x="680" y="212" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">Utilisation, Hrs</text>
-
-                <text x="444" y="234" fill="#E2E8F0" font-family="Inter,system-ui,sans-serif" font-size="11">Google Sheets (Budget)</text>
-                <rect x="590" y="224" width="46" height="16" rx="8" fill="#854D0E" fill-opacity="0.3"/>
-                <text x="613" y="236" text-anchor="middle" fill="#FACC15" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="600">Manual</text>
-                <text x="680" y="234" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">Budget, Targets</text>
-
-                <!-- Section: Timeline -->
-                <text x="444" y="270" fill="#1A6B8A" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8">PROPOSED TIMELINE</text>
-
-                <!-- Timeline bars -->
-                <text x="444" y="292" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">Wk 1-2</text>
-                <rect x="504" y="282" width="120" height="14" rx="3" fill="#1A6B8A" fill-opacity="0.25"/>
-                <text x="510" y="293" fill="#CBD5E1" font-family="Inter,system-ui,sans-serif" font-size="9">Data connectors</text>
-
-                <text x="444" y="312" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">Wk 3-4</text>
-                <rect x="540" y="302" width="140" height="14" rx="3" fill="#1A6B8A" fill-opacity="0.25"/>
-                <text x="546" y="313" fill="#CBD5E1" font-family="Inter,system-ui,sans-serif" font-size="9">Model &amp; board pack build</text>
-
-                <text x="444" y="332" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="10">Wk 5</text>
-                <rect x="620" y="322" width="80" height="14" rx="3" fill="#1A6B8A" fill-opacity="0.25"/>
-                <text x="626" y="333" fill="#CBD5E1" font-family="Inter,system-ui,sans-serif" font-size="9">UAT &amp; go-live</text>
-
-                <!-- Bottom notes area -->
-                <line x1="0" y1="370" x2="800" y2="370" stroke="#1E293B" stroke-width="1"/>
-                <text x="24" y="392" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="0.8">NOTES</text>
-                <text x="24" y="412" fill="#64748B" font-family="Inter,system-ui,sans-serif" font-size="11">Client prefers Monday AM delivery. CFO + 3 direct reports on distribution list.</text>
-                <text x="24" y="430" fill="#64748B" font-family="Inter,system-ui,sans-serif" font-size="11">Existing board template in PowerPoint - we'll match their branding exactly.</text>
-                <text x="24" y="448" fill="#64748B" font-family="Inter,system-ui,sans-serif" font-size="11">Phase 2 discussion: automated cash forecast + scenario modelling (Q2).</text>
-
-                <!-- Footer -->
-                <rect x="0" y="470" width="800" height="50" fill="#1E293B"/>
-                <line x1="0" y1="470" x2="800" y2="470" stroke="#334155" stroke-width="1"/>
-                <text x="24" y="494" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="10">CapitalCurve Advisory · Solution Brief · Confidential</text>
-                <text x="776" y="494" text-anchor="end" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="10">This is your build. We just make it real.</text>
-              </svg>
+              <!-- Footer -->
+              <div class="sb-footer">
+                <span>CapitalCurve Advisory &middot; Solution Brief &middot; Confidential</span>
+                <span>This is your build. We just make it real.</span>
+              </div>
             </div>
           </div>
           </div>
