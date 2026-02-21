@@ -303,9 +303,9 @@
       min-height: 100vh;
       display: flex;
       align-items: flex-end;
-      padding: 0 48px 300px;
+      padding: 0 48px 100px;
       background-image:
-        linear-gradient(to top, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.45) 35%, rgba(10,10,10,0.25) 100%),
+        linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 40%, rgba(10,10,10,0.25) 100%),
         url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=1920&q=80');
       background-size: cover;
       background-position: center;
@@ -398,6 +398,12 @@
       background-image:
         linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.85)),
         url('https://images.unsplash.com/photo-1610183880843-52fc754207a8?w=1920&q=80');
+    }
+
+    .section--hero-cont {
+      background-image:
+        linear-gradient(rgba(10,10,10,0.78), rgba(10,10,10,0.78)),
+        url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=1920&q=80');
     }
 
     /* ===== DIVIDER ===== */
@@ -728,7 +734,7 @@
         padding: 100px 40px;
       }
       .hero {
-        padding: 0 40px 260px;
+        padding: 0 40px 80px;
       }
       .footer {
         padding: 56px 40px 36px;
@@ -775,7 +781,7 @@
         padding: 80px 20px;
       }
       .hero {
-        padding: 0 20px 240px;
+        padding: 0 20px 80px;
         background-attachment: scroll;
       }
       .section--bg,
@@ -851,7 +857,7 @@
         font-size: 22px;
       }
       .hero {
-        padding: 0 16px 200px;
+        padding: 0 16px 64px;
       }
       .section {
         padding: 64px 16px;
@@ -2235,7 +2241,7 @@
     </section>
 
     <!-- ===== TAILORED HEADLINE ===== -->
-    <section class="section" id="whatwedo" style="padding-top:80px;padding-bottom:60px;margin-top:-220px;position:relative;z-index:1;background:transparent;">
+    <section class="section section--bg section--hero-cont" id="whatwedo" style="padding-top:80px;padding-bottom:60px;">
       <div class="section-inner--wide reveal" style="text-align:center;">
         <p class="eyebrow">Bespoke, Not Off-the-Shelf</p>
         <h2 class="section-heading section-heading--center">Every model, report, and automation is built around your business — not a template.</h2>
