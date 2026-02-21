@@ -1358,6 +1358,7 @@
       opacity: 0;
       transition: opacity 0.5s ease;
       pointer-events: none;
+      height: 100%;
     }
 
     .board-tab-panel.active {
@@ -1378,21 +1379,24 @@
       overflow: hidden;
     }
 
-    .slide-content::after {
-      content: 'APEX CONSULTING \00B7  CONFIDENTIAL  \00B7  PREPARED BY CAPITALCURVE';
+    .slide-footer {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 12px 36px;
+      justify-content: space-between;
+      padding: 10px 36px;
+      margin: auto -36px 0;
       background: linear-gradient(90deg, #0B1120 0%, #111B2E 50%, #0B1120 100%);
+      border-top: 1px solid rgba(59,130,246,0.15);
       font-size: 8px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.2);
-      margin-top: auto;
-      margin-left: -36px;
-      margin-right: -36px;
-      border-top: 1px solid rgba(59,130,246,0.15);
+      flex-shrink: 0;
+    }
+    .slide-footer__page {
+      font-weight: 600;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.15em;
     }
 
     .slide-header {
@@ -1993,7 +1997,7 @@
         margin-left: -24px;
         margin-right: -24px;
       }
-      .slide-content::after {
+      .slide-footer {
         margin-left: -24px;
         margin-right: -24px;
         padding-left: 24px;
@@ -2063,7 +2067,7 @@
         min-height: 320px;
         border-top-width: 3px;
       }
-      .slide-content::after {
+      .slide-footer {
         margin-left: -20px;
         margin-right: -20px;
         padding: 10px 20px;
@@ -2166,7 +2170,9 @@
     #pnl-boardpack-carousel .excel-tab-btn { padding: 5px 12px; font-size: 9px; }
 
     /* Board pack slides inside carousel */
-    #pnl-boardpack-carousel .slide-content { height: auto; }
+    #pnl-boardpack-carousel .slide-content { height: 100%; }
+    #pnl-boardpack-carousel [data-panel="revenue"] .slide-two-col { align-content: stretch; }
+    #pnl-boardpack-carousel [data-panel="profit"] .slide-bar-chart { max-height: none !important; min-height: 80px; }
     #pnl-boardpack-carousel .board-tab-btn { padding: 10px 20px; font-size: 9px; }
 
     /* Remove scroll from cashflow panel inside carousel */
@@ -3103,6 +3109,10 @@
                     <span class="slide-ai-badge">AI Insight</span>
                     Revenue momentum is strong but the EBITDA miss signals cost discipline is slipping. The AR ageing breach needs immediate attention &mdash; at current trajectory, you'll cross $400K by month-end. Recommend a dedicated collections sprint this week.
                   </div>
+                  <div class="slide-footer">
+                    <span>Apex Consulting &middot; Confidential &middot; Prepared by CapitalCurve</span>
+                    <span class="slide-footer__page">1 / 5</span>
+                  </div>
                 </div>
               </div>
 
@@ -3187,6 +3197,10 @@
                   <div class="slide-ai-commentary">
                     <span class="slide-ai-badge">AI Insight</span>
                     Jan's $2.4M was your strongest month in 12 months &mdash; Feb is tracking to land at $2.1M, still above plan. Pipeline coverage at 4.3x gives you a healthy buffer, but watch the $8.2M in Qualified Leads &mdash; conversion has slowed 12% this quarter.
+                  </div>
+                  <div class="slide-footer">
+                    <span>Apex Consulting &middot; Confidential &middot; Prepared by CapitalCurve</span>
+                    <span class="slide-footer__page">2 / 5</span>
                   </div>
                 </div>
               </div>
@@ -3284,6 +3298,10 @@
                     <span class="slide-ai-badge">AI Insight</span>
                     Cash generation is trending positively with a projected $600K build over 13 weeks. The W2-W3 payroll dips are predictable and manageable. Key risk: if the $340K AR ageing isn't collected by W6, the W7 trough could dip below $2.8M.
                   </div>
+                  <div class="slide-footer">
+                    <span>Apex Consulting &middot; Confidential &middot; Prepared by CapitalCurve</span>
+                    <span class="slide-footer__page">3 / 5</span>
+                  </div>
                 </div>
               </div>
 
@@ -3308,7 +3326,7 @@
                     <span style="--dot-color:#22C55E"><span style="background:#22C55E;width:8px;height:8px;border-radius:2px;display:inline-block"></span> EBITDA</span>
                   </div>
                   <p class="slide-section-title" style="margin-bottom:4px">EBITDA Margin Trend (%)</p>
-                  <div class="slide-bar-chart" style="min-height:70px;max-height:80px;padding-top:8px;margin-bottom:10px">
+                  <div class="slide-bar-chart" style="min-height:70px;padding-top:8px;margin-bottom:10px">
                     <div class="slide-bar">
                       <div class="slide-bar__value">18%</div>
                       <div class="slide-bar__fill" style="height:60%;background:#F59E0B"></div>
@@ -3375,6 +3393,10 @@
                   <div class="slide-ai-commentary">
                     <span class="slide-ai-badge">AI Insight</span>
                     Gross margin is healthy at 62.4% but EBITDA is being squeezed by $62K in unplanned contractor costs on Project Titan. If Titan wraps on schedule in March, margins should normalise. Consider whether the contractor dependency reflects a capability gap worth a permanent hire.
+                  </div>
+                  <div class="slide-footer">
+                    <span>Apex Consulting &middot; Confidential &middot; Prepared by CapitalCurve</span>
+                    <span class="slide-footer__page">4 / 5</span>
                   </div>
                 </div>
               </div>
@@ -3445,6 +3467,10 @@
                   <div class="slide-ai-commentary">
                     <span class="slide-ai-badge">AI Insight</span>
                     Two amber flags and one red. The AR ageing breach is your highest-priority action item &mdash; it's a leading indicator of cash risk. Utilisation at 84.7% is within tolerance but trending down for the third consecutive week.
+                  </div>
+                  <div class="slide-footer">
+                    <span>Apex Consulting &middot; Confidential &middot; Prepared by CapitalCurve</span>
+                    <span class="slide-footer__page">5 / 5</span>
                   </div>
                 </div>
               </div>
