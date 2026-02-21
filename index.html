@@ -299,18 +299,33 @@
 
     /* ===== HERO ===== */
     .hero-wrapper {
+      position: relative;
       background-image: url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=1920&q=80');
       background-size: cover;
       background-position: center;
     }
 
+    .hero-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.25) 0%,
+        rgba(10,10,10,0.55) 45%,
+        rgba(10,10,10,0.80) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .hero {
       position: relative;
+      z-index: 2;
       min-height: 100vh;
       display: flex;
       align-items: flex-end;
       padding: 0 48px 100px;
-      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.45) 40%, rgba(10,10,10,0.25) 100%);
     }
 
     .hero-content {
@@ -2238,7 +2253,7 @@
       </section>
 
       <!-- ===== TAILORED HEADLINE ===== -->
-      <section class="section" id="whatwedo" style="padding-top:80px;padding-bottom:60px;background:linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.75) 40%);">
+      <section class="section" id="whatwedo" style="padding-top:80px;padding-bottom:60px;position:relative;z-index:2;">
         <div class="section-inner--wide reveal" style="text-align:center;">
           <p class="eyebrow">Bespoke, Not Off-the-Shelf</p>
           <h2 class="section-heading section-heading--center">Every model, report, and automation is built around your business — not a template.</h2>
