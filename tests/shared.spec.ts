@@ -56,4 +56,29 @@ test.describe('Shared — all viewports', () => {
     const pricing = page.locator('#pricing');
     await expect(pricing).toBeInViewport();
   });
+
+  test('viewport meta includes viewport-fit=cover', async ({ page }) => {
+    const content = await page.getAttribute('meta[name="viewport"]', 'content');
+    expect(content).toContain('viewport-fit=cover');
+  });
+
+  test('no element uses background-attachment: fixed', async ({ page }) => {
+    const hasFixed = await page.evaluate(() => {
+      const all = document.querySelectorAll('*');
+      for (const el of all) {
+        if (getComputedStyle(el).backgroundAttachment === 'fixed') return true;
+      }
+      return false;
+    });
+    expect(hasFixed, 'found element with background-attachment: fixed').toBe(false);
+  });
+
+  test('hero fills viewport without initial vertical scrollbar', async ({ page }) => {
+    const hero = page.locator('.hero');
+    await expect(hero).toBeVisible();
+    const heroHeight = await hero.evaluate((el) => el.getBoundingClientRect().height);
+    const viewportHeight = await page.evaluate(() => window.innerHeight);
+    // Allow 1px tolerance for sub-pixel rounding
+    expect(heroHeight).toBeGreaterThanOrEqual(viewportHeight - 1);
+  });
 });

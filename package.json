@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "npx serve -l 3000 -s .",
+    "tunnel": "npx serve -l 3000 -s . & npx ngrok http 3000",
+    "test": "npx playwright test",
+    "test:live": "npx playwright test --config=playwright.live.config.ts",
+    "audit:mobile": "npx lighthouse http://localhost:3000 --output html --output-path=./lighthouse-report.html --form-factor=mobile --screenEmulation.mobile --screenEmulation.width=390 --screenEmulation.height=844"
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,8 @@
   "homepage": "https://github.com/Khaled-print/capitalcurve-advisory-site#readme",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
+    "lighthouse": "^13.0.3",
+    "ngrok": "^5.0.0-beta.2",
     "serve": "^14.2.6"
   }
 }

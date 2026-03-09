@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>CapitalCurve Advisory - FP&A Automation & CRM-to-Finance Intelligence</title>
   <meta name="description" content="Bespoke finance automation for Australian mid-market companies. We automate the data work underneath so your team reviews a finished report instead of building one.">
 
@@ -73,8 +73,10 @@
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
       padding: 0 12px 12px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
       background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
       min-height: 100vh;
+      min-height: 100dvh;
     }
 
     /* ===== PAGE FRAME ===== */
@@ -82,6 +84,7 @@
       border: 1px solid var(--frame-border);
       border-top: none;
       border-radius: 0 0 20px 20px;
+      overflow: hidden;
       overflow: clip;
       background: var(--bg-page);
       position: relative;
@@ -167,8 +170,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 48px;
-      height: 64px;
+      padding: env(safe-area-inset-top, 0px) 48px 0;
+      height: calc(64px + env(safe-area-inset-top, 0px));
       background: transparent;
       transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, top 0.4s ease, left 0.4s ease, right 0.4s ease, border-radius 0.4s ease;
       border-radius: 0;
@@ -355,7 +358,11 @@
     .mobile-menu {
       display: none;
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      height: 100dvh;
       z-index: 105;
       background: rgba(5,5,5,0.95);
       backdrop-filter: blur(24px);
@@ -367,6 +374,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
     }
 
     .mobile-menu.open {
@@ -414,6 +422,7 @@
       position: relative;
       z-index: 2;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: flex-end;
       padding: 0 48px 100px;
@@ -493,7 +502,7 @@
     .section--bg {
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
     }
 
     .section--brisbane {
@@ -690,7 +699,7 @@
         url('https://images.unsplash.com/photo-1692734761833-60a3f055bf31?w=1920&q=80');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
     }
 
     .final-cta-inner {
@@ -775,7 +784,7 @@
     .floating-cta {
       display: none;
       position: fixed;
-      bottom: 20px;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
       left: 24px;
       right: 24px;
       background: #fff;
@@ -891,11 +900,7 @@
       .hero {
         padding: 0 20px 80px;
       }
-      .hero-wrapper,
-      .section--bg,
-      .final-cta {
-        background-attachment: scroll;
-      }
+      /* background-attachment: scroll already set globally */
       .trust-bar {
         padding: 30px 20px;
       }
