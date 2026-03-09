@@ -33,6 +33,7 @@
   <style>
     /* ===== RESET ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :focus-visible { outline: 2px solid #3B82F6; outline-offset: 2px; }
     html { scroll-behavior: smooth; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
@@ -321,12 +322,12 @@
       flex-direction: column;
       justify-content: center;
       gap: 5px;
-      width: 28px;
-      height: 28px;
+      width: 44px;
+      height: 44px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
+      padding: 8px;
       z-index: 110;
     }
 
@@ -937,6 +938,21 @@
         min-width: unset;
       }
 
+      /* Responsive background images */
+      .hero-wrapper {
+        background-image: url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=800&q=75');
+      }
+      .final-cta {
+        background-image:
+          linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)),
+          url('https://images.unsplash.com/photo-1692734761833-60a3f055bf31?w=800&q=75');
+      }
+
+      /* Spreadsheet table mobile overflow */
+      .spreadsheet-table {
+        min-width: 600px;
+      }
+
       /* Floating CTA visible */
       .floating-cta {
         display: block;
@@ -968,6 +984,21 @@
       }
       .section {
         padding: 64px 16px;
+      }
+
+      /* Responsive background images */
+      .hero-wrapper {
+        background-image: url('https://images.unsplash.com/photo-1600080122558-be2d637b16bc?w=480&q=70');
+      }
+      .final-cta {
+        background-image:
+          linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)),
+          url('https://images.unsplash.com/photo-1692734761833-60a3f055bf31?w=480&q=70');
+      }
+
+      /* Spreadsheet table mobile overflow */
+      .spreadsheet-table {
+        min-width: 500px;
       }
     }
 
@@ -1141,7 +1172,8 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
+      padding: 8px 0;
+      min-height: 44px;
       flex: 0 0 100px;
     }
     .carousel-dot::before {
@@ -2489,13 +2521,14 @@
         flex: 1;
         text-align: center;
         padding: 8px 10px;
-        font-size: 8px;
+        font-size: 9px;
+        min-height: 44px;
       }
       .kpi-grid {
         grid-template-columns: 1fr;
       }
-      .cfo-tab-btn { font-size:8px; padding:8px 10px; }
-      .excel-tab-btn { padding:6px 12px; font-size:9px; }
+      .cfo-tab-btn { font-size:9px; padding:8px 10px; min-height:44px; }
+      .excel-tab-btn { padding:6px 12px; font-size:9px; min-height:44px; }
       #pnl-boardpack-carousel .carousel-frame .screen-frame { height: auto; }
       #pnl-boardpack-carousel .carousel-layout { max-width: none; gap: 24px; transform: none; }
       #pnl-boardpack-carousel .carousel-sidebar { flex: none; }
@@ -4093,9 +4126,9 @@
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
       <div class="footer-logo">
-        <img src="capitalcurve-logo-white.svg" alt="CapitalCurve Advisory" class="footer-logo-img">
+        <img src="capitalcurve-logo-white.svg" alt="CapitalCurve Advisory" class="footer-logo-img" loading="lazy">
       </div>
-      <p class="footer-abn">ABN 68 901 143 285  ·  Sydney, Australia  ·  khaled@capitalcurve.io</p>
+      <p class="footer-abn">ABN 68 901 143 285  ·  Sydney, Australia  ·  <a href="mailto:khaled@capitalcurve.io" style="color:inherit">khaled@capitalcurve.io</a></p>
       <p class="footer-services">FP&amp;A Automation  ·  CRM-to-Finance Intelligence  ·  Finance Function Automation</p>
       <p class="footer-copy">© 2026 CapitalCurve Advisory</p>
     </footer>
@@ -4138,6 +4171,20 @@
             document.body.style.overflow = '';
           });
         });
+
+        // Swipe down to close mobile menu
+        var touchStartY = 0;
+        mobileMenu.addEventListener('touchstart', function(e) {
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        mobileMenu.addEventListener('touchend', function(e) {
+          var deltaY = e.changedTouches[0].clientY - touchStartY;
+          if (deltaY > 80) {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+          }
+        }, { passive: true });
       }
 
       // --- Floating CTA visibility ---
@@ -4632,7 +4679,8 @@
         var d = cashViews[key]; if (!d) return;
         var table = document.getElementById('cash-spreadsheet'); if (!table) return;
         var n = d.headers.length;
-        var catW = n <= 6 ? 'style="width:110px;min-width:110px;"' : n <= 12 ? 'style="width:120px;min-width:120px;"' : '';
+        var _isMobile = window.innerWidth < 768;
+        var catW = n <= 6 ? 'style="width:'+(_isMobile?'80':'110')+'px;min-width:'+(_isMobile?'80':'110')+'px;"' : n <= 12 ? 'style="width:'+(_isMobile?'90':'120')+'px;min-width:'+(_isMobile?'90':'120')+'px;"' : '';
         var th = '<tr><th '+catW+'>Category</th>';
         for (var i = 0; i < n; i++) th += '<th>' + d.headers[i] + '</th>';
         th += '</tr>';
